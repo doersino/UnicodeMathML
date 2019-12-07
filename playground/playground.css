@@ -1,0 +1,417 @@
+/***********/
+/* GENERAL */
+/***********/
+
+:root {
+    --main-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --code-font: "Iosevka Web", PragmataPro, monospace;
+    --math-font: "LM Math", serif;
+
+    --blackish-color: #111;
+    --verydarkgrayish-color: #222;
+    --darkgrayish-color: #333;
+    --grayish-color: #444;
+    --lightgrayish-color: #aaa;
+    --faintwhitish-color: #ccc;
+    --whitish-color: #eee;
+
+    --button-radius: 2px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    line-height: 1em;
+    box-sizing: border-box;
+}
+html {
+    font-size: 20px;
+}
+body {
+    font-family: var(--main-font);
+    background-color: var(--blackish-color);
+    color: var(--whitish-color);
+}
+h1 {
+    padding: 0.9rem 1rem 1rem;
+    font-size: 2.2rem;
+    background-color: var(--darkgrayish-color);
+}
+h1 em {
+    font-style: normal;
+    font-size: 1.1em;
+    letter-spacing: -0.08em;
+}
+code {
+    font-family: var(--code-font);
+}
+abbr {
+    text-decoration: underline;
+    text-decoration-style: dotted;
+}
+table {
+    width: 100%;
+    table-layout: fixed;
+    border-spacing: 1rem;
+}
+.playground td {
+    vertical-align: top;
+}
+
+/*********/
+/* INPUT */
+/*********/
+
+textarea {
+    font-family: var(--code-font);
+    font-size: 1.5rem;
+    width: 100%;
+    height: 360px;
+    outline: none;
+    background: var(--darkgrayish-color);
+    border: none;
+    color: inherit;
+    padding: 0.5rem;
+}
+p {
+    line-height: 1.7rem;
+    vertical-align: top;
+}
+p .category {
+    color: var(--grayish-color);
+    background-color: var(--whitish-color);
+    padding: 0.4rem 0.5rem;
+    border-radius: var(--button-radius);
+    font-size: 0.8rem;
+    display: inline-block;
+    vertical-align: top;
+}
+button {
+    font-size: inherit;
+    font-family: inherit;
+    border: 0;
+    background-color: var(--grayish-color);
+    color: var(--whitish-color);
+    padding: 0.3rem 0.5rem;
+    cursor: pointer;
+    outline: none;
+    border-radius: var(--button-radius);
+    margin: 0 2px 0 0;
+}
+button.unicode,
+button.example,
+button.mathfont {
+    font-family: var(--code-font);
+}
+button.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+button:hover {
+    color: var(--grayish-color);
+    background-color: var(--faintwhitish-color);
+}
+input {
+    font-size: inherit;
+    font-family: var(--code-font);
+    border: 0;
+    padding: calc(0.17rem) 0.5rem;
+    outline: none;
+    border-radius: var(--button-radius) 0 0 var(--button-radius);
+    width: 70px;
+    position: relative;
+    top: -1px;
+    background-color: var(--whitish-color);
+}
+input#controlword {
+    width: 140px;
+}
+input#mathchar {
+    width: 35px;
+}
+button.submit {
+    border-radius: 0 var(--button-radius) var(--button-radius) 0;
+    vertical-align: top;
+}
+.history {
+    margin-bottom: 0.75rem;
+    overflow-x: scroll;
+    white-space: nowrap;
+    margin-right: -1rem;
+}
+p.codepoint, p.examples {
+    margin-top: 0.75rem;
+}
+
+.tooltip {
+    position: absolute;
+    pointer-events: none;
+    background: var(--verydarkgrayish-color);
+    color: var(--faintwhitish-color);
+    font-size: 0.67rem;
+    border-radius: var(--button-radius);
+    padding: 0.3rem;
+    border: 1px solid var(--darkgrayish-color);
+    max-width: 30em;
+    line-height: 1.2em;
+}
+.tooltip b {
+    padding: 0.1rem;
+    display: inline-block;
+    text-transform: uppercase;
+    background-color: var(--lightgrayish-color);
+    color: var(--darkgrayish-color);
+    margin-bottom: 1px;
+    font-size: 0.8em;
+}
+.tooltip hr {
+    border: 0;
+    border-bottom: 1px solid var(--grayish-color);
+    margin: 0.4em 0;
+}
+
+/**********/
+/* OUTPUT */
+/**********/
+
+#codepoints {
+    font-family: var(--code-font);
+    margin-top: 0.5rem;
+    padding: 0.8rem 0.5rem 0.5rem !important;
+    background-color: var(--darkgrayish-color);
+    line-height: 2em;
+    max-height: 4.2em;
+    overflow: hidden;
+}
+#codepoints:empty {
+    display: none;
+}
+#codepoints:hover {
+    max-height: initial !important;
+}
+#codepoints .cp {
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+    min-height: 2.2em;
+}
+#codepoints .cp.invisible-char {
+    background-color: var(--verydarkgrayish-color);
+}
+#codepoints .cp .p {
+    font-size: 0.5em;
+    padding: 0 0.5em 0.25em;
+    color: var(--lightgrayish-color);
+}
+#output {
+    overflow-x: scroll;
+    /*overflow: scroll;
+    max-height: 30em;*/
+}
+#output:empty:after {
+    content: "...and MathML will render here!";
+}
+math,
+.MathJax_SVG,
+.MathJax_SVG_Display {
+    font-family: var(--math-font);
+    padding: 0.5rem !important;
+    background-color: var(--verydarkgrayish-color);
+    display: block !important;
+    text-align: center !important;
+    border-bottom: 1px solid var(--darkgrayish-color) !important;
+}
+.MathJax_SVG_Display {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+math:last-child,
+.MathJax_SVG:last-of-type,
+.MathJax_SVG_Display:last-of-type {
+    border-bottom: none !important;
+}
+.unicodemathml-error {
+    line-height: 1rem;
+    background-color: #f53;
+    display: block;
+    color: black;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    border-bottom: 1px solid #d42;
+}
+.unicodemathml-error .unicodemathml-error-unicodemath {
+    font-family: var(--code-font);
+    font-size: 1.33em;
+    background-color: #d42;
+    display: inline-block;
+    margin-left: -0.5rem;
+    margin-top: -0.5rem;
+    padding: 0.5rem;
+    float: left;
+    margin-right: 0.5rem;
+}
+.unicodemathml-error .unicodemathml-error-unicodemath:before {
+    content: "⚠️";
+    padding-right: 0.5rem;
+}
+.tabs {
+    font-size: 0;
+    margin-top: 1rem;
+}
+.tab {
+    background: var(--darkgrayish-color);
+    color: var(--whitish-color);
+    font-size: 0.8rem;
+    font-style: italic;
+    border-radius: var(--button-radius) var(--button-radius) 0 0;
+    padding: 0.5rem;
+    display: inline-block;
+    margin: 0 1px 0 0;
+}
+.tab.active {
+    background: var(--grayish-color);
+}
+.tab.active:hover {
+    color: inherit;
+}
+.tab span {
+    background-color: rgba(140,140,140,0.5);
+    font-size: 0.7em;
+    padding: 0.3em 0.7em 0.4em;
+    margin-left: 0.4em;
+    border-radius: 1em;
+    vertical-align: middle;
+    font-style: normal;
+}
+.tab span:empty {
+    display: none;
+}
+.tabcontent {
+    background: var(--grayish-color);
+    height: 300px;
+    overflow: scroll;
+    padding: 0.5rem;
+}
+.tabcontent pre {
+    font-family: var(--code-font);
+    font-size: 0.8rem;
+    line-height: 0.9rem;
+    display: none;
+}
+.tabcontent pre:empty:after {
+    content: "Intermediate representations will be shown here. They're useful when debugging!";
+}
+
+/* json */
+pre .key {
+    color: salmon;
+    font-style: italic;
+}
+pre .string {
+    color: cornsilk;
+}
+pre .number {
+    color: orange;
+}
+pre .boolean {
+    color: lightsteelblue;
+}
+pre .null {
+    background-color: gold;
+    color: black;
+}
+
+/* trace */
+pre .match {
+    color: lawngreen;
+}
+pre .fail {
+    color: lightpink;
+}
+
+/* mathml */
+pre .text {
+    color: gold;
+}
+pre .bracket {
+    color: mintcream;
+}
+pre .tag {
+    color: lightsteelblue;
+}
+pre .attribute {
+    color: salmon;
+}
+pre .value {
+    color: cornsilk;
+    font-style: italic;
+}
+pre .comment {
+    background-color: gold;
+    color: black;
+    font-style: italic;
+}
+
+/**********/
+/* CONFIG */
+/**********/
+
+#config {
+    background-color: transparent;
+    width: 2.5rem;
+    font-size: 0.8rem;
+    padding: 0.5rem 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1337;
+}
+#config h2 {
+    text-align: right;
+    padding-right: 0.8rem;
+    padding-bottom: 0.5rem;
+    font-size: 1.5rem;
+}
+#config:hover {
+    background-color: var(--grayish-color);
+    width: 15rem;
+    box-shadow: 0 0 1rem var(--verydarkgrayish-color);
+}
+#config div {
+    padding: 0.5em 1em;
+    display: none;
+}
+#config:hover div {
+    display: block;
+}
+#config div:hover {
+    background-color: var(--darkgrayish-color);
+}
+#config input {
+    display: inline-block;
+    width: 1.7em;
+}
+#config label {
+    display: inline-block;
+    width: calc(100% - 2em);
+    vertical-align: top;
+}
+#config div.buttons:hover {
+    background-color: transparent;
+}
+#config button {
+    background-color: var(--whitish-color);
+    color: var(--grayish-color);
+}
+#config button:hover {
+    background-color: var(--lightgrayish-color);
+    color: var(--whitish-color);
+}
+#config a {
+    color: var(--lightgrayish-color);
+    margin-left: 0.5em;
+    cursor: pointer;
+}
+#config a:hover {
+    color: orangered;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <style>
+        html {
+            font-size: 20px;
+        }
+        section {
+            max-width: 600px;
+            margin: auto;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid gray;
+        }
+        math {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <p>Consider the first-order differential equation,</p>
+        <p>⁅ⅆy/ⅆx=[y-G(x)]/a(x,y).⁆</p>
+        <p>The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if</p>
+        <p>⁅|a(x,y)/Δx|a≪1/⁆<p>
+        <p>and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does exp ⁅(x/a(x,G(x)))⁆]</p>
+        <hr>
+        <p>From <a href="https://web.stanford.edu/class/cme324/classics/curtiss-hirschfelder.pdf">https://web.stanford.edu/class/cme324/classics/curtiss-hirschfelder.pdf</a>.</p>
+    </section>
+
+    <script>
+        var unicodemathmlOptions = {
+            resolveControlWords: true,
+        };
+    </script>
+    <script src="../src/unicodemathml.js"></script>
+    <script src="unicodemathml-parser.js"></script>
+    <script src="unicodemathml-integration.js"></script>
+    <script>
+        document.body.onload = renderUnicodemath();
+        // TODO embed mathjax?
+    </script>
+</body>

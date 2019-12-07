@@ -1,0 +1,27 @@
+# symbols listed on https://en.wikipedia.org/wiki/Mathematical_Alphanumeric_Symbols which are *not* in the Mathematical Alphanumeric Symbols block and thus must be explicitly "imported" as well for completeness
+ℬ
+ℭ
+ℂ
+ℰ
+ℱ
+ℋ
+ℌ
+ℍ
+ℐ
+ℑ
+ℒ
+ℳ
+ℕ
+ℙ
+ℚ
+ℛ
+ℜ
+ℝ
+ℨ
+ℤ
+ℯ
+ℊ
+ℎ
+ℴ
+ℓ
+℘

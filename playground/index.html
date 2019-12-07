@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>UnicodeMathML Playground</title>
+
+    <script>
+
+        // prevent caching
+        function loadUncachedStylesheet(path) {
+            document.write('<link rel="stylesheet" href="' + path + '?' + Math.random() + '">');
+        }
+        function loadUncachedScript(path) {
+            document.write('<script src="' + path + '?' + Math.random() + '"></scr' + 'ipt>');  // prevent caching
+        }
+    </script>
+
+    <link rel="stylesheet" href="assets/iosevka/01-iosevka-2.0.1/webfont.css">
+    <link rel="stylesheet" href="assets/latinmodern/latinmodern-math-1959/webfont.css">
+    <script>loadUncachedStylesheet("playground.css")</script>
+</head>
+<body>
+    <h1>UnicodeMathML <em>𝐏𝓁𝔞𝚢𝗴𝑟𝖔𝓊𝙣𝕕<!--𝐏𝓁𝔞𝚢͛𝗴𝑟𝖔⃗𝓊𝙣͖𝕕--></em></h1>
+    <aside id="config"><h2>⚙︎</h2></aside>
+    <table class="playground">
+        <tr>
+            <td>
+                <textarea id="input" placeholder="Put some UnicodeMath here..."></textarea>
+                <div id="codepoints"></div>
+            </td>
+            <td>
+                <div id="output"></div>
+                <div class="tabs">
+                    <button class="tab" id="pegjs_ast">PEG.js AST <span id="measurements_parse"></span></button>
+                    <button class="tab" id="preprocess_ast"><abbr title="Preprocessed">PP</abbr> AST <span id="measurements_preprocess"></span></button>
+                    <button class="tab" id="mathml_ast">MathML AST <span id="measurements_transform"></span></button>
+                    <button class="tab active" id="source">MathML source <span id="measurements_pretty"></span></button>
+                </div>
+                <div class="tabcontent">
+                    <pre id="output_pegjs_ast"></pre>
+                    <pre id="output_preprocess_ast"></pre>
+                    <pre id="output_mathml_ast"></pre>
+                    <pre id="output_source"></pre>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <p class="history">
+                    <span class="category">History</span>
+                    <span id="history">
+                        <button class="unicode disabled">empty</button>
+                    </span>
+                </p>
+                <script>
+
+                    // print buttons and extract tooltip data for later use
+                    var buttons = [
+                        {label: '🏁', explanation: 'Operators with a special meaning in UnicodeMath, hover over each button for more information.', symbols: {
+                            '▒': 'n-aryand concatenation operator',
+                            '█': 'Array operator',
+                            '▭': 'Enclosure operator',
+                            '□': 'Abstract box operator',
+                            '■': 'Matrix operator',
+                            '▁': 'Underline operator',
+                            '¦': 'Atop operator',
+                            '⒞': 'Choose operator (useful for binomial coefficients)',
+                            '├': 'Open delimiter',
+                            '┤': 'Close delimiter',
+                            '┬': 'Below operator',
+                            '┴': 'Above operator',
+                            '©': 'Choice operator',
+                            '〖': 'Invisible opening bracket',
+                            '〗': 'Invisible closing bracket',
+                            '⒨': 'Parenthesized matrix (pmatrix) operator',
+                            'Ⅎ': 'Size override operator',
+                            '⁄': 'Skewed fraction operator',
+                            '∕': 'Linear fraction operator',
+                            '⊘': 'Small fraction operator',
+                            '│': 'Vertical bar separator',
+                            '∣': '\\mid character',
+                            '✎': 'Math color operator (non-standard)',
+                            '☁': 'Math background color operator (non-standard)',
+                            '⫷': 'Start of comment (non-standard)',
+                            '⫸': 'End of comment (non-standard)',
+                            'ￗ': 'Typewriter/code font (non-standard)'
+                            }},
+                        {label: 'Operators', explanation: 'These are just examples – most non-alphabetic and non-numeric characters that have no special role in UnicodeMath are recognized as operators.', symbols: '×⋅∈∋∼≃≅≈≍≡≤≥≶≷≽≺≻≼⊂⊃⊆⊇⊑⊒'},
+                        {label: 'N-ary operators', explanation: 'These are just examples – more exists (mostly integral variants).', symbols: '∑∏∫∬∭⨌∮∱⨑⋂⋃⨃⨄⨀⨁⨂'},
+                        {label: 'Logic operators', symbols: '∃∀¬∧∨⇒⇔⊕⊤⊥⊢'},
+                        {label: 'DB operators', symbols: '⨯⨝⟕⟖⟗⋉⋊▷÷πσ'},
+                        {label: 'Invisible operators', symbols: {
+                            '2061': 'Invisible function application',
+                            '2062': 'Invisible times',
+                            '2063': 'Invisible separator',
+                            '2064': 'Invisible plus'
+                            }},
+                        {label: 'Spaces', symbols: {
+                            '​': ['Zero-width space', 'width: 1em'],
+                            ' ': ['1/18em space (veryverythinmathspace)', 'width: 1.1em'],
+                            '  ': ['2/18em space (verythinmathspace)', 'width: 1.2em'],
+                            ' ': ['3/18em space (thinmathspace)', 'width: 1.3em'],
+                            ' ': ['4/18em space (mediummathspace)', 'width: 1.4em'],
+                            ' ': ['5/18em space (thickmathspace)', 'width: 1.5em'],
+                            ' ': ['6/18em space (verythickmathspace)', 'width: 1.6em'],
+                            '  ': ['7/18em space (veryverythickmathspace)', 'width: 1.7em'],
+                            ' ': ['9/18em space', 'width: 1.9em'],
+                            ' ': ['1em space', 'width: 2.8em'],
+                            ' ': ['Digit-width space', 'width: 1.67em'],
+                            ' ': ['Space-width space (non-breaking space)', 'width: 1.67em']
+                            }},
+                        {label: 'Roots', symbols: '√∛∜'},
+                        {label: 'Superscripts', symbols: '⁰¹²³⁴⁵⁶⁷⁸⁹ⁱⁿ⁺⁻⁼⁽⁾'},
+                        {label: 'Subscripts', symbols: '₀₁₂₃₄₅₆₇₈₉₊₋₌₍₎'},
+                        {label: 'Delimiters', symbols: '()[]{}⟨⟩⌈⌉⌊⌋'},
+                        {label: 'Over/underbraces', symbols: '⏜⏝⏞⏟⏠⏡⎴⎵¯'},
+                        {label: 'Stretchy arrows', symbols: '←→↔⇐⇒⇔↩↪↼⇀↽⇁⊢⊣⟵⟶⟷⟸⟹⟺↦⊨'},
+                        {label: 'Enclosures', symbols: ['▭', ' ̄', '▁', '▢', '○', '⟌', '⃧', '⬭']},
+                        {label: 'Phantoms & Smashes', symbols: {
+                            '⟡': 'Phantom operator',
+                            '⬄': 'Horizontal phantom (hphantom) operator',
+                            '⇳': 'Vertical phantom (vphantom) operator',
+                            '⬍': 'Smash operator',
+                            '⬆': 'Ascender smash (asmash) operator',
+                            '⬇': 'Descender smash (dsmash) operator',
+                            '⬌': 'Horizontal smash (hsmash) operator'
+                            }},
+                        {label: 'Combining marks', explanation: 'These are just examples – anything from the "Combining Diacritical Marks" and "Combining Diacritical Marks for Symbols" Unicode blocks works.', symbols: ['0302', '030C', '0303', '0301', '0300', '0307', '0308', '20DB', '0304', '20D7']},
+                        {label: 'Differential, Exponential and Imaginary', symbols: 'ⅅⅆⅇⅈⅉ'},
+                        {label: '🇬🇷 Greek alphabet', symbols: 'ΑαΒβΓγΔδΕεΖζΗηΘθΙιΚκΛλΜμΝνΞξΟοΠπΡρΣσΤτΥυΦφΧχΨψΩω'},
+                    ];
+
+                    // variable used later on
+                    var symbolTooltips = {};
+
+                    buttons.forEach(function(entry) {
+                        var explanation = "";
+                        if ('explanation' in entry) {
+                            explanation = 'data-explanation="' + entry['explanation'].split('"').join("&quot;") + '"';
+                        }
+                        document.write(`<p><span class="category" ${explanation}>${entry['label']}</span> `);
+                        var syms = {};
+                        var specialCss = {};
+                        if (typeof(entry['symbols']) == "string") {  // string
+                            entry['symbols'].split('').forEach(c => syms[c] = "");
+                        } else if (!(entry['symbols'] instanceof Array)) {  // dictionary (with tooltips)
+                            Object.keys(entry['symbols']).forEach(function (c) {
+                                if (/^[0-9A-F]+$/i.test(c)) {
+
+                                    // hex code
+                                    syms[String.fromCodePoint("0x" + c)] = entry['symbols'][c];
+                                } else {
+
+                                    // normal character
+                                    syms[c] = entry['symbols'][c];
+                                }
+                            });
+                        } else if (/^[0-9A-F]+$/i.test(entry['symbols'][0])) {  // list of codepoints
+                            entry['symbols'].map(c => String.fromCodePoint("0x" + c)).forEach(c => syms[c] = "");
+                        } else {  // just a list
+                            entry['symbols'].forEach(c => syms[c] = "");;
+                        }
+
+                        Object.keys(syms).forEach(function (c) {
+
+                            // extract styles, if available
+                            var tooltip = syms[c];
+                            var css = '';
+                            if (syms[c] instanceof Array) {
+                                var tooltip = syms[c][0];
+                                var css = 'style="' + syms[c][1] + '"';
+                                syms[c] = syms[c][0];
+                            }
+
+                            document.write(`<button class="unicode" ${css} data-tooltip="${tooltip}">${c}</button>`);
+                        });
+                        symbolTooltips = Object.assign({}, symbolTooltips, syms);
+                    });
+                </script>
+                <p class="codepoint"><span class="category" data-explanation="Will insert the character corresponding to the hexadecimal escape into the UnicodeMath input field.">Codepoint</span>
+                    <input type="text" id="codepoint" placeholder="1F52D"><button id="insert_codepoint" class="submit">➥</button>
+                </p>
+                <p class="controlword"><span class="category" data-explanation="By default, the transformation pipeline is configured such that you can <em>also</em> enter control words into the UnicodeMath input field. They will be converted during the transformation stage.">Control word</span>
+                    <input type="text" id="controlword" placeholder="\oint"><button id="insert_controlword" class="submit">➥</button>
+                </p>
+                <p class="mathfonts">
+                    <span class="category" data-explanation="If you want to convert multiple characters at a time, enter them into the UnicodeMath input field, select them and click one of these buttons. Any characters that cannot be converted will remain unchanged.">Math fonts</span>
+                    <input type="text" id="mathchar" placeholder="A" maxlength="1"><button id="serif-bold" class="submit mathfont" data-tooltip="Serif & Bold">𝐀𝐁𝐂</button><button id="serif-italic" class="mathfont" data-tooltip="Serif & Italic">𝐴𝐵𝐶</button><button id="serif-bolditalic" class="mathfont" data-tooltip="Serif & Bold & Italic">𝑨𝑩𝑪</button><button id="sans-normal" class="mathfont" data-tooltip="Sans-serif">𝖠𝖡𝖢</button><button id="sans-bold" class="mathfont" data-tooltip="Sans-serif & Bold">𝗔𝗕𝗖</button><button id="sans-italic" class="mathfont" data-tooltip="Sans-serif & Italic">𝘈𝘉𝘊</button><button id="sans-bolditalic" class="mathfont" data-tooltip="Sans-serif & Bold & Italic">𝘼𝘽𝘾</button><button id="script-normal" class="mathfont"  data-tooltip="Script">𝒜ℬ𝒞</button><button id="script-bold" class="mathfont" data-tooltip="Script & Bold">𝓐𝓑𝓒</button><button id="fraktur-normal" class="mathfont" data-tooltip="Fraktur">𝔄𝔅ℭ</button><button id="fraktur-bold" class="mathfont" data-tooltip="Fraktur & Bold">𝕬𝕭𝕮</button><button id="monospace-normal" class="mathfont" data-tooltip="Monospace">𝙰𝙱𝙲</button><button id="doublestruck-normal" class="mathfont" data-tooltip="Double-struck">𝔸𝔹ℂ</button>
+                </p>
+                <p class="examples"><span class="category">Examples</span>
+                    <script>
+                        var examples = `
+                            ⅈ²=-1
+                            E = m⁢c²
+                            a²⋅b²=c²
+                            f̂(ξ)=∫_-∞^∞▒f(x)ⅇ^-2πⅈxξ ⅆx
+                            (a + b)^n = ∑_(k=0)^n▒(n¦k) a^k b^(n-k)
+                            _n C_k = n⒞k = n!/(k! ⋅ (n-k)!)
+                            ∏_(k=0)^n▒n⒞k = H²(n) / (n!)^(n+1) = (∏_(h=0)^n▒h^h) / (n!)^(n+1)
+                            sin⁡θ = 1⁄2 𝑒^(ⅈ⁢θ) + "c.c."
+                            W_δ₁ρ₁σ₂^3β=U_δ₁ρ₁^3β+1/8π^2⁢∫_α₁^α₂▒dα'₂[(U_δ₁ρ₁^2β-α'₂U_δ₁ρ₁^1β)/U_δ₁ρ₁^0β]
+                            1/2𝜋 ∫_0^2𝜋▒ⅆ𝜃/(𝑎+𝑏 sin⁡𝜃)=1/√(𝑎^2−𝑏^2)
+
+                            ⏞(x_1+⋯+x_k)^(k " times")
+                            (a + b)┴→
+                            (■(a&b@c&d))
+                            █(10&x+&3&y=2@3&x+&13&y=4)
+                            a /~ b
+                            w^h^e^e^e^e
+                            𝛼₂³/(𝛽₂³ + 𝛾₂³)
+                            √(n&a + b)
+                        `;
+                        examples
+                            .split("\n")
+                            .map(e => e.trim())
+                            .filter(e => e)
+                            .forEach(e => document.write(`<button class="example">${e}</button>`));
+                    </script>
+                    ⋯
+                </p>
+            </td>
+        </tr>
+    </table>
+
+    <!-- config -->
+    <script>
+        var defaultConfig = {
+            splitInput: true,
+            resolveControlWords: true,
+            displaystyle: true,
+            debug: true,
+            caching: true,
+            tracing: false,
+            forceMathJax: false,
+            outputLaTeX: false,
+        };
+        var configDescriptions = {
+            splitInput: "Split input into lines and process each line separately (as opposed to processing the entire input as a single expression)",
+            resolveControlWords: "Resolve control words such as <code>\\alpha</code> to the respective character before parsing",
+            displaystyle: "Present the results in <code>displaystyle</code> mode (as opposed to <code>textstyle</code> mode)",
+            debug: "Enable <em>debug</em> mode, with additional <code>console.log</code> output",
+            caching: "Generate the parser with <em>caching</em> enabled (~20x faster than sans caching)",
+            tracing: "Enable <em>tracing</em> and show parse trace in a tab (⚠ slow if caching disabled)",
+            forceMathJax: "Force-enable MathJax in browsers that support MathML natively",
+            outputLaTeX: "Enable <strong>EXPERIMENTAL</strong> LaTeX output (& force MathJax)",
+        };
+
+        var ummlConfig = JSON.parse(JSON.stringify(defaultConfig));  // clone it
+
+        function renderConfigPane() {
+            var e = document.getElementById("config");
+            var i = 0;
+            e.innerHTML += Object.keys(ummlConfig).map(k => {
+                i++;
+                return `<div><input type="checkbox" id="c${i}" name="${k}" ${ummlConfig[k]? "checked" : ""}><label for="c${i}">${configDescriptions[k]}</label></div>`;
+            }).join("");
+            e.innerHTML += `<div class="buttons"><button onclick="applyConfigAndReload()">Apply & Reload Page</button><a onclick="resetConfigAndReload()">Reset</a></div>`;
+        }
+        function loadConfigIntoPane() {
+            var tempConfig = defaultConfig;
+            if (window.localStorage.getItem("config")) {
+                tempConfig = JSON.parse(localStorage.getItem('config'));
+            }
+            Array.from(document.querySelectorAll("#config input[type='checkbox']")).map(e => {
+                e.checked = tempConfig[e.name];
+                ummlConfig[e.name] = tempConfig[e.name];
+            });
+        }
+        function applyConfigAndReload() {
+            var tempConfig = {};
+            Array.from(document.querySelectorAll("#config input[type='checkbox']")).map(e => {
+                tempConfig[e.name] = e.checked;
+            });
+            localStorage.setItem('config', JSON.stringify(tempConfig));
+            window.location.reload(false);
+        }
+        function resetConfigAndReload() {
+            localStorage.setItem('config', JSON.stringify(defaultConfig));
+            window.location.reload(false);
+        }
+        renderConfigPane();
+        loadConfigIntoPane();
+    </script>
+
+    <!-- unicodemathml stuff -->
+    <script src="../lib/peg-0.10.0.min.js"></script>
+    <script>
+        var ummlParser = undefined;
+
+        // load grammar from file, then generate parser
+        var client = new XMLHttpRequest();
+        client.open('GET', '../src/unicodemathml.pegjs' + "?" + Math.random());
+        client.onreadystatechange = function() {
+            if (client.readyState === 4) {
+                try {
+                    ummlParser = peg.generate(client.responseText, {cache: ummlConfig.caching, trace: ummlConfig.tracing});
+                } catch (error) {
+                    document.write("Error during parser generation: " + error + "<br>");
+                    console.log(error);
+                }
+            }
+        }
+        client.send();
+    </script>
+    <script>loadUncachedScript("../src/unicodemathml.js")</script>
+
+    <!-- playground stuff -->
+    <script src="assets/jquery.min.js"></script>
+    <script src="charinfo.js">/* no need to avoid caching here – it's massive and it's not gonna change */</script>
+    <script>loadUncachedScript("playground.js")</script>
+</body>

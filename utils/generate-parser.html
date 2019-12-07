@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    Generates the parser as a JS file, e.g. for inclusion in Markdeep. (Should have been downloaded as you read this.)
+    <script src="../lib/peg-0.10.0.min.js"></script>
+    <script>
+
+        // via https://stackoverflow.com/a/18197341
+        function download(filename, text) {
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/javascript;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', filename);
+
+            element.style.display = 'none';
+            document.body.appendChild(element);
+
+            element.click();
+
+            document.body.removeChild(element);
+        }
+
+        // load grammar from file, then generate parser
+        var client = new XMLHttpRequest();
+        client.open('GET', '../src/unicodemathml.pegjs');
+        client.onreadystatechange = function() {
+            if (client.readyState === 4) {
+                try {
+                    var parser = peg.generate(client.responseText, {output: "source", format: "globals", exportVar: "ummlParser", cache: true, trace: false});
+                    download("unicodemathml-parser.js", parser);
+                } catch (error) {
+                    document.write("Error during parser generation: " + error + "<br>");
+                }
+            }
+        }
+        client.send();
+    </script>
