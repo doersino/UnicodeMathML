@@ -201,6 +201,7 @@ async function renderMarkedUnicodemath() {
     var unicodemathPlaceholders = Array.from(document.querySelectorAll("span.unicodemathml-placeholder"));
 
     // show a progress message
+    var time = Date.now();
     if (ummlConfig.showProgress) await showProgress(unicodemathPlaceholders.length);
 
     // work our way through
@@ -240,8 +241,14 @@ async function renderMarkedUnicodemath() {
         // replace span with math
         elem.outerHTML = mathml;
 
-        // update progress message
-        if (ummlConfig.showProgress) await updateProgress(i+1);
+        // update progress message if at least 200 ms have elapsed since the
+        // last update (this speeds up things considerably versus updating it on
+        // every iteration – drawing is expensive, which is why browsers avoid
+        // it by default within functions!)
+        if (ummlConfig.showProgress && Date.now() >= time + 200) {
+            time = Date.now();
+            await updateProgress(i+1);
+        }
     }
 
     // hide progress message
