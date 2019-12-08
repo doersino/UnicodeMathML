@@ -1,6 +1,6 @@
 /**
   Markdeep.js
-  Version 1.06
+  Version 1.07
 
   Copyright 2015-2019, Morgan McGuire, http://casual-effects.com
   All rights reserved.
@@ -28,12 +28,12 @@
   Sagalaev, which is used for code highlighting. (BSD 3-clause license)
 */
 /**See http://casual-effects.com/markdeep for @license and documentation.
-markdeep.min.js 1.06 (C) 2019 Morgan McGuire 
+markdeep.min.js 1.07 (C) 2019 Morgan McGuire 
 highlight.min.js 9.13.1 (C) 2017 Ivan Sagalaev https://highlightjs.org/*/
 (function() {
 'use strict';
 
-var MARKDEEP_FOOTER = '<div class="markdeepFooter"><i>formatted by <a href="http://casual-effects.com/markdeep" style="color:#999">Markdeep&nbsp;1.06&nbsp;&nbsp;</a></i><div style="display:inline-block;font-size:13px;font-family:\'Times New Roman\',serif;vertical-align:middle;transform:translate(-3px,-1px)rotate(135deg);">&#x2712;</div></div>';
+var MARKDEEP_FOOTER = '<div class="markdeepFooter"><i>formatted by <a href="http://casual-effects.com/markdeep" style="color:#999">Markdeep&nbsp;1.07&nbsp;&nbsp;</a></i><div style="display:inline-block;font-size:13px;font-family:\'Times New Roman\',serif;vertical-align:middle;transform:translate(-3px,-1px)rotate(135deg);">&#x2712;</div></div>';
 
 {
 // For minification. This is admittedly scary.
@@ -106,6 +106,11 @@ var BODY_STYLESHEET = entag('style', 'body{max-width:680px;' +
 /** You can embed your own stylesheet AFTER the <script> tags in your
     file to override these defaults. */
 var STYLESHEET = entag('style',
+                       // Force background images (except on the body) to print correctly on Chrome and Safari
+                       // and remove text shadows, which Chrome can't print and will turn into
+                       // boxes
+    '@media print{*{-webkit-print-color-adjust:exact;text-shadow:none !important}}' +
+
     'body{' +
     'counter-reset: h1 h2 h3 h4 h5 h6 paragraph' +
     '}' +
@@ -113,6 +118,10 @@ var STYLESHEET = entag('style',
     // Avoid header/footer in print to PDF. See https://productforums.google.com/forum/#!topic/chrome/LBMUDtGqr-0
     '@page{margin:0;size:auto}' +
 
+                       '#mdContextMenu{position:absolute;background:#383838;cursor:default;border:1px solid #999;color:#fff;padding:4px 0px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen,Ubuntu,"Helvetica Neue",sans-serif;font-size:85%;font-weight:600;border-radius:4px;box-shadow:0px 3px 10px rgba(0,0,0,35%)}' +
+                       '#mdContextMenu div{padding:0px 20px}' +
+                       '#mdContextMenu div:hover{background:#1659d1}' +
+                       
     '.md code,.md pre{' +
     'font-family:' + codeFontStack + ';' +
     'font-size:' + codeFontSize + ';' +
@@ -158,16 +167,15 @@ var STYLESHEET = entag('style',
     'text-align:center' + 
     '}' +
 
-    '.md div.imagecaption,.md div.tablecaption,.md div.listingcaption{' +
+    '.md .imagecaption,.md .tablecaption,.md .listingcaption{' +
+    'display:inline-block;' +
     'margin:7px 5px 12px;' +
     'text-align:justify;' +
     'font-style:italic' +
     '}' +
-
-    '.md div.imagecaption{' +
-    'margin-bottom:0' +
-    '}' +
-
+                       
+    '.md img.pixel{image-rendering:-moz-crisp-edges;image-rendering:pixelated}' +
+                       
     '.md blockquote.fancyquote{' + 
     'margin:25px 0 25px;' +
     'text-align:left;' +
@@ -323,10 +331,6 @@ var STYLESHEET = entag('style',
     '.md .calendar .parenthesized{' +
     'color:#999;' + 
     'font-style:italic' +
-    '}' +
-
-    '.md div.tablecaption{' +
-    'text-align:center' +
     '}' +
 
     '.md table.table th{' +
@@ -521,6 +525,7 @@ var FRENCH = {
         sec:       'sec',
         section:   'section',
         subsection: 'paragraphe',
+        chapter:   'chapitre',
 
         Monday:    'lundi',
         Tuesday:   'mardi',
@@ -573,6 +578,7 @@ var LITHUANIAN = {
         sec:       'sk',
         section:   'skyrius',
         subsection: 'poskyris',
+        chapter:   'skyrius',
 
         Monday:    'pirmadienis',
         Tuesday:   'antradienis',
@@ -627,6 +633,7 @@ var BULGARIAN = {
         sec:       'сек',
         section:   'раздел',
         subsection: 'подраздел',
+        chapter:   'глава',
 
         Monday:    'понеделник',
         Tuesday:   'вторник',
@@ -680,6 +687,7 @@ var PORTUGUESE = {
         sec:       'sec',
         section:   'secção',
         subsection: 'subsecção',
+        chapter:   'capítulo',
 
         Monday:    'Segunda-feira',
         Tuesday:   'Terça-feira',
@@ -734,6 +742,7 @@ var CZECH = {
         sec:       'kap.',  // Abbreviation for section
         section:   'kapitola',
         subsection:'podkapitola',
+        chapter:   'kapitola',
 
         Monday:    'pondělí',
         Tuesday:   'úterý',
@@ -786,6 +795,7 @@ var ITALIAN = {
         sec:       'sez',
         section:   'sezione',
         subsection: 'paragrafo',
+        chapter:   'capitolo',
 
         Monday:    'lunedì',
         Tuesday:   'martedì',
@@ -838,6 +848,7 @@ var RUSSIAN = {
         sec:       'сек',
         section:   'раздел',
         subsection: 'подраздел',
+        chapter:   'глава',
 
         Monday:    'понедельник',
         Tuesday:   'вторник',
@@ -890,6 +901,7 @@ var POLISH = {
         sec:       'rozdz.',
         section:   'rozdział',
         subsection: 'podrozdział',
+        chapter:   'kapituła',
 
         Monday:    'Poniedziałek',
         Tuesday:   'Wtorek',
@@ -943,6 +955,7 @@ var HUNGARIAN = {
         sec:       'fej',  // Abbreviation for section
         section:   'fejezet',
         subsection:'alfejezet',
+        chapter:   'fejezet',
 
         Monday:    'hétfő',
         Tuesday:   'kedd',
@@ -992,9 +1005,10 @@ var JAPANESE = {
         diagram:   '図',
         contents:  '目次',
 
-        sec:       '章',
+        sec:       '節',
         section:   '節',
         subsection: '項',
+        chapter:   '章',
 
         Monday:    '月',
         Tuesday:   '火',
@@ -1048,6 +1062,7 @@ var GERMAN = {
         sec:       'Kap',
         section:   'Kapitel',
         subsection:'Unterabschnitt',
+        chapter:   'Kapitel',
 
         Monday:    'Montag',
         Tuesday:   'Dienstag',
@@ -1100,6 +1115,7 @@ var SPANISH = {
         sec:       'sec',
         section:   'Sección',
         subsection: 'Subsección',
+        chapter:    'Capítulo',
 
         Monday:    'Lunes',
         Tuesday:   'Martes',
@@ -1152,6 +1168,7 @@ var SWEDISH = {
         sec:       'sek',
         section:   'sektion',
         subsection:'sektion',
+        chapter:   'kapitel',
 
         Monday:    'måndag',
         Tuesday:   'tisdag',
@@ -1624,7 +1641,7 @@ function replaceTables(s, protect) {
         result = entag('table', result, protect('class="table"'));
 
         if (caption) {
-            caption = entag('div', caption, protect('class="tablecaption"'));
+            caption = entag('center', entag('div', caption, protect('class="tablecaption"')));
             if (option('captionAbove', 'table')) {
                 result = caption + result;
             } else {
@@ -2420,7 +2437,7 @@ function markdeepToHTML(str, elementMode) {
         str = str.rp(pattern, function(match, indent, lang, cssSubClass, sourceCode, caption) {
             if (caption) {
                 caption = caption.trim();
-                caption = '<div ' + protect('class="listingcaption ' + cssClass + '"') + '>' + caption.ss(1, caption.length - 1) + '</div>\n';
+                caption = entag('center', '<div ' + protect('class="listingcaption ' + cssClass + '"') + '>' + caption.ss(1, caption.length - 1) + '</div>') + '\n';
             }
             // Remove the block's own indentation from each line of sourceCode
             sourceCode = sourceCode.rp(new RegExp('(^|\n)' + indent, 'g'), '$1');
@@ -2510,12 +2527,15 @@ function markdeepToHTML(str, elementMode) {
         return "<img " + protect(match.ss(5, match.length - 1)) + ">";
     });
 
-    // INLINE CODE: Surrounded in back ticks on a single line.  Do this before any other
-    // processing to protect code blocks from further interference. Don't process back ticks
+    // INLINE CODE: Surrounded in (non-escaped!) back ticks on a single line.  Do this before any other
+    // processing except for diagrams to protect code blocks from further interference. Don't process back ticks
     // inside of code fences. Allow a single newline, but not wrapping further because that
     // might just pick up quotes used as other punctuation across lines. Explicitly exclude
     // cases where the second quote immediately preceeds a number, e.g., "the old `97"
-    str = str.rp(/(`)(.+?(?:\n.+?)?)`(?!\d)/g, entag('code', '$2'));
+    str = str.rp(/(^|[^\\])(`)(.*?(?:\n.*?)?[^\n\\`])`(?!\d)/g, '$1' + entag('code', '$3'));
+
+    // Unescape escaped backticks
+    str = str.rp(/\\`/g, '`');
     
     // CODE: Escape angle brackets inside code blocks (including the ones we just introduced),
     // and then protect the blocks themselves
@@ -2528,11 +2548,6 @@ function markdeepToHTML(str, elementMode) {
     
     // Protect raw HTML attributes from processing
     str = str.rp(/(<\w[^ \n<>]*?[ \t]+)(.*?)(?=\/?>)/g, protectorWithPrefix);
-
-    // Mark UnicodeMath expressions for later conversion to MathML
-    if (typeof umml !== "undefined" && umml) {
-        str = markUnicodemathInHtmlCode(str, protect);
-    }
 
     // End of processing literal blocks
     /////////////////////////////////////////////////////////////////////////////
@@ -2669,12 +2684,19 @@ function markdeepToHTML(str, elementMode) {
 */;
 
     // CITATIONS: [#symbolicname]
-    // The reference: (don't use \S+ because it can grab trailing punctuation)
-    str = str.rp(/\[(#[^\)\(\[\]\.#\s]+(?:[ \t]*,[ \t]*#(?:[^\)\(\[\]\.#\s]+))*)\](?!:)|(^[^\n]*\S[^\n]*)\[(#[^\)\(\[\]\.#\s]+(?:[ \t]*,[ \t]*#(?:[^\)\(\[\]\.#\s]+))*)\]/gm, function (match, symbolicNameA, prefix, symbolicNameB) {
-        var symbolicNameList = (symbolicNameA || symbolicNameB).trim();
+    // The bibliography entry:
+    str = str.rp(/\n\[#(\S+)\]:[ \t]+((?:[ \t]*\S[^\n]*\n?)*)/g, function (match, symbolicName, entry) {
+        symbolicName = symbolicName.trim();
+        return '<div ' + protect('class="bib"') + '>[<a ' + protect('class="target" name="citation-' + symbolicName.toLowerCase() + '"') + 
+            '>&nbsp;</a><b>' + symbolicName + '</b>] ' + entry + '</div>';
+    });
+    
+    // A reference:
+    // (must process AFTER the definitions, since the syntax is a subset)
+    str = str.rp(/\[(#[^\)\(\[\]\.#\s]+(?:\s*,\s*#(?:[^\)\(\[\]\.#\s]+))*)\]/g, function (match, symbolicNameList) {
         // Parse the symbolicNameList
         symbolicNameList = symbolicNameList.split(',');
-        var s = (prefix || '') + '[';
+        var s = '[';
         for (var i = 0; i < symbolicNameList.length; ++i) {
             // Strip spaces and # signs
             var name = symbolicNameList[i].rp(/#| /g, '');
@@ -2683,13 +2705,7 @@ function markdeepToHTML(str, elementMode) {
         }
         return s + ']';
     });
-
-    // The bibliography entry:
-    str = str.rp(/\n\[#(\S+)\]:[ \t]+((?:[ \t]*\S[^\n]*\n?)*)/g, function (match, symbolicName, entry) {
-        symbolicName = symbolicName.trim();
-        return '<div ' + protect('class="bib"') + '>[<a ' + protect('class="target" name="citation-' + symbolicName.toLowerCase() + '"') + 
-            '>&nbsp;</a><b>' + symbolicName + '</b>] ' + entry + '</div>';
-    });
+    
 
     // TABLES: line with | over line containing only | and -
     // (process before reference links to avoid ambiguity on the captions)
@@ -2718,9 +2734,10 @@ function markdeepToHTML(str, elementMode) {
             // This is video. Any attributes provided will override the defaults given here
             img = '<video ' + protect('class="markdeep" src="' + url + '"' + attribs + ' width="480px" controls="true"') + '/>';
         } else if (/\.(mp3|mp2|ogg|wav|m4a|aac|flac)$/i.test(url)) {
-            img = '<audio ' + protect('class="markdeep" controls ' + attribs + '><source src="' + url + '">') + '</audio>';
+            // Audio
+            img = '<audio ' + protect('class="markdeep" controls ' + attribs + '><source src="' + url + '"') + '></audio>';
         } else if (hash = url.match(/^https:\/\/(?:www\.)?(?:youtube\.com\/\S*?v=|youtu\.be\/)([\w\d-]+)(&.*)?$/i)) {
-            // Youtube video
+            // YouTube video
             img = '<iframe ' + protect('class="markdeep" src="https://www.youtube.com/embed/' + hash[1] + '"' + attribs + ' width="480px" height="300px" frameborder="0" allowfullscreen webkitallowfullscreen mozallowfullscreen') + '></iframe>';
         } else if (hash = url.match(/^https:\/\/(?:www\.)?vimeo.com\/\S*?\/([\w\d-]+)$/i)) {
             // Vimeo video
@@ -2729,14 +2746,20 @@ function markdeepToHTML(str, elementMode) {
             // Image (trailing space is needed in case attribs must be quoted by the
             // browser...without the space, the browser will put the closing slash in the
             // quotes.)
-            img = '<img ' + protect('class="markdeep" src="' + url + '"' + attribs) + ' />';
 
-            // Check for width or height (or max-width and max-height). If they exist,
-            // link this to the full-size image as well. The current code ALWAYS makes
-            // this link.
-            //if (/\b(width|height)\b/i.test(attribs)) {
-            img = entag('a ', img, protect('href="' + url + '" target="_blank"'));
-            //}
+            var classList = 'markdeep';
+            // Remove classes from attribs
+            attribs = attribs.rp(/class *= *(["'])([^'"]+)\1/, function (match, quote, cls) {
+                classList += ' ' + cls;
+                return '';
+            });
+            attribs = attribs.rp(/class *= *([^"' ]+)/, function (match, cls) {
+                classList += ' ' + cls;
+                return '';
+            });
+            
+            img = '<img ' + protect('class="' + classList + '" src="' + url + '"' + attribs) + ' />';
+            img = entag('a', img, protect('href="' + url + '" target="_blank"'));
         }
 
         return img;
@@ -2778,20 +2801,40 @@ function markdeepToHTML(str, elementMode) {
         return pre + '<a ' + protect('href="' + url + '"') + '>' + url + '</a>';
     });
 
+    // REFERENCE LINK
+    str = str.rp(/(^|[^!])\[([^\[\]]+)\]\[([^\[\]]*)\]/g, function (match, pre, text, symbolicName) {
+        // Empty symbolic name is replaced by the label text
+        if (! symbolicName.trim()) {
+            symbolicName = text;
+        }
+        
+        symbolicName = symbolicName.toLowerCase().trim();
+        var t = referenceLinkTable[symbolicName];
+        if (! t) {
+            console.log("Reference link '" + symbolicName + "' never defined");
+            return '?';
+        } else {
+            t.used = true;
+            return pre + '<a ' + protect('href="' + t.link + '"') + '>' + text + '</a>';
+        }
+    });
+
     var CAPTION_PROTECT_CHARACTER = '\ue011';
     var protectedCaptionArray = [];
     
-    // Temporarily protect image captions (or things that look like them) because the
-    // following code is really slow at parsing captions since they have regexps that are complicated
-    // to evaluate due to branching.
+    // Temporarily protect image captions (or things that look like
+    // them) because the following code is really slow at parsing
+    // captions since they have regexps that are complicated to
+    // evaluate due to branching.
     //
     // The regexp is really just /.*?\n{0,5}.*/, but that executes substantially more slowly on Chrome.
-    str = str.rp(/!\[(.*?\n?.*?\n?.*?\n?.*?\n?.*?)\]([\[\(])/g, function (match, caption, bracket) {
+    str = str.rp(/!\[([^\n\]].*?\n?.*?\n?.*?\n?.*?\n?.*?)\]([\[\(])/g, function (match, caption, bracket) {
         // This is the same as the body of the protect() function, but using the protectedCaptionArray instead
         var i = (protectedCaptionArray.push(caption) - 1).toString(PROTECT_RADIX);
         while (i.length < PROTECT_DIGITS) { i = '0' + i; }
         return '![' + CAPTION_PROTECT_CHARACTER + i + CAPTION_PROTECT_CHARACTER + ']' + bracket;
     });
+    
     
     // REFERENCE IMAGE: ![...][ref attribs]
     // Rewrite as a regular image for further processing below.
@@ -2860,7 +2903,6 @@ function markdeepToHTML(str, elementMode) {
 
         // CAPTIONED IMAGE: ![caption](url attribs)
         str = str.rp(/(\s*)!\[(.+?)\]\(("?)([^"<>\s]+?)\3(\s[^\)]*?)?\)(\s*)/, function (match, preSpaces, caption, maybeQuote, url, attribs, postSpaces) {
-
             loop = true;
             var divStyle = '';
             var iso = isolated(preSpaces, postSpaces);
@@ -2880,7 +2922,7 @@ function markdeepToHTML(str, elementMode) {
                     return 'style="' + attrib + ':100%" ';
                 });
             }
-            
+
             var img = formatImage(match, url, attribs);
 
             if (iso) {
@@ -2891,14 +2933,17 @@ function markdeepToHTML(str, elementMode) {
                 // Embedded: float
                 divStyle += 'float:right;margin:4px 0px 0px 25px;'
             }
+            var floating = !iso;
             
-            caption = entag('div', caption + maybeShowLabel(url), protect('class="imagecaption"'));
+            caption = entag('center', entag('span', caption + maybeShowLabel(url), protect('class="imagecaption"')));
+
+            // This code used to put floating images in <span> instead of <div>,
+            // but it wasn't clear why and this broke centered captions
             return preSpaces + 
                 entag('div', (imageCaptionAbove ? caption : '') + img + (! imageCaptionAbove ? caption : ''), protect('class="image" style="' + divStyle + '"')) + 
                 postSpaces;
         });
     } // while replacements made
-
 
     // Uprotect image captions
     var exposeCaptionRan = false;
@@ -2997,25 +3042,6 @@ function markdeepToHTML(str, elementMode) {
     str = str.rp(/<p>[\s\n]*<\/p>/gi, '');
 
 
-    // REFERENCE LINK
-    str = str.rp(/(^|[^!])\[([^\[\]]+)\]\[([^\[\]]*)\]/g, function (match, pre, text, symbolicName) {
-        // Empty symbolic name is replaced by the label text
-        if (! symbolicName.trim()) {
-            symbolicName = text;
-        }
-        
-        symbolicName = symbolicName.toLowerCase().trim();
-        var t = referenceLinkTable[symbolicName];
-        if (! t) {
-            console.log("Reference link '" + symbolicName + "' never defined");
-            return '?';
-        } else {
-            t.used = true;
-            return pre + '<a ' + protect('href="' + t.link + '"') + '>' + text + '</a>';
-        }
-    });
-
-
     // FOOTNOTES/ENDNOTES
     str = str.rp(/\n\[\^(\S+)\]: ((?:.+?\n?)*)/g, function (match, symbolicName, note) {
         symbolicName = symbolicName.toLowerCase().trim();
@@ -3040,7 +3066,7 @@ function markdeepToHTML(str, elementMode) {
             header = removeHTMLTags(header.ss(4, header.length - 5)).trim();
             var link = '<a ' + protect('href="#' + mangle(header) + '"') + '>';
 
-            var sectionExp = '(' + keyword('section') + '|' + keyword('subsection') + ')';
+            var sectionExp = '(' + keyword('section') + '|' + keyword('subsection') + '|' + keyword('chapter') + ')';
             var headerExp = '(\\b' + escapeRegExpCharacters(header) + ')';
             
             // Search for links to this section
@@ -3149,7 +3175,7 @@ function markdeepToHTML(str, elementMode) {
         str = temp[0];
         var toc = temp[1];
         // SECTION LINKS: Replace sec. [X], section [X], subsection [X]
-        str = str.rp(RegExp('\\b(' + keyword('sec') + '\\.|' + keyword('section') + '|' + keyword('subsection') + ')\\s\\[(.+?)\\]', 'gi'), 
+        str = str.rp(RegExp('\\b(' + keyword('sec') + '\\.|' + keyword('section') + '|' + keyword('subsection') + '|' + keyword('chapter') + ')\\s\\[(.+?)\\]', 'gi'), 
                     function (match, prefix, ref) {
                         var link = toc[ref.toLowerCase().trim()];
                         if (link) {
@@ -4525,10 +4551,9 @@ if (! window.alreadyProcessedMarkdeep) {
     }
 
     function needsMathJax(html) {
-        // Need MathJax if UnicodeMath to MathML translator present, $$ ... $$, \( ... \), or \begin{
+        // Need MathJax if $$ ... $$, \( ... \), or \begin{
         return option('detectMath') &&
-            ((typeof umml !== "undefined" && umml) ||
-             (html.search(/(?:\$\$[\s\S]+\$\$)|(?:\\begin{)/m) !== -1) ||
+            ((html.search(/(?:\$\$[\s\S]+\$\$)|(?:\\begin{)/m) !== -1) || 
              (html.search(/\\\(.*\\\)/) !== -1));
     }
     
@@ -4631,6 +4656,84 @@ if (! window.alreadyProcessedMarkdeep) {
 
         // console.log(markdeepHTML); // Final processed source 
 
+        /////////////////////////////////////////////////////////////
+        // Add the section header event handlers
+
+        var onContextMenu = function (event) {
+            var menu = null;
+            try {
+            // Test for Header
+            var match = event.target.tagName.match(/^H(\d)$/);
+            if (! match) { return; }
+
+            // We are on a header
+            var level = parseInt(match[1]) || 1;
+
+            // Show the headerMenu
+            menu = document.getElementById('mdContextMenu');
+            if (! menu) { return; }
+
+            var sectionType = ['Section', 'Subsection'][Math.min(level - 1, 1)];
+            // Search backwards two siblings to grab the URL generated
+            var anchorNode = event.target.previousElementSibling.previousElementSibling;
+
+            var sectionName = event.target.innerText.trim();
+            var sectionLabel = sectionName.toLowerCase();
+            var anchor = anchorNode.name;
+            var url = location.pathname + '#' + anchor;
+
+            var shortUrl = url;
+            if (shortUrl.length > 15) {
+                shortUrl = url.ss(0, 5) + '&hellip;' + location.pathname.ss(location.pathname.length - 10) + '#' + anchor;
+            }
+            
+            var s = entag('div', 'Copy Markdeep &ldquo;' + sectionName + ' ' + sectionType.toLowerCase() + '&rdquo;',
+                         'onclick="navigator.clipboard.writeText(\'' + sectionName + ' ' + sectionType.toLowerCase() + '\')&&(document.getElementById(\'mdContextMenu\').style.visibility=\'hidden\')"');
+
+            s += entag('div', 'Copy Markdeep &ldquo;' + sectionType + ' [' + sectionLabel + ']&rdquo;',
+                         'onclick="navigator.clipboard.writeText(\'' + sectionType + ' [' + sectionLabel + ']\')&&(document.getElementById(\'mdContextMenu\').style.visibility=\'hidden\')"');
+                
+            s += entag('div', 'Copy HTML &ldquo;&lt;a href=\"' + shortUrl + '\"&gt;' + sectionName + '&lt;/a&gt;&rdquo;',
+                       'onclick="navigator.clipboard.writeText(\'&lt;a href=&quot;' + url + '&quot;&gt;' + sectionName + '&lt;/a&gt;\')&&(document.getElementById(\'mdContextMenu\').style.visibility=\'hidden\')"');
+
+            menu.innerHTML = s;
+            menu.style.visibility = 'visible';
+            menu.style.left = event.pageX + 'px';
+            menu.style.top = event.pageY + 'px';
+
+            event.preventDefault();
+            return false;
+            } catch (e) {
+                // Something went wrong
+                console.log(e);
+                if (menu) { menu.style.visibility = 'hidden'; }
+            }
+        }
+
+        markdeepHTML += '<div id="mdContextMenu" style="visibility:hidden"></div>';
+        
+        document.addEventListener('contextmenu', onContextMenu, false);
+        document.addEventListener('mousedown', function (event) {
+            var menu = document.getElementById('mdContextMenu');
+            if (menu) {
+                for (var node = event.target; node; node = node.parentElement) {
+                    if (node === menu) { return; }
+                }
+                // Clicked off menu, so close it
+                menu.style.visibility = 'hidden';
+            }
+        });
+        document.addEventListener('keydown', function (event) {
+            if (event.keyCode === 27) {
+                var menu = document.getElementById('mdContextMenu');
+                if (menu) { menu.style.visibility = 'hidden'; }
+            }
+        });
+        
+
+        
+        /////////////////////////////////////////////////////////////
+        
         var needMathJax = needsMathJax(markdeepHTML);
         if (needMathJax) {
             markdeepHTML = MATHJAX_CONFIG + markdeepHTML; 
@@ -4662,11 +4765,6 @@ if (! window.alreadyProcessedMarkdeep) {
         }
 
         document.body.style.visibility = 'visible';
-
-        // Kick off UnicodeMath to MathML translation asynchronously
-        if (typeof umml !== "undefined" && umml) {
-            setTimeout(renderMarkedUnicodemath, 0);
-        }
 
         var hashIndex = window.location.href.indexOf('#');
         if (hashIndex > -1) {

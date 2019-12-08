@@ -213,7 +213,7 @@ async function renderMarkedUnicodemath() {
 
         // determine whether the expression should be rendered in displaystyle
         // (i.e. iff it is the only child of a <p>, the determination of which
-        // is made a bit annyoying by the presence of text nodes)
+        // is made a bit annoying by the presence of text nodes)
         var displaystyle = elem.parentNode.nodeName == "P" &&
                            Array.from(elem.parentNode.childNodes).filter(node => {  // keep everything that's...
                                return node.nodeType !== Node.TEXT_NODE ||           // ...not a text node...
