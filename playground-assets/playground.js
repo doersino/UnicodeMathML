@@ -157,7 +157,7 @@ function browserIs(candidate) {
 }
 var loadMathJax = ummlConfig.outputLaTeX || ummlConfig.forceMathJax || !(browserIs('firefox') || (browserIs('safari') && !browserIs('chrome')));
 if (loadMathJax) {
-    document.write("<script src=\"assets/mathjax/MathJax-2.7.5/MathJax.js?config=TeX-MML-AM_SVG\"></scr" + "ipt>");
+    document.write("<script src=\"lib/mathjax/MathJax-2.7.5/MathJax.js?config=TeX-MML-AM_SVG\"></scr" + "ipt>");
 }
 
 // if latex output is enabled, hide AST tab (since there is no LaTeX AST) and
