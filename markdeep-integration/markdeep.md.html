@@ -249,6 +249,15 @@ and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slow
 ⁅(a│b)/⁆
 
 
+# Custom control words
+
+⁅1+\playground+2⁆
+⁅\playground 123⁆
+⁅\playground⁆
+⁅\playground/⁆
+⁅\notacontrolword⁆
+
+
 # The following expressions should be compiled correctly
 
 ⁅\sum┬k▒(-1)^k z_k f(t-k) ℲB\/ \sum┬k▒(-1)^k f(t-k)⁆
@@ -507,6 +516,9 @@ and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slow
 <script>
     var unicodemathmlOptions = {
         resolveControlWords: true,
+        customControlWords: {
+            'playground': '𝐏𝓁𝔞𝚢𝗴𝑟𝖔𝓊𝙣𝕕'
+        }
     };
 </script>
 <script src="../src/unicodemathml.js"></script>

@@ -19,6 +19,7 @@ if (!umml) {
 var ummlConfig = {
     resolveControlWords: false,
     showProgress: true,
+    customControlWords: undefined,
     before: Function.prototype,
     after: Function.prototype
 };
@@ -70,6 +71,7 @@ function markUnicodemathInHtmlCode(code, protect = x => x) {
     });
 }
 
+// TODO this works in the most common cases, but can be improved – take a look at the asciimath source code or https://github.com/mathjax/MathJax/blob/develop/unpacked/extensions/tex2jax.js
 function markUnicodemathInHtmlDom(node) {
     if (node === undefined) {
         node = document.body;
@@ -217,6 +219,7 @@ async function renderMarkedUnicodemath() {
         // determine whether the expression should be rendered in displaystyle
         // (i.e. iff it is the only child of a <p>, the determination of which
         // is made a bit annoying by the presence of text nodes)
+        // TODO are other tags relevant too? BLOCKQUOTE? CENTER? any display: block element?
         var displaystyle = elem.parentNode.nodeName == "P" &&
                            Array.from(elem.parentNode.childNodes).filter(node => {  // keep everything that's...
                                return node.nodeType !== Node.TEXT_NODE ||           // ...not a text node...
