@@ -173,14 +173,15 @@ async function renderMarkedUnicodemath() {
             document.head.appendChild(styleElement);
 
             var progress = document.createElement("div");
-            progress.innerHTML = '<div id="unicodemathml-progress">Translating UnicodeMath to MathML (<strong id="unicodemathml-progress-counter">0</strong>/' + totalNum + ')</div>';
+            progress.innerHTML = '<div id="unicodemathml-progress">Translating UnicodeMath to MathML (<strong id="unicodemathml-progress-counter">0</strong>/' + totalNum + '<span id="unicodemathml-progress-errors"></span>)</div>';
             document.body.appendChild(progress.childNodes[0]);
             requestAnimationFrame(f);
         });
     }
-    function updateProgress(currNum) {
+    function updateProgress(currNum, errorNum) {
         return new Promise((f) => {
             document.getElementById("unicodemathml-progress-counter").innerText = currNum;
+            if (errorNum > 0) document.getElementById("unicodemathml-progress-errors").innerHTML = ', with <span style="color: red;">' + errorNum + ' error' + (errorNum == 1 ? "" : "s") + '</span>';
             requestAnimationFrame(f);
         });
     }
@@ -201,10 +202,11 @@ async function renderMarkedUnicodemath() {
     var unicodemathPlaceholders = Array.from(document.querySelectorAll("span.unicodemathml-placeholder"));
 
     // show a progress message
-    var time = Date.now();
+    var progressUpdated = Date.now();
     if (ummlConfig.showProgress) await showProgress(unicodemathPlaceholders.length);
 
     // work our way through
+    var errors = 0;
     for (var i = 0; i < unicodemathPlaceholders.length; i++) {
 
         var elem = unicodemathPlaceholders[i];
@@ -234,8 +236,13 @@ async function renderMarkedUnicodemath() {
         } else {
 
             // seems like we haven't
-            mathml = unicodemathml(unicodemath, displaystyle).mathml;
-            cache[cacheAddress] = mathml;
+            var t = unicodemathml(unicodemath, displaystyle);
+            mathml = t.mathml;
+            if (t.details.error) {
+                errors++;
+            } else {
+                cache[cacheAddress] = mathml;
+            }
         }
 
         // replace span with math
@@ -245,9 +252,9 @@ async function renderMarkedUnicodemath() {
         // last update (this speeds up things considerably versus updating it on
         // every iteration – drawing is expensive, which is why browsers avoid
         // it by default within functions!)
-        if (ummlConfig.showProgress && Date.now() >= time + 200) {
-            time = Date.now();
-            await updateProgress(i+1);
+        if (ummlConfig.showProgress && Date.now() >= progressUpdated + 200) {
+            progressUpdated = Date.now();
+            await updateProgress(i+1, errors);
         }
     }
 
