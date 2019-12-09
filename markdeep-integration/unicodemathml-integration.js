@@ -220,7 +220,8 @@ async function renderMarkedUnicodemath() {
         // (i.e. iff it is the only child of a <p>, the determination of which
         // is made a bit annoying by the presence of text nodes)
         // TODO are other tags relevant too? BLOCKQUOTE? CENTER? any display: block element?
-        var displaystyle = elem.parentNode.nodeName == "P" &&
+        var displaystyle = elem.parentNode &&
+                           elem.parentNode.nodeName == "P" &&
                            Array.from(elem.parentNode.childNodes).filter(node => {  // keep everything that's...
                                return node.nodeType !== Node.TEXT_NODE ||           // ...not a text node...
                                       node.nodeValue.trim().length != 0;            // ...or a text node with non-zero length after whitespace removal...
