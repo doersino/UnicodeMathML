@@ -140,44 +140,49 @@ async function renderMarkedUnicodemath() {
     // requestAnimationFrame approach, which seems overly complicated
     function showProgress(totalNum) {
         return new Promise((f) => {
+            if (document.getElementById("unicodemathml-progress")) {
+                document.getElementById("unicodemathml-progress").style.display = "block";
+                requestAnimationFrame(f);
+            } else {
 
-            // add CSS rules for progress and errors
-            var styleElement = document.createElement("style");
-            styleElement.type = "text/css";
-            styleElement.innerText = `
-            #unicodemathml-progress {
-                position: fixed;
-                right: 0;
-                bottom: 0;
-                border: 1px solid #ccc;
-                background-color: #eee;
-                margin: 1px;
-                font: 12px sans-serif;
-                padding: 0 1px;
-                z-index: 9001;
-            }
-            .unicodemathml-error {
-                color: red;
-            }
-            .unicodemathml-error-unicodemath:before {
-                content: '⁅';
-            }
-            .unicodemathml-error-unicodemath:after {
-                content: '⁆';
-            }
-            .unicodemathml-error-message {
-                display: none;
-            }
-            .unicodemathml-error:hover .unicodemathml-error-message {
-                display: inline;
-            }
-            `
-            document.head.appendChild(styleElement);
+                // add CSS rules for progress and errors
+                var styleElement = document.createElement("style");
+                styleElement.type = "text/css";
+                styleElement.innerText = `
+                #unicodemathml-progress {
+                    position: fixed;
+                    right: 0;
+                    bottom: 0;
+                    border: 1px solid #ccc;
+                    background-color: #eee;
+                    margin: 1px;
+                    font: 12px sans-serif;
+                    padding: 0 1px;
+                    z-index: 9001;
+                }
+                .unicodemathml-error {
+                    color: red;
+                }
+                .unicodemathml-error-unicodemath:before {
+                    content: '⁅';
+                }
+                .unicodemathml-error-unicodemath:after {
+                    content: '⁆';
+                }
+                .unicodemathml-error-message {
+                    display: none;
+                }
+                .unicodemathml-error:hover .unicodemathml-error-message {
+                    display: inline;
+                }
+                `
+                document.head.appendChild(styleElement);
 
-            var progress = document.createElement("div");
-            progress.innerHTML = '<div id="unicodemathml-progress">Translating UnicodeMath to MathML (<strong id="unicodemathml-progress-counter">0</strong>/' + totalNum + '<span id="unicodemathml-progress-errors"></span>)</div>';
-            document.body.appendChild(progress.childNodes[0]);
-            requestAnimationFrame(f);
+                var progress = document.createElement("div");
+                progress.innerHTML = '<div id="unicodemathml-progress">Translating UnicodeMath to MathML (<strong id="unicodemathml-progress-counter">0</strong>/' + totalNum + '<span id="unicodemathml-progress-errors"></span>)</div>';
+                document.body.appendChild(progress.childNodes[0]);
+                requestAnimationFrame(f);
+            }
         });
     }
     function updateProgress(currNum, errorNum) {
