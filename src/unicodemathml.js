@@ -1452,7 +1452,7 @@ function preprocess(dsty, uast) {
         case "function":
 
             // clone this since it's going to be modified
-            var valuef = value.f;
+            var valuef = clone(value.f);
 
             // tech note, section 3.3: if display mode is active, convert
             // subscripts after certain function names into belowscripts. the
