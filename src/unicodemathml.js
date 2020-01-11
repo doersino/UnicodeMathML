@@ -2012,60 +2012,44 @@ function mtransform(dsty, puast) {
                 content = mtransform(dsty, value.content);
             } else {
 
-                // extract element of mrow returned by recursive call –
-                // otherwise separator will be hidden
+                // intercalate elements of mrow returned by recursive call with
+                // separator
                 content = mtransform(dsty, value.content).mrow.content;
+                content = content.map(e => [e]).reduce((acc, v) => acc.concat({mo: noAttr(separator)}, v));
+                content = {mrow: noAttr(content)};
             }
 
-            // handle brackets
-            if (typeof value.open === 'string' && typeof value.close === 'string') {
-
-                // enable unambiguously entering nested absolute values such as
-                // |(|a|-|b|)|
-                if (value.open == "|" && value.close == "|") {
-                    return {mfenced: withAttrs({open: value.open, close: value.close, separators: separator}, content)};
-                }
-
-                // if both brackets are invisible, just emit an mrow
-                if (separator == "" && value.open == "" && value.close == "") {
-                    return mtransform(dsty, value.content);
-                }
-                return {mfenced: withAttrs({open: value.open, close: value.close, separators: separator}, content)};
+            // handle brackets: first inner mrow (content and brackets if they
+            // are just strings, i.e. if they should grow with their contents).
+            // note that if all-invisible brackets 〖a〗 are used, this simply
+            // wraps content in an mrow as desired
+            var ret = [];
+            if (typeof value.open === 'string') {
+                ret.push({mo: noAttr(value.open)});
             }
-            else if (typeof value.close === 'string') {
+            ret.push(content);
+            if (typeof value.close === 'string') {
+                ret.push({mo: noAttr(value.close)});
+            }
+            ret = [{mrow: noAttr(ret)}];
+
+            // now handle potential manually resized brackets. note that
+            // value.open.size and value.close.size should be at most 4
+            // according to the tech note, but there is no strict need for this
+            // limitation – so i'm not imposing one
+            if (typeof value.open !== 'string') {
                 var openSize = fontSize(value.open.size);
 
-                // note: the resized bracket is outside of mfenced – if it was
-                // inside, the renderer would grow the other bracket to match or
-                // exceed the size-modified bracket
-                //return {mfenced: withAttrs({open: "", close: value.close, separators: separator}, {mrow: noAttr([{mo: withAttrs({minsize: openSize, maxsize: openSize}, value.open.bracket)}, content])})};
-                return {mrow: noAttr([
-                        {mo: withAttrs({minsize: openSize, maxsize: openSize}, value.open.bracket)},
-                        {mfenced: withAttrs({open: "", close: value.close, separators: separator}, content)}
-                    ])};
-            } else if (typeof value.open === 'string') {
-                var closeSize = fontSize(value.close.size);
-                return {mrow: noAttr([
-                        {mfenced: withAttrs({open: value.open, close: "", separators: separator}, content)},
-                        {mo: withAttrs({minsize: closeSize, maxsize: closeSize}, value.close.bracket)},
-                    ])};
-            } else {
-                var ret = []
-
-                // note that value.open.size and value.close.size should be at
-                // most 4 according to the tech note, but there is no strict
-                // need for this limitation – so i didn't impose one
-                var openSize = fontSize(value.open.size);
-                ret.push({mo: withAttrs({minsize: openSize, maxsize: openSize}, value.open.bracket)});
-                if (separator == "") {
-                    ret = ret.concat(content);
-                } else {
-                    ret.push({mfenced: withAttrs({open: "", close: "", separators: separator}, content)});
-                }
-                var closeSize = fontSize(value.close.size);
-                ret.push({mo: withAttrs({minsize: closeSize, maxsize: closeSize}, value.close.bracket)});
-                return {mrow: noAttr(ret)};
+                var br = {mo: withAttrs({minsize: openSize, maxsize: openSize}, value.open.bracket)};
+                ret = [br].concat(ret);
             }
+            if (typeof value.close !== 'string') {
+                var closeSize = fontSize(value.close.size);
+
+                var br = {mo: withAttrs({minsize: closeSize, maxsize: closeSize}, value.close.bracket)};
+                ret = ret.concat([br]);
+            }
+            return ret;
 
         default:
             return value;
