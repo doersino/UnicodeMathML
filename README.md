@@ -1,6 +1,8 @@
 # UnicodeMathML
 
-*UnicodeMath is an easy-to-read linear format for mathematics. This repository implements a translation of UnicodeMath to MathML – dubbed UnicodeMathML  TODO stolen from asciimathml. A playground allows for experimentation.*
+*UnicodeMath is an easy-to-read linear format for mathematics. This repository implements a JavaScript-based translation of UnicodeMath to MathML. An interactive "playground" allows for experimentation with UnicodeMath's syntax.*
+
+**What's UnicodeMath, precisely?** This and other questions are answered in the FAQ section below.
 
 #### Demo: TODO link to playground demo running on github pages
 
@@ -15,17 +17,43 @@ TODO how to use in node?
 
 ## FAQ
 
+Got questions not answered below? Feel free to submit them by [filing an issue](TODO link)!
+
 ### What's this *UnicodeMath* you're talking about?
 
 TODO take from thesis/presentation
+
+
+### How does its syntax compare to LaTeX and AsciiMath?
+
+Here's a table showing a few formulas as you'd write them in UnicodeMath, AsciiMath and LaTeX:
 
 TODO comparison table: latex vs asciimath vs unicodemath on three star scale, with "source readability" 1 2 3, "ease of input" 2 3 1 or so, etc.
 TODO good running example: fourier transform
 
 
-### Neat. What's MathML, then?
+### Alright, but I can't find many of these fancy Unicode symbols on my keyboard!
+
+Nobody's keeping you from adapting [Tom Scott's emoji keyboard](https://www.youtube.com/watch?v=lIFE7h3m40U) idea for math.
+
+More realistically, there's a bunch of tools and text editor plugins that can help out here:
+
+* TODO sublime plugin
+* TODO other tools
+
+
+### Neat. What's *MathML*, then?
 
 TODO explain
+
+
+### Isn't browser support for MathML really lackluster?
+
+Sort of – according to [caniuse.com](https://caniuse.com/#search=mathml), native support for MathML is available for around 24% of users as of early 2019 as only Firefox and Safari currently support MathML.
+
+However, Igalia is working in conjunction with TODO on TODO, which should push this number upwards quite significantly in the coming months and years.
+
+All of this isn't really an issue: MathJax, which you'd probably use to render LaTeX math on the web, provides a polyfill for MathML rendering.
 
 
 ### But LaTeX seems more TODO widespread, usable, omnipresent., and KaTeX is so much faster than MathJax!
