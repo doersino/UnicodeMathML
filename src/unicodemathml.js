@@ -385,14 +385,27 @@ var controlWords = {
 // this control word replacement would fly in the face of the UnicodeMath
 // "literal" operator if there were single-character control words
 function resolveCW(unicodemath) {
-    var res = unicodemath.replace(/\\([A-Za-z]+) ?/g, function(match, cw) {
+    var res = unicodemath.replace(/\\([A-Za-z0-9]+) ?/g, function(match, cw) {
 
         // check custom control words first (i.e. custom ones shadow built-in ones)
         if (typeof ummlConfig !== "undefined" && typeof ummlConfig.customControlWords !== "undefined" && cw in ummlConfig.customControlWords) {
             return ummlConfig.customControlWords[cw];
         }
 
-        // check built-in control words (we can use try..except here since String.fromCodePoint throws up when it eats an undefined)
+        // if the control word begins with "u", try parsing the rest of it as a Unicode code point
+        console.log(cw);
+        if (cw.startsWith("u")) {
+            try {
+                var symbol = String.fromCodePoint("0x" + cw.substr(1));
+                return symbol;
+            } catch(error) {
+
+                // do nothing – it could be a regular control word starting with "u"
+            }
+        }
+
+        // check built-in control words (we can use try..except here since
+        // String.fromCodePoint throws up when it eats an undefined)
         try {
             var symbol = String.fromCodePoint("0x" + controlWords[cw]);
             return symbol;
