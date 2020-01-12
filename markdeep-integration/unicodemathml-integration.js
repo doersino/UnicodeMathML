@@ -75,6 +75,7 @@ function markUnicodemathInHtmlCode(code, protect = x => x) {
 }
 
 // TODO this works in the most common cases, but can be improved – take a look at the asciimath source code or https://github.com/mathjax/MathJax/blob/develop/unpacked/extensions/tex2jax.js
+// TODO respect escaping of delimiters
 function markUnicodemathInHtmlDom(node) {
     if (node === undefined) {
         node = document.body;
@@ -136,7 +137,10 @@ function markUnicodemathInHtmlDom(node) {
 // TRANSLATION/RENDERING //
 ///////////////////////////
 
-async function renderMarkedUnicodemath() {
+async function renderMarkedUnicodemath(node) {
+    if (node === undefined) {
+        node = document.body;
+    }
 
     // note that getting the status to update properly took some work – i only
     // got it to wirk with this weird semi-cps-transformed async/await/
@@ -144,6 +148,10 @@ async function renderMarkedUnicodemath() {
     function showProgress(totalNum) {
         return new Promise((f) => {
             if (document.getElementById("unicodemathml-progress")) {
+
+                // reset progress indicator
+                document.getElementById("unicodemathml-progress-counter").innerText = "0";
+                document.getElementById("unicodemathml-progress-errors").innerHTML = "";
                 document.getElementById("unicodemathml-progress").style.display = "block";
                 requestAnimationFrame(f);
             } else {
@@ -181,6 +189,7 @@ async function renderMarkedUnicodemath() {
                 `
                 document.head.appendChild(styleElement);
 
+                // create progress indicator
                 var progress = document.createElement("div");
                 progress.innerHTML = '<div id="unicodemathml-progress">Translating UnicodeMath to MathML (<strong id="unicodemathml-progress-counter">0</strong>/' + totalNum + '<span id="unicodemathml-progress-errors"></span>)</div>';
                 document.body.appendChild(progress.childNodes[0]);
@@ -191,7 +200,9 @@ async function renderMarkedUnicodemath() {
     function updateProgress(currNum, errorNum) {
         return new Promise((f) => {
             document.getElementById("unicodemathml-progress-counter").innerText = currNum;
-            if (errorNum > 0) document.getElementById("unicodemathml-progress-errors").innerHTML = ', with <span style="color: red;">' + errorNum + ' error' + (errorNum == 1 ? "" : "s") + '</span>';
+            if (errorNum > 0) {
+                document.getElementById("unicodemathml-progress-errors").innerHTML = ', with <span style="color: red;">' + errorNum + ' error' + (errorNum == 1 ? "" : "s") + '</span>';
+            }
             requestAnimationFrame(f);
         });
     }
@@ -208,8 +219,8 @@ async function renderMarkedUnicodemath() {
     // initialize cache
     var cache = {};
 
-    // extract unicodemath expressions from document
-    var unicodemathPlaceholders = Array.from(document.querySelectorAll("span.unicodemathml-placeholder"));
+    // extract unicodemath expressions from node
+    var unicodemathPlaceholders = Array.from(node.querySelectorAll("span.unicodemathml-placeholder"));
 
     // show a progress message
     var progressUpdated = Date.now();
@@ -275,7 +286,7 @@ async function renderMarkedUnicodemath() {
 
     // tell mathjax to rerender the document
     if (typeof MathJax != "undefined") {
-        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub, node]);
     }
 
     // run after hook
