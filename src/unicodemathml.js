@@ -393,7 +393,6 @@ function resolveCW(unicodemath) {
         }
 
         // if the control word begins with "u", try parsing the rest of it as a Unicode code point
-        console.log(cw);
         if (cw.startsWith("u")) {
             try {
                 var symbol = String.fromCodePoint("0x" + cw.substr(1));
