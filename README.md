@@ -1,6 +1,6 @@
 # UnicodeMathML
 
-*UnicodeMath is an easy-to-read linear format for mathematics. This repository implements a JavaScript-based translation of UnicodeMath to MathML. An interactive "playground" allows for experimentation with UnicodeMath's syntax.*
+*UnicodeMath is an easy-to-read linear format for mathematics. The code in this repository implements a JavaScript-based translation of UnicodeMath to MathML ("UnicodeMathML"). An interactive "playground" allows for experimentation with UnicodeMath's syntax. UnicodeMathML can be used with arbitrary HTML or Markdeep documents.*
 
 **What's UnicodeMath, precisely?** This and other questions are answered in the FAQ section below.
 
@@ -17,7 +17,7 @@ TODO how to use in node?
 
 ## FAQ
 
-Got questions not answered below? Feel free to submit them by [filing an issue](TODO link)!
+Got questions that aren't answered below? Feel free to submit them by [filing an issue](TODO link)!
 
 ### What's this *UnicodeMath* you're talking about?
 
@@ -64,11 +64,13 @@ Yup. UnicodeMathML can emit LaTeX code, too – most but not all UnicodeMath fea
 ## Notes
 
 TODO note: when running playground on your local machine in chrome (TODO other browsers?), make sure to either
-* spin up a `python -m SimpleHTTPServer 8000` to circumvent pegjs grammar file loading being prevented due to same-origin policy stuff
+* spin up a `python -m SimpleHTTPServer 8000` to circumvent pegjs grammar file loading being prevented due to same-origin policy stuff (TODO still current?)
 * open chrome (on macos anyway) with `open -a Google\ Chrome --args --disable-web-security --user-data-dir`
 * set the `security.fileuri.strict_origin_policy` key on `about:config` in Firefox to `false`
 
 TODO note on generating parser and storing it in static file
+
+TODO note on features i've added (colors etc., \u1234, etc.)
 
 
 ## License
