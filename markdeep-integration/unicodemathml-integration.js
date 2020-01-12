@@ -44,7 +44,7 @@ function markUnicodemathInHtmlCode(code, protect = x => x) {
     // preceding char and return it unchanged (this breaks directly adjacent
     // math zones, but that seems like an uncommon use case and can't be helped,
     // i guess?)
-    return code.replace(/(^|[^\\])⁅([^⁆]*?[^\\])⁆/gi, function (unicodemathWithDelimiters, prec, unicodemath) {
+    code = code.replace(/(^|[^\\])⁅([^⁆]*?[^\\])⁆/gi, function (unicodemathWithDelimiters, prec, unicodemath) {
 
         // markdeep appears to convert non-breaking spaces to &nbsp; entities
         // (although i can't find where exactly this is done in its source code
@@ -69,6 +69,9 @@ function markUnicodemathInHtmlCode(code, protect = x => x) {
 
         return prec + protect(placeholder.outerHTML);
     });
+
+    // remove backslashes from escaped math delimiters for rendering
+    return code.replace(/\\⁅/g, '⁅').replace(/\\⁆/g, '⁆');
 }
 
 // TODO this works in the most common cases, but can be improved – take a look at the asciimath source code or https://github.com/mathjax/MathJax/blob/develop/unpacked/extensions/tex2jax.js
