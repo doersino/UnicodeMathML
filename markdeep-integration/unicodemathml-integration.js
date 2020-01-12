@@ -75,7 +75,7 @@ function markUnicodemathInHtmlCode(code, protect = x => x) {
 }
 
 // TODO this works in the most common cases, but can be improved – take a look at the asciimath source code or https://github.com/mathjax/MathJax/blob/develop/unpacked/extensions/tex2jax.js
-// TODO respect escaping of delimiters
+// TODO respect escaping of delimiters – reuse regex from markUnicodemathInHtmlCode function?
 function markUnicodemathInHtmlDom(node) {
     if (node === undefined) {
         node = document.body;

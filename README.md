@@ -1,6 +1,6 @@
 # UnicodeMathML
 
-*UnicodeMath is an easy-to-read linear format for mathematics. The code in this repository implements a JavaScript-based translation of UnicodeMath to MathML ("UnicodeMathML"). An interactive "playground" allows for experimentation with UnicodeMath's syntax. UnicodeMathML can be used with arbitrary HTML or Markdeep documents.*
+*UnicodeMath is an easy-to-read linear format for mathematics. The code in this repository implements a JavaScript-based translation of UnicodeMath to MathML ("UnicodeMathML"). An interactive "playground" allows for experimentation with UnicodeMath's syntax and insight into the translation pipeline. UnicodeMathML can be used within arbitrary HTML or Markdeep documents.*
 
 **What's UnicodeMath, precisely?** This and other questions are answered in the FAQ section below.
 
@@ -22,6 +22,8 @@ Got questions that aren't answered below? Feel free to submit them by [filing an
 ### What's this *UnicodeMath* you're talking about?
 
 TODO take from thesis/presentation
+
+TODO link to tech note
 
 
 ### How does its syntax compare to LaTeX and AsciiMath?
@@ -61,6 +63,11 @@ All of this isn't really an issue: MathJax, which you'd probably use to render L
 Yup. UnicodeMathML can emit LaTeX code, too – most but not all UnicodeMath features are supported. TODO link to section
 
 
+### TODO contributing
+
+TODO
+
+
 ## Notes
 
 TODO note: when running playground on your local machine in chrome (TODO other browsers?), make sure to either
@@ -70,11 +77,17 @@ TODO note: when running playground on your local machine in chrome (TODO other b
 
 TODO note on generating parser and storing it in static file
 
-TODO note on features i've added (colors etc., \u1234, etc.)
+TODO note on features i've added (colors etc., \u1234, etc., custom control words, etc.)
 
 
 ## License
 
-TODO all original work MIT, I guess?
+You may use this repository's contents under the terms of the *MIT License*, see `LICENSE`.
 
-TODO This license does not apply to ..., which come with their own liceses. (note on license for pegjs and https://github.com/be5invis/Iosevka and jquery and http://www.gust.org.pl/projects/e-foundry/lm-math/download/index_html), also: generated parser license?
+However, the subdirectories `lib/`, `markdeep-integration/` and `playground-assets/lib/` contain some **third-party software with its own licenses**:
+
+* pegjs
+* markdeep, highlightjs
+* todo jquery
+* **MathJax** is licensed under the *Apache License 2.0*, see [here](https://github.com/mathjax/MathJax/blob/master/LICENSE).
+* todo webfonts: https://github.com/be5invis/Iosevka and http://www.gust.org.pl/projects/e-foundry/lm-math/download/index_html
