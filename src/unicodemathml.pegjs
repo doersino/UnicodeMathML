@@ -72,7 +72,7 @@
     // flatten([[1,2],3,[4]]) => [1, 2, 3, 4]
     function flatten(a) {
         var aFlat = [];
-        a.forEach(function (e) {
+        a.forEach(e => {
             if (Array.isArray(e)) {
                 e.forEach(i => aFlat.push(i));
             } else {

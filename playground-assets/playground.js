@@ -23,7 +23,7 @@ function escapeMathMLSpecialChars(str) {
         '<': '&lt;',
         '>': '&gt;'
     };
-    return str.replace(/[&<>]/g, function(tag) {
+    return str.replace(/[&<>]/g, tag => {
         return replacements[tag] || tag;
     });
 };
@@ -31,7 +31,7 @@ function escapeMathMLSpecialChars(str) {
 // via https://stackoverflow.com/a/49458964
 function indentMathML(str) {
     var formatted = '', indent= '';
-    str.split(/>\s*</).forEach(function(node) {
+    str.split(/>\s*</).forEach(node => {
         if (node.match( /^\/\w/ )) indent = indent.substring(2);
         formatted += indent + '<' + node + '>\n';
         if (node.match( /^<?\w[^>]*[^\/]$/ )) indent += '  ';
@@ -133,7 +133,7 @@ function highlightJson(json) {
          json = JSON.stringify(json, undefined, 2);
     }
     json = escapeMathMLSpecialChars(json);
-    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, match => {
         var cls = 'number';
         if (/^"/.test(match)) {
             if (/:$/.test(match)) {
@@ -242,7 +242,7 @@ async function draw() {
 
     // display code points corresponding to the characters
     var codepoints_HTML = "";
-    Array.from(input.value).forEach(function(c) {
+    Array.from(input.value).forEach(c => {
         var cp = c.codePointAt(0).toString(16).padStart(4, '0').toUpperCase();
 
         // highlight special invisible characters and spaces (via
@@ -346,7 +346,7 @@ async function draw() {
     var output_preprocess_ast_HTML = "";
     var output_mathml_ast_HTML = "";
     var output_source_HTML = "";
-    inp.forEach(function (val) {
+    inp.forEach(val => {
 
         // ignore empty lines
         if (val.trim() == "") {
@@ -449,7 +449,7 @@ function displayHistory() {
     var historySize = 50;
 
     //                  ↙ clone array before reversing
-    var histo = hist.slice().reverse().slice(0,historySize).map(function(c) {
+    var histo = hist.slice().reverse().slice(0,historySize).map(c => {
 
         // get tooltip data
         var t = "";

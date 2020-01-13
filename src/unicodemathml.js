@@ -385,7 +385,7 @@ var controlWords = {
 // this control word replacement would fly in the face of the UnicodeMath
 // "literal" operator if there were single-character control words
 function resolveCW(unicodemath) {
-    var res = unicodemath.replace(/\\([A-Za-z0-9]+) ?/g, function(match, cw) {
+    var res = unicodemath.replace(/\\([A-Za-z0-9]+) ?/g, (match, cw) => {
 
         // check custom control words first (i.e. custom ones shadow built-in ones)
         if (typeof ummlConfig !== "undefined" && typeof ummlConfig.customControlWords !== "undefined" && cw in ummlConfig.customControlWords) {
@@ -626,7 +626,7 @@ var astralPrivateMap = [
 // carries out all codepoint range sustitutions listed in astralPrivateMap on
 // the passed string
 function mapToPrivate(s) {
-    return Array.from(s).map(function (c) {
+    return Array.from(s).map(c => {
         var cp = c.codePointAt(0);
 
         // do nothing if character is in BMP
@@ -650,7 +650,7 @@ function mapToPrivate(s) {
 // inverts all codepoint range sustitutions listed in astralPrivateMap on the
 // passed string
 function mapFromPrivate(s) {
-    return Array.from(s).map(function (c) {
+    return Array.from(s).map(c => {
         var cp = c.codePointAt(0);
 
         // do nothing if character is not in Private Use Area
@@ -692,7 +692,7 @@ function SimpleTracer() {
     this.traceLog = [];
     this.indent = 0;
 
-    this.log = function(event) {
+    this.log = event => {
         this.traceLog.push(
                     event.location.start.line + ":" + event.location.start.column
             //+ "-" + event.location.end.line + ":" + event.location.end.column
@@ -701,7 +701,7 @@ function SimpleTracer() {
         );
     }
 
-    this.trace = function(event) {
+    this.trace = event => {
         switch (event.type) {
           case "rule.enter":
             this.log(event);
@@ -715,13 +715,13 @@ function SimpleTracer() {
         }
     }
 
-    this.reset = function() {
+    this.reset = () => {
         this.traceLog = [];
     }
 
     // prettify trace log with colors
-    this.traceLogHTML = function() {
-        return this.traceLog.map(function(line) {
+    this.traceLogHTML = () => {
+        return this.traceLog.map(line => {
             if (line.indexOf('rule.match') !== -1) {
                 return '<span class="match">' + line + '</span>';
             } else if (line.indexOf('rule.fail') !== -1) {
@@ -1331,7 +1331,7 @@ function preprocess(dsty, uast) {
         case "fraction":
             return {fraction: {symbol: value.symbol, of: preprocess(dsty, value.of)}};
         case "unicodefraction":
-            var frac = function (numerator, denominator) {
+            var frac = (numerator, denominator) => {
                 return {fraction: {symbol: "/", of: [{number: numerator}, {number: denominator}]}};
             }
             switch(value) {
@@ -1844,7 +1844,6 @@ function mtransform(dsty, puast) {
                     }
                 } else {
                     exp = expLow;
-                    console.log(expHigh);
                     if (expHigh != undefined) {
                         base = {script: {base: base, type: type, high: expHigh}};
                     }
@@ -2091,7 +2090,7 @@ function c(ast) {
 function tag(tagname, attribs, ...vals) {
     var attributes = "";
     if (Object.keys(attribs).length) {
-        attributes = " " + Object.keys(attribs).map(function(key) {
+        attributes = " " + Object.keys(attribs).map(key => {
             var value = attribs[key];
             return `${key}="${value}"`;
         }).join(' ');
@@ -2185,7 +2184,7 @@ function escapeHTMLSpecialChars(str) {
         '<': '&lt;',
         '>': '&gt;'
     };
-    return str.replace(/[&<>]/g, function(tag) {
+    return str.replace(/[&<>]/g, tag => {
         return replacements[tag] || tag;
     });
 };
