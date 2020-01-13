@@ -1833,13 +1833,21 @@ function mtransform(dsty, puast) {
             if (base.hasOwnProperty("script") && (base.script.type == "subsup" || base.script.type == "abovebelow")) {
                 var expLow = base.script.low;
                 var expHigh = base.script.high;
-                base = base.script.base;
+                var type = base.script.type;
+                base = dropOutermostParens(base.script.base);
 
                 var exp;
                 if (mtag == "mover") {
                     exp = expHigh;
+                    if (expLow != undefined) {
+                        base = {script: {base: base, type: type, low: expLow}};
+                    }
                 } else {
                     exp = expLow;
+                    console.log(expHigh);
+                    if (expHigh != undefined) {
+                        base = {script: {base: base, type: type, high: expHigh}};
+                    }
                 }
                 if (exp == null) {
                     throw "hbrack bracket type doesn't match script type";
@@ -1847,7 +1855,7 @@ function mtransform(dsty, puast) {
 
                 return {[mtag]: withAttrs({"accentunder": true, "accent": true}, [
                     {[mtag]: withAttrs({"accentunder": true, "accent": true}, [
-                        mtransform(dsty, dropOutermostParens(base)),
+                        mtransform(dsty, base),
                         {mo: withAttrs({stretchy: true}, value.bracket)}
                     ])},
                     mtransform(dsty, dropOutermostParens(exp))
