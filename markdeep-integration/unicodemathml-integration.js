@@ -64,7 +64,7 @@ function markUnicodemathInHtmlCode(code, protect = x => x) {
         // and: http://docs.mathjax.org/en/latest/input/tex/html.html
         placeholder.setAttribute("data-unicodemath", encodeURIComponent(unicodemath));
 
-        // keep original in case no translation to mathmal is performed
+        // keep original in case no translation to mathml is performed
         placeholder.innerText = unicodemathWithDelimiters;
 
         return prec + protect(placeholder.outerHTML);
@@ -75,7 +75,6 @@ function markUnicodemathInHtmlCode(code, protect = x => x) {
 }
 
 // TODO this works in the most common cases, but can be improved – take a look at the asciimath source code or https://github.com/mathjax/MathJax/blob/develop/unpacked/extensions/tex2jax.js
-// TODO respect escaping of delimiters – reuse regex from markUnicodemathInHtmlCode function?
 function markUnicodemathInHtmlDom(node) {
     if (node === undefined) {
         node = document.body;
@@ -101,30 +100,31 @@ function markUnicodemathInHtmlDom(node) {
 
         case Node.TEXT_NODE:
 
-            // subdivide text such that non-unicodemath areas alternate with
-            // unicodemath areas (no escaping of delimiters supported yet),
-            // strip delimiters out in the process
-            var strings = node.textContent.split("⁅").map(x => x.split("⁆"));
+            // extraction and processing of math zones works in precisely the same
+            // way as in markUnicodemathInHtmlCode, except special handling of
+            // &nbsp; entities is not needed here
+            var code = node.textContent.replace(/(^|[^\\])⁅([^⁆]*?[^\\])⁆/gi, function (unicodemathWithDelimiters, prec, unicodemath) {
+                var placeholder = document.createElement("span");
+                placeholder.classList.add("unicodemathml-placeholder");
+                placeholder.setAttribute("data-unicodemath", encodeURIComponent(unicodemath));
+                placeholder.innerText = unicodemathWithDelimiters;
+                return prec + placeholder.outerHTML;
+            }).replace(/\\⁅/g, '⁅').replace(/\\⁆/g, '⁆');
 
-            // flatten the resulting list of lists
-            strings = [].concat.apply([], strings);
+            // create temporary div element to convert html code into a nodelist
+            var tmp = document.createElement("div");
+            tmp.innerHTML = code;
 
-            var lastNode = node;
-            for (var i = 0; i < strings.length; i++) {
-                if (i % 2 == 0) {  // text node
-                    var text = document.createTextNode(strings[i]);
-                    insertAfter(text, lastNode);
-                    lastNode = text;
-                } else {  // unicodemath node
-                    var placeholder = document.createElement("span");
-                    placeholder.classList.add("unicodemathml-placeholder");
-                    placeholder.setAttribute("data-unicodemath", encodeURIComponent(strings[i]));
-                    placeholder.innerText = "⁅" + strings[i] + "⁆";
-                    insertAfter(placeholder, lastNode);
-                    lastNode = placeholder;
-                }
+            // traverse this nodelist in reverse, inserting each node after the
+            // initial text node in (now reverse) order, which seems wrong but
+            // works correctly
+            for (var i = tmp.childNodes.length - 1; i >= 0; i--) {
+                insertAfter(tmp.childNodes[i], node);
             }
+
+            // finally, remove the now-obsolete initial text node
             node.parentNode.removeChild(node);
+
             break;
 
         default:
