@@ -77,7 +77,7 @@ TODO note: when running playground on your local machine in chrome (TODO other b
 
 TODO note on generating parser and storing it in static file
 
-TODO note on features i've added (colors etc., \u1234, etc., custom control words, etc.)
+TODO note on features i've added (colors etc., \u1234, etc., custom control words, doublestruck option, etc.)
 
 
 ## License

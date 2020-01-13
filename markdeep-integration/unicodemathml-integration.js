@@ -17,9 +17,10 @@ if (!umml) {
 // initialize with defaults (this variable has the same name as the config used
 // by the playground – but really only the resolveControlWords key is shared)
 var ummlConfig = {
-    resolveControlWords: false,
     showProgress: true,
-    customControlWords: undefined,
+    resolveControlWords: false,
+    customControlWords: undefined,  // a dictionary, e.g. {'playground': '𝐏𝓁𝔞𝚢𝗴𝑟𝖔𝓊𝙣𝕕'}
+    doubleStruckMode: "us-tech",    // "us-tech" (ⅆ ↦ 𝑑), "us-patent" (ⅆ ↦ ⅆ), "euro-tech" (ⅆ ↦ d), see section 3.11 of the tech note
     before: Function.prototype,
     after: Function.prototype
 };

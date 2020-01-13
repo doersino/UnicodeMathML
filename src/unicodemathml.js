@@ -1128,6 +1128,40 @@ function fontSize(n) {
     return Math.pow(1.25, n) + "em";
 }
 
+// determine char to emit based on config: "us-tech" (ⅆ ↦ 𝑑), "us-patent"
+// (ⅆ ↦ ⅆ), or "euro-tech" (ⅆ ↦ d), see section 3.11 of the tech note
+function doublestruckChar(value) {
+    var variants = {
+        "us-tech": {
+            "ⅅ": {mi: noAttr("𝐷")},
+            "ⅆ": {mi: noAttr("𝑑")},
+            "ⅇ": {mi: noAttr("𝑒")},
+            "ⅈ": {mi: noAttr("𝑖")},
+            "ⅉ": {mi: noAttr("𝑗")}
+        },
+        "us-patent": {
+            "ⅅ": {mi: noAttr("ⅅ")},
+            "ⅆ": {mi: noAttr("ⅆ")},
+            "ⅇ": {mi: noAttr("ⅇ")},
+            "ⅈ": {mi: noAttr("ⅈ")},
+            "ⅉ": {mi: noAttr("ⅉ")}
+        },
+        "euro-tech": {
+            "ⅅ": {mi: withAttrs({"mathvariant": "normal"}, "D")},
+            "ⅆ": {mi: withAttrs({"mathvariant": "normal"}, "d")},
+            "ⅇ": {mi: withAttrs({"mathvariant": "normal"}, "e")},
+            "ⅈ": {mi: withAttrs({"mathvariant": "normal"}, "i")},
+            "ⅉ": {mi: withAttrs({"mathvariant": "normal"}, "j")}
+        }
+    }
+
+    if (typeof ummlConfig !== "undefined" && typeof ummlConfig.doubleStruckMode !== "undefined" && ummlConfig.doubleStruckMode in variants) {
+        return variants[ummlConfig.doubleStruckMode][value];
+    } else {
+        return variants["us-tech"][value];
+    }
+}
+
 // if the outer-most node of an AST describes a parenthesized expression, remove
 // the parentheses. used for fractions, exponentiation etc.
 function dropOutermostParens(uast) {
@@ -1998,21 +2032,21 @@ function mtransform(dsty, puast) {
 
         case "doublestruck":
 
+            var char = doublestruckChar(value);
+
             // tech note, section 3.11: "in regular US technical publications,
             // these quantities can be rendered as math italic". also: "Notice
             // that the ⅆ character automatically introduces a small space
             // between the 𝑥 and the 𝑑𝑥"
             switch (value) {
                 case "ⅅ":
-                    return {mrow: noAttr([{mspace: withAttrs({width: "thinmathspace"}, null)}, {mi: noAttr("𝐷")}])};
+                    return {mrow: noAttr([{mspace: withAttrs({width: "thinmathspace"}, null)}, char])};
                 case "ⅆ":
-                    return {mrow: noAttr([{mspace: withAttrs({width: "thinmathspace"}, null)}, {mi: noAttr("𝑑")}])};
+                    return {mrow: noAttr([{mspace: withAttrs({width: "thinmathspace"}, null)}, char])};
                 case "ⅇ":
-                    return {mi: noAttr("𝑒")};
                 case "ⅈ":
-                    return {mi: noAttr("𝑖")};
                 case "ⅉ":
-                    return {mi: noAttr("𝑗")};
+                    return char;
             }
 
         case "bracketed":
