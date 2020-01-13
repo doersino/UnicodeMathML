@@ -2171,7 +2171,6 @@ function pretty(mast) {
             } else {
                 return tag(key, attributes, pretty(value));
             }
-        case "mfenced":
         case "msubsup":
         case "msub":
         case "msup":
