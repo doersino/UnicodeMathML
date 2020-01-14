@@ -40,7 +40,7 @@ Nobody's keeping you from adapting [Tom Scott's emoji keyboard](https://www.yout
 
 More realistically, there's a bunch of tools and text editor plugins that can help out here:
 
-* TODO sublime plugin
+* TODO sublime plugin (note this: https://github.com/mvoidex/UnicodeMath/issues/20)
 * TODO other tools
 
 

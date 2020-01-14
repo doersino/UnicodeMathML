@@ -230,7 +230,8 @@ math:last-child,
 .MathJax_SVG_Display:last-of-type {
     border-bottom: none !important;
 }
-.unicodemathml-error {
+.unicodemathml-error,
+.notice {
     line-height: 1rem;
     background-color: #f53;
     display: block;
@@ -238,6 +239,11 @@ math:last-child,
     padding: 0.5rem;
     font-size: 0.8rem;
     border-bottom: 1px solid #d42;
+}
+.notice {
+    background-color: #79f;
+    border-bottom: 1px solid #68d;
+    font-style: italic;
 }
 .unicodemathml-error .unicodemathml-error-unicodemath {
     font-family: var(--code-font);
