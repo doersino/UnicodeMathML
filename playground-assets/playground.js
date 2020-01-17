@@ -356,7 +356,7 @@ async function draw() {
         // tell the user that unicodemath delimiters aren't required if they've
         // used them
         if (val.includes("⁅") || val.includes("⁆")) {
-            output_HTML += '<div class="notice">Note that the ⁅UnicodeMath delimiters⁆ you\'ve used in the expression ↓below↓ aren\'t required – ' + (ummlConfig.splitInput? 'each line of the' : 'the entire') + ' input is automatically treated as a UnicodeMath expression.</div>';
+            output_HTML += '<div class="notice">Note that the UnicodeMath delimiters ⁅⋯⁆ you\'ve used in the expression below aren\'t required – ' + (ummlConfig.splitInput? 'each line of the' : 'the entire') + ' input is automatically treated as a UnicodeMath expression.</div>';
         }
 
         if (!ummlConfig.outputLaTeX) {

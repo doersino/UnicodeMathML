@@ -1,8 +1,12 @@
 # UnicodeMathML
 
-*UnicodeMath is an easy-to-read linear format for mathematics. The code in this repository implements a JavaScript-based translation of UnicodeMath to MathML ("UnicodeMathML"). An interactive "playground" allows for experimentation with UnicodeMath's syntax and insight into the translation pipeline. UnicodeMathML can be used within arbitrary HTML or Markdeep documents.*
+UnicodeMath is an easy-to-read linear format for mathematics.  TODO at ms
 
-**What's UnicodeMath, precisely?** This and other questions are answered in the FAQ section below.
+TODO some sort of hero image, basic expression etc., maybe `1/2𝜋 ∫_0^2𝜋▒ⅆ𝜃/(𝑎+𝑏 sin⁡𝜃) = 1/√(𝑎²−𝑏²)`
+
+*This repository provides a JavaScript-based translation of UnicodeMath to MathML ("UnicodeMathML"). An interactive "playground" allows for experimentation with UnicodeMath's syntax and insight into the translation pipeline. UnicodeMathML can be easily integrated with arbitrary HTML or Markdeep documents.*
+
+**What's UnicodeMath, precisely?** This and other questions are answered in the FAQ section below.  TODO or in docs
 
 #### Demo: TODO link to playground demo running on github pages
 
@@ -66,6 +70,11 @@ Yup. UnicodeMathML can emit LaTeX code, too – most but not all UnicodeMath fea
 ### TODO contributing
 
 TODO
+
+
+## Development
+
+TODO how to gen parser, architecture overview etc.
 
 
 ## Notes
