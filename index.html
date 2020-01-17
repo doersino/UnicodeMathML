@@ -11,7 +11,7 @@
         }
         html {
             font-size: 20px;
-            font-family: -apple-system, Helvetica, Arial, sans-serif;
+            font-family: Helvetica, Arial, sans-serif;
             height: 100%;
         }
         body {
@@ -31,29 +31,27 @@
             margin-bottom: 0em;
         }
 
+        section {
+            margin: 1em 0;
+        }
         #in {
-            font: inherit;
-            color: inherit;
-            padding: 0.5em;
-            border: 0;
-            background-color: #444;
-            border-bottom: 0.1em solid #444;
-            outline: none;
-            width: auto;
+            display: inline-block;
+            font-family: monospace;
         }
-        #in:focus {
-            background-color: #333;
-            border-bottom: 0.1em solid #666;
-        }
-
         #out {
             display: inline-block;
         }
         #out:before {
-            content: "⥅ ";
+            content: "→ ";
             font-size: 1.5em;
             margin: 0 1em;
             display: inline-block;
+        }
+
+        p {
+            font-family: Georgia, serif;
+            line-height: 1.4em;
+            margin-bottom: 1rem;
         }
 
         ul {
@@ -91,52 +89,43 @@
         }
         @keyframes unrotate {
           0% {
-            transform: rotate(-10deg);
+            transform: rotate(-13deg);
           }
           100% {
             transform: rotate(0deg);
           }
         }
-        .ummlmerge {
+        .ummlmerge-unicode {
             transform-origin: top left;
             display: inline-block;
-            transform: rotate(-10deg);
-            animation: 3s unrotate 2s ease-in-out forwards;
+            transform: rotate(-13deg);
+            animation: 3s unrotate 1s ease-in-out forwards;
         }
         .ummlmerge-math {
             display: inline-block;
             width: 0;
-            animation: 4s goaway 1s linear forwards;
+            animation: 2s goaway 2s linear forwards;
         }
         .ummlmerge-mathml {
             display: inline-block;
-            transform: translate(0, 0.9em);
-            animation: 4s updown 1s ease-in-out forwards;
         }
         .ummlmerge-mathml:before {
-            content: "⥅";
+            content: "→";
             position: absolute;
             margin-left: -1em;
-            animation: 2s goaway 1s linear forwards;
+            animation: 1s goaway 3s linear forwards;
         }
     </style>
 </head>
 <body>
     <main>
         <header>
-            <h1><span class="ummlmerge"><span class="ummlmerge-unicode">Unicode</span><span class="ummlmerge-math">Math</span><span class="ummlmerge-mathml">MathML</span></span></h1>
+            <h1><span class="ummlmerge"><span class="ummlmerge-unicode">Unicode<span class="ummlmerge-math">Math</span></span><span class="ummlmerge-mathml">MathML</span></span></h1>
         </header>
-        <nav>
-            <ul>
-                <li><a href="docs/getting-started.md.html">Getting Started</a></li>
-                <li><a href="docs/documentation.md.html">Documentation</a></li>
-                <li><a href="https://github.com/doersino/UnicodeMathML">Code</a></li>
-            </ul>
-        </nav>
         <section>
-            <input id="in" value="𝛼₂³/(𝛽₂³ + 𝛾₂³)">
+            <div id="in">𝛼₂³/(𝛽₂³ + 𝛾₂³)</div>
             <div id="out">
-                <math class="unicodemath" xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+                <math class="unicodemath" xmlns="http://www.w3.org/1998/Math/MathML">
   <mfrac>
     <msubsup>
       <mi>𝛼</mi>
@@ -160,5 +149,13 @@
 </math>
             </div>
         </section>
+        <p>UnicodeMath is an easy-to-read linear format for mathematics. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+        <nav>
+            <ul>
+                <li><a href="docs/getting-started.md.html">Getting Started</a></li>
+                <li><a href="docs/documentation.md.html">Documentation</a></li>
+                <li><a href="https://github.com/doersino/UnicodeMathML">Code</a></li>
+            </ul>
+        </nav>
     </main>
 </body>
