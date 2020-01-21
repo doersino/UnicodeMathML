@@ -1,12 +1,12 @@
 # UnicodeMathML
 
-UnicodeMath is an easy-to-read linear format for mathematics.  TODO at ms
+*This repository provides a JavaScript-based translation of UnicodeMath to MathML ("UnicodeMathML"). An interactive "playground" allows for experimentation with UnicodeMath's syntax and insight into the translation pipeline. UnicodeMathML can be easily integrated with arbitrary HTML or [Markdeep](https://casual-effects.com/markdeep/) documents.*
 
-TODO some sort of hero image, basic expression etc., maybe `1/2𝜋 ∫_0^2𝜋▒ⅆ𝜃/(𝑎+𝑏 sin⁡𝜃) = 1/√(𝑎²−𝑏²)`
+UnicodeMath is an **easy-to-read linear format** for mathematics initially developed as an input method for Microsoft Office. Its author, Murray Sargent III, has published a [*Unicode Technical Note*](https://www.unicode.org/notes/tn28/) detailing the format, based on which this UnicodeMath to MathML translator was built.
 
-*This repository provides a JavaScript-based translation of UnicodeMath to MathML ("UnicodeMathML"). An interactive "playground" allows for experimentation with UnicodeMath's syntax and insight into the translation pipeline. UnicodeMathML can be easily integrated with arbitrary HTML or Markdeep documents.*
+<img style="min-width: 50%; width: 400px" src="screenshot.png">
 
-**What's UnicodeMath, precisely?** This and other questions are answered in the FAQ section below.  TODO or in docs
+**What's UnicodeMath, precisely?** This and other questions are answered in the FAQ section below.
 
 #### Demo: TODO link to playground demo running on github pages
 
@@ -29,8 +29,10 @@ TODO take from thesis/presentation
 
 TODO link to tech note
 
+TODO explain basic constructs/link to page describing more advanced ones
 
-### How does its syntax compare to LaTeX and AsciiMath?
+
+### How does its syntax compare to AsciiMath, LaTeX, and MathML?
 
 Here's a table showing a few formulas as you'd write them in UnicodeMath, AsciiMath and LaTeX:
 
@@ -38,7 +40,7 @@ TODO comparison table: latex vs asciimath vs unicodemath on three star scale, wi
 TODO good running example: fourier transform
 
 
-### Alright, but I can't find many of these fancy Unicode symbols on my keyboard!
+### Alright, but I can't find any of these fancy Unicode symbols on my keyboard!
 
 Nobody's keeping you from adapting [Tom Scott's emoji keyboard](https://www.youtube.com/watch?v=lIFE7h3m40U) idea for math.
 
@@ -64,12 +66,14 @@ All of this isn't really an issue: MathJax, which you'd probably use to render L
 
 ### But LaTeX seems more TODO widespread, usable, omnipresent., and KaTeX is so much faster than MathJax!
 
-Yup. UnicodeMathML can emit LaTeX code, too – most but not all UnicodeMath features are supported. TODO link to section
+Yup. For this reason, I'm experiementing with enabling UnicodeMathML to emit LaTeX code, too – most but not all UnicodeMath features are supported. TODO link to section
+
+TODO test with katex
 
 
-### TODO contributing
+### I found a bug, also I've got a bunch of ideas on how to improve this thing!
 
-TODO
+TODO great
 
 
 ## Development
@@ -83,6 +87,8 @@ TODO note: when running playground on your local machine in chrome (TODO other b
 * spin up a `python -m SimpleHTTPServer 8000` to circumvent pegjs grammar file loading being prevented due to same-origin policy stuff (TODO still current?)
 * open chrome (on macos anyway) with `open -a Google\ Chrome --args --disable-web-security --user-data-dir`
 * set the `security.fileuri.strict_origin_policy` key on `about:config` in Firefox to `false`
+TODO see https://gist.github.com/willurd/5720255
+TODO is this all still necessary? nope?
 
 TODO note on generating parser and storing it in static file
 
