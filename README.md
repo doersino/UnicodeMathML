@@ -2,13 +2,20 @@
 
 *This repository provides a JavaScript-based translation of UnicodeMath to MathML ("UnicodeMathML"). An interactive "playground" allows for experimentation with UnicodeMath's syntax and insight into the translation pipeline. UnicodeMathML can be easily integrated with arbitrary HTML or [Markdeep](https://casual-effects.com/markdeep/) documents.*
 
-UnicodeMath is an **easy-to-read linear format** for mathematics initially developed as an input method for Microsoft Office. Its author, Murray Sargent III, has published a [*Unicode Technical Note*](https://www.unicode.org/notes/tn28/) detailing the format, based on which this UnicodeMath to MathML translator was built.
+UnicodeMath is an **easy-to-read linear format** for mathematics initially developed as an input method and interchange representation for Microsoft Office. Its author, Murray Sargent III, has published a [*Unicode Technical Note*](https://www.unicode.org/notes/tn28/) detailing the format, based on which this UnicodeMath to MathML translator was built. *More in the FAQ section below.*
 
-<img style="min-width: 50%; width: 400px" src="screenshot.png">
+![](screenshot.png)
 
-**What's UnicodeMath, precisely?** This and other questions are answered in the FAQ section below.
+## Demo
 
-#### Demo: TODO link to playground demo running on github pages
+The *UnicodeMathML Playground* is available at
+
+#### TODO link
+
+and an example Markdeep document containing UnicodeMath can be found at
+
+#### TODO link.
+
 
 ## Getting Started
 
@@ -93,6 +100,8 @@ TODO is this all still necessary? nope?
 TODO note on generating parser and storing it in static file
 
 TODO note on features i've added (colors etc., \u1234, etc., custom control words, doublestruck option, etc.)
+
+TODO see also mathjax, katex, https://github.com/michael-brade/LaTeX.js, more
 
 
 ## License
