@@ -2609,7 +2609,7 @@ function ltransform(dsty, puast) {
 
         case "bracketed":
             return ltransform(dsty, value.content);  // TODO
-            // TODO | as \lvert/\rvert, || as \lVert/\rVert
+            // TODO | as \lvert/\rvert, || as \lVert/\rVert, others somehow too
 
         default:
             return `\\text{${JSON.stringify(puast)}}`;  // just output it as text for now

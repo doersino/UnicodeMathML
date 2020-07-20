@@ -1,14 +1,14 @@
 # UnicodeMathML
 
-*This repository provides a JavaScript-based translation of [UnicodeMath](https://www.unicode.org/notes/tn28/) to [MathML](https://developer.mozilla.org/en-US/docs/Web/MathML) ("UnicodeMathML"). An interactive "playground" allows for experimentation with UnicodeMath's syntax and insight into the translation pipeline. UnicodeMathML can be easily integrated with arbitrary HTML or [Markdeep](https://casual-effects.com/markdeep/) documents.*
+*This repository provides a JavaScript-based translation of [UnicodeMath](https://www.unicode.org/notes/tn28/) to [MathML](https://developer.mozilla.org/en-US/docs/Web/MathML) ("UnicodeMathML"). An interactive playground allows for experimentation with UnicodeMath's syntax and insight into the translation pipeline. UnicodeMathML can be easily integrated with arbitrary HTML or [Markdeep](https://casual-effects.com/markdeep/) documents.*
+
+#### 🎮 Get familar with the syntax via [the playground](https://doersino.github.io/UnicodeMathML/playground.html)!
+
+#### 📑 [Learn how to](#getting-started) integrate UnicodeMathML into your website or Markdeep document ([here's](https://doersino.github.io/UnicodeMathML/markdeep-integration/markdeep.md.html) an example).
 
 UnicodeMath is an **easy-to-read linear format** for mathematics initially developed as an input method and interchange representation for Microsoft Office. Its author, Murray Sargent III, has published a [*Unicode Technical Note*](https://www.unicode.org/notes/tn28/) detailing the format, based on which this UnicodeMath to MathML translator was built. *More in the FAQ section below.*
 
 ![](screenshot.png)
-
-## Demo
-
-The *UnicodeMathML Playground* is available [here](https://doersino.github.io/UnicodeMathML/playground.html), while an example Markdeep document containing UnicodeMath can be found [here](https://doersino.github.io/UnicodeMathML/markdeep-integration/markdeep.md.html).
 
 
 ## Getting Started
@@ -37,10 +37,6 @@ TODO more from thesis/presentation
 
 Its author, Murray Sargent III, has published a [*Unicode Technical Note*](https://www.unicode.org/notes/tn28/) detailing the format, based on which this UnicodeMath to MathML translator was built.
 
-#### Basic constructs
-
-TODO explain basic constructs/link to page describing more advanced ones
-
 
 ### How does its syntax compare to AsciiMath, LaTeX, and MathML?
 
@@ -53,6 +49,8 @@ To summarize, here's a totally-not-biased ranking of the formats
 TODO comparison table: latex vs asciimath vs unicodemath on three star scale, with "source readability" 1 2 3, "ease of input" 2 3 1 or so, ease of parsing, etc.
 
 TODO good running example: fourier transform
+
+TODO thumbsup [this issue](...) if youre interested in an interactive unicodemath tutorial. in the tut, first show examples, then escapes, then text fields with buildup
 
 
 ### Alright, but I can't find any of these fancy Unicode symbols on my keyboard!
@@ -116,6 +114,12 @@ TODO note on features i've added (colors etc., \u1234, etc., custom control word
 TODO see also mathjax, katex, https://github.com/michael-brade/LaTeX.js, more
 
 
+## Related Work
+
+* TODO see https://github.com/arnog/mathlive/blob/316023b89aa6ee5ba8f417bb016ccb2648f9a21f/src/editor/parse-math-string.ts#L23
+* TODO https://github.com/runarberg/mathup
+
+
 ## License
 
 You may use this repository's contents under the terms of the *MIT License*, see `LICENSE`.
@@ -123,7 +127,7 @@ You may use this repository's contents under the terms of the *MIT License*, see
 However, the subdirectories `lib/`, `markdeep-integration/` and `playground-assets/lib/` contain some **third-party software with its own licenses**:
 
 * pegjs
-* markdeep, highlightjs
+* Morgan McGuire's markdeep and the included highlightjs
 * todo jquery
 * **MathJax** is licensed under the *Apache License 2.0*, see [here](https://github.com/mathjax/MathJax/blob/master/LICENSE).
-* todo webfonts: https://github.com/be5invis/Iosevka and http://www.gust.org.pl/projects/e-foundry/lm-math/download/index_html
+* todo webfonts (adapt schema from md-* projects?): https://github.com/be5invis/Iosevka and http://www.gust.org.pl/projects/e-foundry/lm-math/download/index_html
