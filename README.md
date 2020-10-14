@@ -1,10 +1,10 @@
 # UnicodeMathML
 
-*This repository provides a JavaScript-based translation of [UnicodeMath](https://www.unicode.org/notes/tn28/) to [MathML](https://developer.mozilla.org/en-US/docs/Web/MathML) ("UnicodeMathML"). An interactive playground allows for experimentation with UnicodeMath's syntax and insight into the translation pipeline. UnicodeMathML can be easily integrated with arbitrary HTML or [Markdeep](https://casual-effects.com/markdeep/) documents.*
+*This repository provides a JavaScript-based translation of [UnicodeMath](https://www.unicode.org/notes/tn28/) to [MathML](https://developer.mozilla.org/en-US/docs/Web/MathML) (hence "UnicodeMathML"). An interactive playground allows for experimentation with UnicodeMath's syntax and insight into the translation pipeline. UnicodeMathML can be easily integrated into arbitrary HTML or [Markdeep](https://casual-effects.com/markdeep/) documents.*
 
 #### 🎮 Get familar with the syntax via [the playground](https://doersino.github.io/UnicodeMathML/playground.html)!
 
-#### 📑 [Learn how to](#getting-started) integrate UnicodeMathML into your website or Markdeep document ([here's](https://doersino.github.io/UnicodeMathML/markdeep-integration/markdeep.md.html) an example).
+#### 📑 [Learn how to](#getting-started) integrate UnicodeMathML into your website or Markdeep document.
 
 UnicodeMath is an **easy-to-read linear format** for mathematics initially developed as an input method and interchange representation for Microsoft Office. Its author, Murray Sargent III, has published a [*Unicode Technical Note*](https://www.unicode.org/notes/tn28/) detailing the format, based on which this UnicodeMath to MathML translator was built. *More in the FAQ section below.*
 
@@ -13,18 +13,36 @@ UnicodeMath is an **easy-to-read linear format** for mathematics initially devel
 
 ## Getting Started
 
-Depending on what whether you TODO
+For a first look, check out...
 
-TODO clone/download, demo page, how to embed into an html page, how to run on arbitrary text, how to (pre)generate parser, etc.
+* ...the [UnicodeMathML playground](), an interactive environment that allows you to play around with UnicodeMath's syntax and its translation into MathML.
+* ...an [example Markdeep document](https://doersino.github.io/UnicodeMathML/markdeep-integration/markdeep.md.html) whose source can be found [here](https://github.com/doersino/UnicodeMathML/blob/master/markdeep-integration/markdeep.md.html).
+* ...or an [example HTML document](https://doersino.github.io/UnicodeMathML/markdeep-integration/html.html) whose source is located [here](https://github.com/doersino/UnicodeMathML/blob/master/markdeep-integration/html.html).
+
+Depending on whether you'd like to write UnicodeMath in a Markdeep document or use UnicodeMathML on your website, there are two paths. But first:
+
+1. Clone this repository or [download a ZIP](https://github.com/doersino/UnicodeMathML/archive/master.zip).
+
+    ```
+    git clone https://github.com/doersino/UnicodeMathML.git
+    ```
+
+### HTML
+
+TODO how to embed into an html page, how to run on arbitrary text
 
 TODO how to use in conjunction with mathjax? (see asciimathml readme for reference)
 
-TODO how to use in node?
+TODO server-side rendering: how to use in node? ("it's all basic javascript, pegjs doesn't require a runtime, you'll figure it out!")
+
+### Markdeep
+
+TODO how to do it
 
 
 ## FAQ
 
-Got questions that aren't answered below? Feel free to pose them by [filing an issue](https://github.com/doersino/UnicodeMathML/issues)!
+Got **further questions** that aren't answered below, or ideas for **potential improvements**, or **found a bug**? *Feel free to [file an issue](https://github.com/doersino/UnicodeMathML/issues)!*
 
 
 ### What's this *UnicodeMath* you're talking about?
@@ -57,7 +75,7 @@ TODO thumbsup [this issue](...) if youre interested in an interactive unicodemat
 
 Nobody's keeping you from adapting [Tom Scott's emoji keyboard](https://www.youtube.com/watch?v=lIFE7h3m40U) idea for math.
 
-More realistically, there's a bunch of tools and text editor plugins that can help out here:
+More realistically, there's a bunch of tooling and text editor plugins that can help out here:
 
 * TODO sublime plugin (note this: https://github.com/mvoidex/UnicodeMath/issues/20)
 * TODO other tools (see the ones torsten recommended, macos popup thingy, something for windows?)
@@ -86,16 +104,13 @@ Yup. For this reason, I'm experiementing with enabling UnicodeMathML to emit LaT
 TODO test with katex
 
 
-### I found a bug, also I've got a bunch of ideas on how to improve this thing!
-
-Great! Please feed free to file an issue or send a pull request.
-
-TODO insert links
-
-
 ## Development
 
-TODO how to gen parser, architecture overview etc.
+UnicodeMathML is intentionally kept simple and doesn't have any dependencies beyond PEG.js – that way, it's easier to maintain and extend.
+
+TODO architecture overview
+
+TODO how to gen parser
 
 
 ## Notes
@@ -126,8 +141,10 @@ You may use this repository's contents under the terms of the *MIT License*, see
 
 However, the subdirectories `lib/`, `markdeep-integration/` and `playground-assets/lib/` contain some **third-party software with its own licenses**:
 
-* pegjs
-* Morgan McGuire's markdeep and the included highlightjs
-* todo jquery
-* **MathJax** is licensed under the *Apache License 2.0*, see [here](https://github.com/mathjax/MathJax/blob/master/LICENSE).
-* todo webfonts (adapt schema from md-* projects?): https://github.com/be5invis/Iosevka and http://www.gust.org.pl/projects/e-foundry/lm-math/download/index_html
+* The parser generator [PEG.js](https://github.com/pegjs/pegjs), a copy of which is located at `lib/peg-0.10.0.min.js`, is licensed under the *MIT License*, see [here](https://github.com/pegjs/pegjs/blob/master/LICENSE).
+* Morgan McGuire's [Markdeep](https://casual-effects.com/markdeep/), which – along with two slightly modified variants – is located at `markdeep-integration/markdeep-*.js`, is licensed under the *BSD 2-Clause "Simplified" License*, see [here](https://casual-effects.com/markdeep/#license).
+* Markdeep includes Ivan Sagalaev's [highlight.js](https://highlightjs.org) with its *BSD 3-Clause License*, see [here](https://github.com/highlightjs/highlight.js/blob/master/LICENSE).
+* [JQuery](https://jquery.com), which powers some of the interactions in the UnicodeMathML playground and resides at `playground-assets/lib/jquery.min.js`, is licensed under the *MIT License*, see [here](https://jquery.org/license/).
+* A stripped-down variant of [MathJax](https://www.mathjax.org) is included at `playground-assets/lib/mathjax/`, it's licensed under the *Apache License 2.0*, see [here](https://github.com/mathjax/MathJax/blob/master/LICENSE).
+* [LM Math](http://www.gust.org.pl/projects/e-foundry/lm-math/download/index_html), the typeface used for rendered UnicodeMath expressions in the playground in browsers with native MathML support, can be found at `playground-assets/lib/latinmodern/` and is licensed under the *GUST Font License*, see [here](http://www.gust.org.pl/projects/e-foundry/licenses/GUST-FONT-LICENSE.txt/view).
+* Belleve Invis' excellent typeface [Iosevka](https://github.com/be5invis/Iosevka) is located at `playground-assets/lib/iosevka/` and licensed under the *SIL OFL Version 1.1*, see [here](https://github.com/be5invis/Iosevka/blob/master/LICENSE.md).
