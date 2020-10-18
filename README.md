@@ -2,7 +2,7 @@
 
 *This repository provides a JavaScript-based translation of [UnicodeMath](https://www.unicode.org/notes/tn28/) to [MathML](https://developer.mozilla.org/en-US/docs/Web/MathML) (hence "UnicodeMathML"). An interactive playground allows for experimentation with UnicodeMath's syntax and insight into the translation pipeline. UnicodeMathML can be easily integrated into arbitrary HTML or [Markdeep](https://casual-effects.com/markdeep/) documents.*
 
-#### 🎮 Get familar with the syntax via [the playground](https://doersino.github.io/UnicodeMathML/playground.html)!
+#### 🎮 Get familar with the syntax via [the playground](https://doersino.github.io/UnicodeMathML/playground/playground.html)!
 
 #### 📑 [Learn how to](#getting-started) integrate UnicodeMathML into your website or Markdeep document.
 
@@ -16,8 +16,8 @@ UnicodeMath is an **easy-to-read linear format** for mathematics initially devel
 For a first look, check out...
 
 * ...the [UnicodeMathML playground](), an interactive environment that allows you to play around with UnicodeMath's syntax and its translation into MathML.
-* ...an [example Markdeep document](https://doersino.github.io/UnicodeMathML/markdeep-integration/markdeep.md.html) whose source can be found [here](https://github.com/doersino/UnicodeMathML/blob/master/markdeep-integration/markdeep.md.html).
-* ...or an [example HTML document](https://doersino.github.io/UnicodeMathML/markdeep-integration/html.html) whose source is located [here](https://github.com/doersino/UnicodeMathML/blob/master/markdeep-integration/html.html).
+* ...an [example Markdeep document](https://doersino.github.io/UnicodeMathML/src/integration/markdeep.md.html) whose source can be found [here](https://github.com/doersino/UnicodeMathML/blob/master/src/integration/markdeep.md.html).
+* ...or an [example HTML document](https://doersino.github.io/UnicodeMathML/src/integration/html.html) whose source is located [here](https://github.com/doersino/UnicodeMathML/blob/master/src/integration/html.html).
 
 Depending on whether you'd like to write UnicodeMath in a Markdeep document or use UnicodeMathML on your website, there are two paths. But first:
 
@@ -120,7 +120,6 @@ TODO test with katex
 UnicodeMathML is intentionally kept simple and doesn't have any dependencies beyond PEG.js – that way, it's easier to maintain and extend.
 
 * TODO simple architecture overview
-
 
 
 ### Local development
