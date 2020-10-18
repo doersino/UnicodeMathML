@@ -127,7 +127,7 @@ Got **further questions** that aren't answered below, or ideas for **potential i
 
 ### What's this *UnicodeMath* you're talking about?
 
-UnicodeMath is a **linear format for mathematics** initially developed as an input method and interchange representation for Microsoft Office. Its author, Murray Sargent III, has published a [*Unicode Technical Note*](https://www.unicode.org/notes/tn28/) (a copy of which is included at `docs/sargent-unicodemathml-tech-note.pdf`) describing its syntax and semantics. By using Unicode symbols in lieu of keywords wherever possible, it's **significantly more readable than alternative formats** in plain text:
+UnicodeMath is a **linear format for mathematics** initially developed as an input method and interchange representation for Microsoft Office. Its author, Murray Sargent III, has published a [*Unicode Technical Note*](https://www.unicode.org/notes/tn28/) (a copy of which is included at `docs/sargent-unicodemathml-tech-note.pdf`) describing its syntax and semantics. By using Unicode symbols in lieu of keywords wherever possible, it's significantly more readable than LaTeX in plain text:
 
 ![](docs/readme-images/2-example.png)
 
@@ -136,13 +136,13 @@ TODO more from thesis/presentation – maybe refer to it outright
 
 ### How does its syntax compare to AsciiMath, LaTeX, and MathML?
 
-Here's a table showing a few formulas as you'd write them in UnicodeMath, AsciiMath and LaTeX, along with rendering examples:
+Here's a table showing a few expressions as you'd formulate them in UnicodeMath, AsciiMath, and LaTeX:
 
 ![](docs/readme-images/3-examples.png)
 
-There are more subtleties as you get into the nitty-gritty, but you'll see that UnicodeMath consistently makes for the most readable plaintext. LaTeX, in contrast, is significantly more verbose – but since it's been around forever, you might find it to be more versatile in practice.
+There are many subtleties as you get into the nitty-gritty, of course, but you'll see that **UnicodeMath consistently makes for the most readable and concise plaintext**. LaTeX, in contrast, is significantly more verbose – but since it's been around forever, you might find it to be more versatile in practice.
 
-To summarize, here's a totally-not-biased-and-super-scientific evaluation of these notations:
+To summarize, here's a **totally-not-biased-and-super-scientific evaluation of these notations**:
 
 ![](docs/readme-images/4-stars.png)
 
@@ -151,44 +151,66 @@ To summarize, here's a totally-not-biased-and-super-scientific evaluation of the
 
 Not in its canonical form as described in Sargent's tech note – in Section 1, he mentions that such properties should be delegated to a "higher layer", which is perfectly reasonable in GUI-based environments like Microsoft Office – but there is not such layer in HTML/Markdeep.
 
-To remedy this, UnicodeMathML supports a few non-standard constructs:
+To remedy this, **UnicodeMathML supports a few non-standard constructs**:
 
 ![](docs/readme-images/5-additions.png)
 
 For your copy-and-pasting pleasure, that's `✎`, `☁`, `ￗ`, `⫷`, and `⫷`.
 
 
-### Alright, but I can't find any of these fancy Unicode symbols on my keyboard!
+### Cool, but I can't find any of these fancy Unicode symbols on my keyboard!
 
 Nobody's keeping you from adapting [Tom Scott's emoji keyboard](https://www.youtube.com/watch?v=lIFE7h3m40U) idea for math.
 
-More realistically, there's a bunch of tooling and text editor plugins that can help out here:
+More realistically, there's a bunch of **tooling and text editor plugins** that can help out here:
 
-* TODO sublime plugin (note this: https://github.com/mvoidex/UnicodeMath/issues/20)
-* TODO other tools (see the ones torsten recommended, macos popup thingy, something for windows?)
+* There's a [Sublime Text plugin](https://github.com/mvoidex/UnicodeMath) (called UnicodeMath, curiously) that helps with inserting Unicode math symbols.
+* A port of this plugin is [available for VS Code](https://marketplace.visualstudio.com/items?itemName=GuidoTapia2.unicode-math-vscode).
+* The emoji picker built into macOS (press <kbd>ctrl</kbd>+<kbd>⌘</kbd> to open it when in a text input context) supports insertion of many Unicode math symbols as long as you know part of their canonical name.
+* Other editors and operating systems probably have similar functionality – give the search engine of your choice a workout.
 
 Additially, you can configure UnicodeMathML to automatically translate keywords like `\infty` into their respective symbols before processing proper commences – see the "Configuration" section above.
 
 
 ### Alright, that's not as big of a problem as I feared. What's *MathML*, then?
 
-TODO explain
+You could describe MathML as **"HTML, but for math"**. It's an XML-based markup language for mathematical expressions that was first released as a W3C recommendation [in 1998](https://www.w3.org/1999/07/REC-MathML-19990707/toc.html) – it's been around for a while!
+
+Einstein's famous `E=mc²` can be expressed as follows:
+
+```html
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+  <mrow>
+    <mi>E</mi>      <!-- identifier -->
+    <mo>=</mo>      <!-- operator -->
+    <mrow>          <!-- grouping, similat to <span> in HTML -->
+      <mi>m</mi>
+      <msup>        <!-- subscript -->
+        <mi>c</mi>
+        <mn>2</mn>  <!-- number -->
+      </msup>
+    </mrow>
+  </mrow>
+</math>
+```
+
+UnicodeMath's Sargent [notes](docs/sargent-unicodemathml-tech-note.pdf): "MathML has been designed for machine representation of mathematics and is useful for interchange between mathematical applications as well as for rendering the math in technical documents. While very good for these purposes, MathML is awkward for direct human input. Hence it's desirable to have more user friendly ways of inputting mathematical expressions and equations."
 
 
 ### Isn't browser support for MathML really lackluster?
 
-Sort of – according to [caniuse.com](https://caniuse.com/#search=mathml), native support for MathML is available for around 21% of users as of late 2020 as only Firefox and Safari currently support MathML.
+Sort of – according to [caniuse.com](https://caniuse.com/#search=mathml), **native support for MathML is available for around 21% of users as of late 2020** since only Firefox and Safari presently support MathML.
 
-However, Igalia [is working]() on adding MathML support to Chromium, which should push this number upwards quite significantly in the coming months or years.
+However, Igalia [is working](https://mathml.igalia.com) on adding MathML rendering support to Chromium, which should push this number upwards quite significantly once merged. They've been making steady progress since early 2019, which is why I expect Chromium – and by extension Chrome – to gain MathML support sooner rather than later.
 
 All of this isn't really an issue: [MathJax](https://www.mathjax.org), which you'd probably use to render LaTeX math on the web anyway, provides a polyfill for MathML rendering.
 
 
-### But LaTeX seems more TODO widespread, usable, omnipresent., and KaTeX is so much faster than MathJax!
+### But LaTeX seems much more established in various workflows than MathML, and [KaTeX](https://katex.org) is so much faster than MathJax!
 
-Can't argue with that – which is why I've been experimenting with enabling UnicodeMathML to emit LaTeX code, too – most but not all UnicodeMath features are supported at a basic level. You can take a look at the progress in the playground by enabling the "Enable EXPERIMENTAL LaTeX output" setting.
+Can't argue with that – which is why I've been experimenting with extending UnicodeMathML to emit LaTeX code, too – most but not all UnicodeMath features are supported at a basic level. You can take a look at the current state of this feature in the playground by enabling the "Enable EXPERIMENTAL LaTeX output" setting.
 
-TODO file issue if you want me to actively work on this again
+*I'm not actively working on LaTeX code generation at the moment, but feel free to [file an issue](https://github.com/doersino/UnicodeMathML/issues) if this feature is important to you.*
 
 
 ## Development
@@ -197,7 +219,10 @@ TODO file issue if you want me to actively work on this again
 
 UnicodeMathML is intentionally kept simple and doesn't have any dependencies beyond PEG.js – that way, it's easier to maintain and extend.
 
-* TODO simple architecture overview
+* The [PEG.js](https://pegjs.org)-based parser is located at `src/unicodemathml-parser.js`. It builds up an AST (*abstract syntax tree*) in the form of a nested JavaScript dictionary/object.
+* The parser is let loose on an input string in `src/unicodemathml.js`, after which the AST is preprocessed (desugaring, various other bits and pieces) and translated into a MathML AST, which is then trivially pretty-printed, yielding MathML code.
+* The playground, located at `playground/playground.html`, uses PEG.js to dynamically load the parser. A static variant of the parser will download when you open `utils/generate-parser.html` in any browser.
+* *Many more details can be found in my [Master's thesis](docs/doersing-unicodemath-to-mathml.pdf).*
 
 
 ### Local development
@@ -217,13 +242,6 @@ The contents of `dist/` are generated as follows:
 
 1. Run the bash script `utils/bundle.sh` from the root directory of this repository.
 2. Open `utils/generate-parser.html` in any web browser (the caveats discussed in the "Local development" section above apply) and move the file that will be downloaded into `dist/`.
-
-
-## Related Work
-
-* TODO see https://github.com/arnog/mathlive/blob/316023b89aa6ee5ba8f417bb016ccb2648f9a21f/src/editor/parse-math-string.ts#L23
-* TODO https://github.com/runarberg/mathup
-* TODO https://github.com/michael-brade/LaTeX.js
 
 
 ## License
