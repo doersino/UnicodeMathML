@@ -10,7 +10,8 @@
 
     // left-associative (i.e. right-deep) nesting with labeling
     // [a, b, c] => {label: [a, {label: [b, c]}]}
-    function nestLeft(lbl, lis) {
+    // currently unused
+    /*function nestLeft(lbl, lis) {
         lis.reverse();
         var ret = lis[0];
         lis = lis.slice(1,lis.length);
@@ -18,7 +19,7 @@
             ret = label(lbl, [lis[elem], ret]);
         }
         return ret;
-    }
+    }*/
 
     // right-associative (i.e. left-deep) nesting with labeling
     // [a, b, c] => {label: [{label: [a, b]}, c]}
@@ -273,8 +274,8 @@ diacritic
                                     // Combining Diacritical Marks for Symbols Block
 unicodeFraction = [↉½⅓⅔¼¾⅕⅖⅗⅘⅙⅚⅐⅛⅜⅝⅞⅑]
 opArray
-    = "█"  // matrix
-    / "■"  // array
+    = "█"  // array
+    / "■"  // matrix
     / "@"  // row separator
     / "&"  // column separator
 opOpen = [([{⟨〖⌈⌊]
@@ -444,8 +445,11 @@ array = "█(" r:arows ")" {
 arows = h:arow t:("@" arow)* {
     return {arows: [h].concat(t.map(a => a[1]))};
 }
-arow = __? h:exp? t:(__? "&" __? exp)* __? {
+arow = __? h:(exp / emptycell)? t:(__? "&" __? (exp / emptycell))* __? {
     return {arow: [h].concat(t.map(a => a[3]))};
+}
+emptycell = "" {
+    return {atoms: {spaces: {space: 0}}};
 }
 
 // matrices
@@ -459,7 +463,7 @@ matrix
 mrows = h:mrow t:("@" mrow)* {
     return {mrows: [h].concat(t.map(a => a[1]))};
 }
-mrow = __? h:exp t:(__? "&" __? exp)* __? {
+mrow = __? h:(exp / emptycell) t:(__? "&" __? (exp / emptycell))* __? {
     return {mrow: [h].concat(t.map(a => a[3]))};
 }
 
