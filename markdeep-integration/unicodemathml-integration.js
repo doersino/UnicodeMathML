@@ -75,7 +75,6 @@ function markUnicodemathInHtmlCode(code, protect = x => x) {
     return code.replace(/\\⁅/g, '⁅').replace(/\\⁆/g, '⁆');
 }
 
-// TODO this works in the most common cases, but can be improved – take a look at the asciimath source code or https://github.com/mathjax/MathJax/blob/develop/unpacked/extensions/tex2jax.js
 function markUnicodemathInHtmlDom(node) {
     if (node === undefined) {
         node = document.body;
@@ -117,8 +116,8 @@ function markUnicodemathInHtmlDom(node) {
             tmp.innerHTML = code;
 
             // traverse this nodelist in reverse, inserting each node after the
-            // initial text node in (now reverse) order, which seems wrong but
-            // works correctly
+            // initial text node in (now reverse) order, which seems unintuitive
+            // but works correctly
             for (var i = tmp.childNodes.length - 1; i >= 0; i--) {
                 insertAfter(tmp.childNodes[i], node);
             }
@@ -239,7 +238,6 @@ async function renderMarkedUnicodemath(node) {
         // determine whether the expression should be rendered in displaystyle
         // (i.e. iff it is the only child of a <p>, the determination of which
         // is made a bit annoying by the presence of text nodes)
-        // TODO are other tags relevant too? BLOCKQUOTE? CENTER?
         var displaystyle = elem.parentNode &&
                            elem.parentNode.nodeName == "P" &&
                            Array.from(elem.parentNode.childNodes).filter(node => {  // keep everything that's...
