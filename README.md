@@ -2,7 +2,7 @@
 
 *This repository provides a JavaScript-based translation of [UnicodeMath](https://www.unicode.org/notes/tn28/) to [MathML](https://developer.mozilla.org/en-US/docs/Web/MathML) (hence "UnicodeMathML"). An interactive playground allows for experimentation with UnicodeMath's syntax and insight into the translation pipeline. UnicodeMathML can be easily integrated into arbitrary HTML or [Markdeep](https://casual-effects.com/markdeep/) documents.*
 
-#### 🎮 Get familiar with the syntax via [the playground](https://doersino.github.io/UnicodeMathML/playground/playground.html)!
+#### 🎮 Get familiar with the syntax via [the playground](https://doersino.github.io/UnicodeMathML/playground/)!
 
 #### 📑 [Learn how to](#getting-started) integrate UnicodeMathML into your website or Markdeep document.
 
@@ -22,7 +22,7 @@ Generally consistent with Sargent's tech note, some edge-cases that aren't preci
 
 For a **first look**, check out...
 
-* ...the [UnicodeMathML playground](https://doersino.github.io/UnicodeMathML/playground/playground.html), an interactive environment that allows you to play around with UnicodeMath's syntax and its translation into MathML.
+* ...the [UnicodeMathML playground](https://doersino.github.io/UnicodeMathML/playground/), an interactive environment that allows you to play around with UnicodeMath's syntax and its translation into MathML.
 * ...an [example Markdeep document](https://doersino.github.io/UnicodeMathML/src/integration/example.md.html) whose source can be found [here](https://github.com/doersino/UnicodeMathML/blob/master/src/integration/example.md.html).
 * ...or an [example HTML document](https://doersino.github.io/UnicodeMathML/src/integration/example.html) whose source is located [here](https://github.com/doersino/UnicodeMathML/blob/master/src/integration/example.html).
 
@@ -226,19 +226,19 @@ UnicodeMathML is intentionally kept simple and doesn't have any dependencies bey
 
 * The [PEG.js](https://pegjs.org)-based parser is located at `src/unicodemathml-parser.js`. It builds up an AST (*abstract syntax tree*) in the form of a nested JavaScript dictionary/object.
 * The parser is let loose on an input string in `src/unicodemathml.js`, after which the AST is preprocessed (desugaring, various other bits and pieces) and translated into a MathML AST, which is then trivially pretty-printed, yielding MathML code.
-* The playground, located at `playground/playground.html`, uses PEG.js to dynamically load the parser. A static variant of the parser will download when you open `utils/generate-parser.html` in any browser.
+* The playground, located at `playground/index.html`, uses PEG.js to dynamically load the parser. A static variant of the parser will download when you open `utils/generate-parser.html` in any browser.
 * *Many more details can be found in my [Master's thesis](docs/doersing-unicodemath-to-mathml.pdf).*
 
 
 ### Local development
 
-Depending on how your browser implements its same-origin policy, you might not be able to serve the playground from the file system (i.e. with a URL like `file:///⋯/UnicodeMathML/playground/playground.html`) during development:
+Depending on how your browser implements its same-origin policy, you might not be able to serve the playground from the file system (i.e. with a URL like `file:///⋯/UnicodeMathML/playground/index.html`) during development:
 
 * Safari seems to work fine.
 * Firefox does, too, after you set the `security.fileuri.strict_origin_policy` key on the `about:config` page to `false`.
 * Chrome is more restrictive and thus doesn't.
 
-You can work around this by running a static web server that's serving the root directory of you local clone of this repository. Many programming environments, one of which is surely installed on your system, provide one-liners for this purpose – see [here](https://gist.github.com/willurd/5720255). If you've got Python installed, simply run `python3 -m http.server 8000` and point your browser at `localhost:8000/playground/playground.html`.
+You can work around this by running a static web server that's serving the root directory of you local clone of this repository. Many programming environments, one of which is surely installed on your system, provide one-liners for this purpose – see [here](https://gist.github.com/willurd/5720255). If you've got Python installed, simply run `python3 -m http.server 8000` and point your browser at `localhost:8000/playground/`.
 
 
 ### Bundling
