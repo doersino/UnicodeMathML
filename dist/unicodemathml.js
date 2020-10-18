@@ -1210,6 +1210,7 @@ function preprocess(dsty, uast) {
             return {element: preprocess(dsty, value)};
 
         case "array":
+            // TODO pad columns (also for matrices), required/helpful for latex output
             return {array: preprocess(dsty, value)};
         case "arows":
             return {arows: preprocess(dsty, value)};
@@ -1807,6 +1808,8 @@ function mtransform(dsty, puast) {
 
         case "hbrack":
 
+            // TODO can probably do most of the work in a preprocessing step
+
             // determine if the bracket should be above or below contents
             var mtag = ["⏜", "⏞", "⏠", "⎴", "¯"].includes(value.bracket) ? "mover" : "munder";
 
@@ -1928,6 +1931,8 @@ function mtransform(dsty, puast) {
                 return {mi: noAttr(value)};
             }
         case "diacriticized":
+
+            // TODO some of the work could be done in preprocessing step? but need the loop both in preprocessing as well as actual compilation, so doubtful if that would actually be better
             var ret = mtransform(dsty, value.base);
             for (let d of value.diacritics) {
 

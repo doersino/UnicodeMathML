@@ -139,7 +139,7 @@ UnicodeMath is a **linear format for mathematics** initially developed as an inp
 TODO more from thesis/presentation – maybe refer to it outright
 
 
-### How does its syntax compare to AsciiMath, LaTeX, and MathML?
+### How does its syntax compare to [AsciiMath](http://asciimath.org), LaTeX, and MathML?
 
 Here's a table showing a few expressions as you'd formulate them in UnicodeMath, AsciiMath, and LaTeX:
 

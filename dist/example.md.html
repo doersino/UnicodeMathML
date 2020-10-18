@@ -1,532 +1,656 @@
 <meta charset="utf-8">
-**Starter Document**
+**UnicodeMathML + Markdeep**
 
-Welcome to Markdeep. It's the simple way to write plain text with
-_style_. From https://casual-effects.com/markdeep.
+If the following line looks like a proper formula that's centered, things are working the way they're supposed to:</p>
 
-Section
-===============================================================================
+⁅ⅆy/ⅆx=[y-G(x)]/a(x,y)⁆
 
-Subsection
--------------------------------------------------------------------------------
+*See `README.md` of the [UnicodeMathML repository](https://github.com/doersino/UnicodeMathML) for more information.*
 
 ---
 
-# UnicodeMath/Markdeep integration tests
+Here's a test of delimiter escapes: ⁅a+b⁆ testing \⁅a+b⁆ testing ⁅a+b\⁆ testing \⁅a+b\⁆ testing.
 
-testing ⁅a+b⁆ testing \⁅a+b⁆ testing ⁅a+b\⁆ testing \⁅a+b\⁆ testing
+And now a test of textstyle versus displaystyle math: ⁅lim▒_(n→∞) a_n⁆ and:
 
-```
-testing ⁅a+b⁆ testing \⁅a+b⁆ testing ⁅a+b\⁆ testing \⁅a+b\⁆ testing
-```
+⁅lim▒_(n→∞) a_n⁆
 
-`testing ⁅a+b⁆ testing \⁅a+b⁆ testing ⁅a+b\⁆ testing \⁅a+b\⁆ testing`
+## Benchmark
 
-Consider the first-order differential   equation,
+Translating the following list of UnicodeMath expressions (note that some of them are indeed supposed to yield errors) shouldn't take very long at all – blink and you'll (ideally) miss it (modulo MathJax rendering, which can be slow):
 
-Consider the first-order differential &nbsp; equation,
-
-<math class="unicodemath" xmlns="http://www.w3.org/1998/Math/MathML" display="block">
-  <mi>abc</mi>
-</math>
-
-⁅< b + \int_a\of a/⁆
-
-⁅ⅆy/ⅆx=[y-G(x)]/a(x,y).⁆
-
-⁅ⅆy/ⅆx=[y-G(x)]/a(x,y). + \int_1\of a⁆
-
-`⁅ⅆy/ⅆx=[y-G(x)]/a(x,y).⁆`
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-\⁅|a(x,y)/Δx|a≪1⁆
-
-⁅|a(x,y)/Δx|a≪1\⁆
-
-$testing latex-style math$
-
-(From https://web.stanford.edu/class/cme324/classics/curtiss-hirschfelder.pdf .)
-
-# Testing caching
-
-⁅ⅆy/ⅆx=[y-G(x)]/a(x,y).⁆
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-⁅ⅆy/ⅆx=[y-G(x)]/a(x,y).⁆
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-⁅ⅆy/ⅆx=[y-G(x)]/a(x,y).⁆
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-⁅ⅆy/ⅆx=[y-G(x)]/a(x,y).⁆
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-⁅ⅆy/ⅆx=[y-G(x)]/a(x,y).⁆
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-⁅ⅆy/ⅆx=[y-G(x)]/a(x,y).⁆
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-The right-hand side of this equation represents a general function of ⁅x⁆ and ⁅y⁆ which for each value of ⁅x⁆ has a root, ⁅y=G(x)⁆. If ⁅Δx⁆ is the desired resolution of ⁅x⁆ or the interval which will be used in the numerical integration, the equation is "stiff" if
-
-⁅|a(x,y)/Δx|a≪1⁆
-
-and ⁅G(x)⁆ is well behaved [i.e., varies with ⁅x⁆ considerably more slowly than does ⁅exp(x/a(x,G(x)))⁆]
-
-
-# Some errors
-
-⁅𝙲𝙰𝚁𝙳𝚂\_𝙱𝙰𝙳/⁆
-⁅lim⁡_(a→∞) a + lim⁡²_(a→∞) a + sin²(a) = 42/⁆
-⁅(a) + [a) + {a) + ⟨a) + 〖a) + ⌈a) + ⌊a)/⁆
-⁅(a) + (a] + (a} + (a⟩ + (a〗 + (a⌉ + (a⌋/⁆
-⁅𝚊𝚛𝚛[i],  i \in ℤ₀⁺/⁆
-⁅(a│b)/⁆
-
-
-# Custom control words
-
-⁅1+\playground+2⁆
-⁅\playground 123⁆
-⁅\playground⁆
-⁅\playground/⁆
-⁅\notacontrolword⁆
-
-
-# The following expressions should be compiled correctly
-
-⁅\sum┬k▒(-1)^k z_k f(t-k) ℲB\/ \sum┬k▒(-1)^k f(t-k)⁆
-⁅⬌(_✎(#e01f32&α)^✎(#18a199&β) ✎(#467bc4&γ))(_α^β)γ⁆
-⁅∫_-∞^▢(+∞)⁆
-⁅f'(t) = 8 ((1-cos〖\theta/2〗)/(1+cos〖\theta/2〗) sin〖\theta/2〗)^2 (t-1) t (2t - 1) (6t^2 - 6t + 1)⁆
-⁅a⊘b⊘c⊘d⊘e⊘f⊘g⊘h⊘i⊘j⊘k⊘l⊘m⊘n⊘o⊘p⊘q⊘r⊘s⊘t⊘u⊘v⊘w⊘x⊘y⊘z⁆
-⁅a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z⁆
-⁅ℲDa + ℲCa + a + ℲAa + ℲBa⁆
-⁅a_ℲDa + a_ℲCa + a_a + a_ℲAa + a_ℲBa⁆
-⁅(a) + ├1(a) + ├2(a) + ├3(a) + ├4(a)⁆
-⁅a_(a) + a_├1(a) + a_├2(a) + a_├3(a) + a_├4(a)⁆
-⁅ⅆy/ⅆx=[y-G(x)]/a(x,y)⁆
-⁅|a(x,y)/Δx|a≪1⁆
-⁅exp(x/a(x,G(x)))⁆
-⁅↉½⅓⅔¼¾⅕⅖⅗⅘⅙⅚⅐⅛⅜⅝⅞⅑⁆
-⁅𝙲𝙰𝚁𝙳𝚂\_𝙱𝙰𝙳⁆
-⁅lim⁡_(a→∞) a + lim⁡²_(a→∞) a + sin²(a) = 42⁆
-⁅(a) + [a) + {a) + ⟨a) + 〖a) + ⌈a) + ⌊a)⁆
-⁅(a) + (a] + (a} + (a⟩ + (a〗 + (a⌉ + (a⌋⁆
-⁅𝚊𝚛𝚛[i],  i \in ℤ₀⁺⁆
-⁅(a│b)⁆
-⁅(a∣b)⁆
-⁅⫷primes overhaul start⫸⁆
-⁅a'⁆
-⁅a''⁆
-⁅a′⁆
-⁅a″⁆
-⁅a‴⁆
-⁅a⁗⁆
-⁅a⁗'⁆
-⁅a⁗'‴⁆
-⁅a'⁗‴⁆
-⁅a⁗⁗'⁗‴⁆
-⁅⫷primes overhaul end⫸⁆
-⁅_1^b ​^a_2⁆
-⁅[(𝑥₁, 𝑦₁), (𝑥₂, 𝑦₂), ⋯]⁆
-⁅lim⁡²_(a→∞) sin²(a) = 42⁆
-⁅⫷scripts overhaul start⫸⁆
-⁅a₉^+-b₁⁆
-⁅a^b^b^b^b_c_c_c_c⁆
-⁅𝑊_𝛿₁𝜌ⁿ𝜎^2⁆
-⁅𝑊_𝛿₁ⁿ𝜌ⁿⁿa_2⁆
-⁅a_b_b^c⁆
-⁅𝑊^3𝛽_𝛿₁𝜌₂𝜎₃⁆
-⁅𝑊^𝜌ⁿ𝛿₁⁆
-⁅𝑊^𝛿₁𝜌ⁿ⁆
-⁅∫^α₂⁆
-⁅∫_α₂⁆
-⁅a₂^α⁆
-⁅aⁱ_b⁆
-⁅₁ a⁆
-⁅₁a₁⁆
-⁅W_δ₁ρ₁σ₂^3β=U_δ₁ρ₁^3β+1/8π^2⁢∫_α₁^α₂▒dα'₂[(U_δ₁ρ₁^2β-α'₂U_ρ₁σ₂^1β)/U_ρ₁σ₂^0β]⁆
-⁅⫷scripts overhaul end⫸⁆
-⁅|x| = {█(&x" if "x ≥ 0@−&x" if "x < 0)┤⁆
-⁅(a^n/b_c)/c⁆
-⁅{v_i: i \in {1,2,3,4,5}}⁆
-⁅√a+b+d+1/b\of (c/d)⁆
-⁅("a") ̂ ⫷correct way of entering a non-italicized but diacriticized character⫸⁆
-⁅a⃗ⁿ⁆
-⁅x = 0, y = 2⁆
-⁅x = 0,  y = 2⁆
-⁅sinx⁆
-⁅sin x⁆
-⁅sin⁡x⁆
-⁅sin⁡^2 x⁆
-⁅▢(a+b*⟌(a+b))⁆
-⁅x_i\times y^n⁆
-⁅( _a )a⁆
-⁅a‼⁆
-⁅\rect(y=x+4)⁆
-⁅/+'⁆
-⁅a^+_2⁆
-⁅a^+̸/2⁆
-⁅(/+)/2⁆
-⁅a₀₋₉⁴⁼ⁱ⁆
-⁅⌊a/b/c⌋⁆
-⁅\root n+1\of(b+c)⁆
-⁅ā+ ̄(a)⁆
-⁅\int\of a⁆
-⁅sin⁡θ = 1⁄2 𝑒^(ⅈ⁢θ) + "c.c."⁆
-⁅A⨝_(A.x=B.y) B⁆
-⁅(1, 2.3)⁆
-⁅𝐏𝓁𝔞𝚢𝗴𝑟𝖔𝓊𝙣𝕕⁆
-⁅✎(#269&a+b)⁆
-⁅+_+_+_+_+_+_+_+_+_+_+_+^+^+^+^+^+^+^+^+^+^+⁆
-⁅a -̸ b⁆
-⁅a +_+_+_+_+_+_+_+_+_+_+_+_+_+_+ b⁆
-⁅(a│b)⁆
-⁅(a∣b∣c/d)⁆
-⁅a!/b!⁆
-⁅\sum_1\of\alpha⁆
-⁅∑_1\of (\forall y\exists 1) ⫷if resolveCW == true⫸⁆
-⁅"BS" = 1/N  ∑_(t=1)^N▒(f_t-o_t )^2 ⫷from https://github.com/adiabatic/predictions/commit/5c08e653ac9035c8a0c127d673a82ef662cc2321⫸⁆
-⁅a∶b:c ⇒ "RATIO U+2236 vs colon"⁆
-⁅∫3┬(n→∞)┴b▒x⁆
-⁅∫64_a▒(1/2/3/4)⁆
-⁅∫3_a^b▒x⁆
-⁅∫4_a^b▒x⁆
-⁅(a)⁆
-⁅├a)⁆
-⁅├)a)⁆
-⁅├)a┤⁆
-⁅〖a)⁆
-⁅├1]a┤[⁆
-⁅├]1/2┤4[⁆
-⁅├1]1/2┤4[⁆
-⁅(a│b)⁆
-⁅a^b^b^b^b_c_c_c_c⁆
-⁅a⃝⁆
-⁅abc⃟⁆
-⁅a⃒⁆
-⁅a⃑⁆
-⁅a⃚⁆
-⁅a⃢⁆
-⁅a⃫⁆
-⁅a͖⁆
-⁅(potter)͛⁆
-⁅a̼⁆
-⁅∫0_a^b▒x⁆
-⁅∫1_a^b▒x⁆
-⁅∫2_a^b▒x⁆
-⁅a /¬ b⁆
-⁅a^b^b^b^b_c_c_c_c⁆
-⁅a + b_ℲDℲD2⁆
-⁅f'(x) = a⁆
-⁅c'^2⁆
-⁅c'_2⁆
-⁅a′⁆
-⁅a′′′⁆
-⁅a′′′'''⁆
-⁅a^′′′⁆
-⁅a^*⁆
-⁅e'⁆
-⁅ￗ(let ) x=1 ￗ( in )f(y) = y + x ⇒ f(y) = y + 1⁆
-⁅a ⟕_(a.a=b.b) b⁆
-⁅a​b⁆
-⁅a b⁆
-⁅a  b⁆
-⁅a b⁆
-⁅a b⁆
-⁅a b⁆
-⁅a b⁆
-⁅a  b⁆
-⁅a b⁆
-⁅a b⁆
-⁅a b⁆
-⁅a"0"b⁆
-⁅a b⁆
-⁅a" "b⁆
-⁅𝜌 = ∑_𝜓▒P_𝜓 |𝜓⟩⟨𝜓| + 1⁆
-⁅⏠(⏟(x+⋯+x)_(k " times and stuff"))^(test_2_2_2_2_2_2_2_2_2_2_2_2_2_2_2_2)⁆
-⁅⎴(sin(a))^("test")⁆
-⁅↔┬abcdefg⁆
-⁅abcde┬→⁆
-⁅(𝑎 + 𝑏)┴→┬→⁆
-⁅→┴(𝑎 + 𝑏)⁆
-⁅⏟abc_1⁆
-⁅⏟def┬2⁆
-⁅⏞(x+⋯+x)^(k " times")⁆
-⁅(ℕ_+)⃗⁆
-⁅^+ A⁆
-⁅ℕ_+⁆
-⁅(1+2)̂̈⃛⁆
-⁅test+(_☁(blue&n)^☁(red&n))(1,2)_☁(green&n)^☁(yellow&✎(black&n))⁆
-⁅test+(_n^m)(1,2)_n^m⁆
-⁅^1_2 F_3^4⁆
-⁅a _5^1 F_1⁆
-⁅(_3)F_3⁆
-⁅(_3)F⁆
-⁅_4 F_1 + _42 F⁆
-⁅A ⟕_(A.a = B.b) B⁆
-⁅+┬✎(red&c)⁆
-⁅▁(a)⁆
-⁅☁(red&1/2/3/☁(green&tes☁(blue&t)))⁆
-⁅✎(rgba(255,255,100,0.5)&1/☁(red&2/3/✎(black&345)))⁆
-⁅☁(red&1/2/3/345)⁆
-⁅a+⫷stuf\⫸fandthings+1⫸b⁆
-⁅a+⫷stuff⫸b⁆
-⁅a_(a┬b)⁆
-⁅a^b^c^d⁆
-⁅a^b_c⁆
-⁅a_b^c⁆
-⁅a_-a⁆
-⁅a^+a_b⁆
-⁅w_(a^b)⁆
-⁅a_b_c⁆
-⁅w^h_c⁆
-⁅✎(yellow&42)⁆
-⁅✎(rgba(255,255,100,0.5)&42)⁆
-⁅a+b\+c⁆
-⁅1⊘2⁆
-⁅1∕2⁆
-⁅1⁄2⁆
-⁅1/2⁆
+⁅"A COLLECTION OF 628 UNICODEMATH EXPRESSIONS FROM VARIOUS SOURCES"⁆
+⁅x + 2y + 3z⁆
 ⁅1+▭(⟡(1&1/2/3/4/5))⁆
-⁅1+⟡(31&1/2/3/4/5)+1⁆
-⁅⬌(⬆(a/b/c/d/e))+b⁆
-⁅⬇(a/((a/b)/(a/b)))+b⁆
+⁅= α_x^2 1 + α_y^2 1 + α_z^2 1 + (α_y α_z y z - α_y α_z y z) + (α_x α_z z x - α_x α_z z x) + (α_x α_y x y - α_x α_y x y)⁆
+⁅A^* = \sum_{r}{ (-1)^r ⟨ A ⟩_r } = ⟨ A ⟩_+ - ⟨ A ⟩_-⁆
+⁅𝑊_𝛿₁ⁿ𝜌ⁿⁿa_2⁆
+⁅- 6y z + 4z x + 2x y = (2x + 3y) ∧ (y - 2z)⁆
+⁅├1]a┤[⁆
+⁅3/5 x + √z⁆
+⁅α_(z x) z x β_(y z) y z + α_(z x) z x β_(z x) z x + α_(z x) z x β_(x y) x y + α_(z x) z x β_(x y z) x y z⁆
+⁅|(|x| - |y|)|⁆
+⁅lim▒_(n→∞) a_n⁆
+⁅{v_i: i \in {1,2,3,4,5}}⁆
+⁅- α_x β_(y z) z^2y + α_x β_(z x) 1 x + α_x β_(x y) x y z + α_x β_(x y z) x y z z⁆
+⁅/+'⁆
+⁅a_b^c⁆
+⁅▭(128&✎(#e01f32&α))⁆
+⁅y z, x z, x y⁆
+⁅(a+b) ̂⁆
+⁅ⅇ⁆
+⁅A (B C) = (A B) C = A B C⁆
+⁅(ℕ_+)⃗⁆
+⁅a/b⁆
+⁅▢(a+b*⟌(a+b))⁆
+⁅mⁿ₋₃₌₍₂₋₅₎⁆
+⁅+ α_y β_(y z) 1 z + α_y β_(z x) x y z - α_y β_(x y) x y^2 - α_y β_(x y z) x y^2z⁆
+⁅a b⁆
+⁅x⁆
+⁅⫷scripts overhaul start⫸⁆
+⁅α⁆
+⁅x^2 = y^2 = z^2 = 1⁆
+⁅✎(#e01f32&α)⊘✎(#18a199&β)⁆
+⁅a_2⁆
+⁅a₉^+-b₁⁆
+⁅█(10&x+&3&y=2@3&x+&13&y=4)⁆
+⁅z w⁆
+⁅+ (α_1 β_(x y z) + α_(x y z) β_1 + α_x β_(y z) + α_(y z) β_x + α_y β_(z x) + α_(z x) β_y + α_x β_(x y) + α_(x y) β_z) x y z⁆
+⁅(a│b)/⁆
+⁅β_(y z) yz + β_(z x) z x + β_(x y) x y + β_(x y z) x y z\)⁆
+⁅∀ A, B, C ∈ 𝒢 ⟹ A \⌊ (B + C) = A \⌊ B + A \⌊ C⁆
+⁅sin⁡x⁆
+⁅f'(t) = 8 ((1-cos〖\theta/2〗)/(1+cos〖\theta/2〗) sin〖\theta/2〗)^2 (t-1) t (2t - 1) (6t² - 6t + 1)⁆
+⁅\root n+1\of(b+c)⁆
+⁅= α_x^2 + α_y^2 + α_z^2⁆
+⁅E = m⁢c²⁆
+⁅= (α_x x + α_y y + α_x z)⁆
+⁅|_〖|_a〗^b⁆
+⁅∧⁆
+⁅∫1_a^b▒x⁆
+⁅𝒢⁆
+⁅🔭+🌌⁆
+⁅1⊘2⁆
+⁅√a+b+d+1/b\of (c/d)⁆
+⁅([^⁆
+⁅ￗ(α)⁆
+⁅+ β_1 + α_(x y) x y β_x x + α_(x y) x y β_y y + α_(x y) x y β_z z +⁆
+⁅= \(α_1 + α_x x + α_y y + α_x z +⁆
+⁅▭(2&✎(#e01f32&α))⁆
+⁅c'^2⁆
+⁅a + b_ℲDℲD2⁆
+⁅∫3┬(n→∞)┴b▒x⁆
+⁅123a_11+1234ab/2/W_v_v_v_v_v_v/4/a⁆
+⁅test+(_☁(blue&n)^☁(red&n))(1,2)_☁(green&n)^☁(yellow&✎(black&n))⁆
+⁅+ (α_1 β_(y z) + α_(y z) β_1 + α_x β_(x y z) + α_(x y z) β_x + α_y β_z - α_x β_y + α_(x y) β_(z x) - α_(z x) β_(x y)) y z⁆
+⁅a̼⁆
+⁅123┴↔ + ↔┴123.⁆
+⁅a⁗⁆
+⁅test+(_n^m)(1,2)_n^m⁆
+⁅a₂^α⁆
+⁅⟨⟩_r : 𝒢 → 𝒢_r⁆
+⁅+ α_(z x) β_1 z x + α_(z x) β_x z + α_(z x) β_y x y z - α_(z x) β_z x⁆
+⁅∀ a ∈ 𝒢_1, ∀ B ∈ 𝒢_m ⟹ B \⌊ a = 1/2 (B a - a B^*)⁆
+⁅a+⫷stuf\⫸fandthings+1⫸b⁆
+⁅- α_(y z) β_(y z) z z + α_(y z) β_(z x) y x + α_(y z) β_(x y) z x + α_(y z) β_(x y z) y x y⁆
+⁅α_x z β_(y z) y z + α_x z β_(z x) z x + α_x z β_(x y) x y + α_x z β_(x y z) x y z⁆
+⁅lim⁡_(a→∞) a + lim⁡²_(a→∞) a + sin²(a) = 42⁆
+⁅_β^γ α⁆
+⁅a‼⁆
+⁅a‴⁆
+⁅+ α_(x y) β_(y z) x z + α_(x y) β_(z x) y z - α_(x y) β_(x y) y y - α_(x y) β_(x y z) y y z⁆
+⁅a  b⁆
+⁅+ α_(x y) β_(y z) x 1 z + α_(x y) β_(z x) y x x z - α_(x y) β_(x y) y x^2y - α_(x y) β_(x y z) y x^2y z⁆
+⁅a⃑⁆
+⁅▭(255&"💩")⁆
+⁅+ α_(y z) β_1 y z - α_(y z) β_x y x z - α_(y z) β_y zy y + α_(y z) β_z y z^2⁆
+⁅30-50🐗⁆
+⁅a b⁆
+⁅3 D⁆
+⁅α_1⁆
+⁅█(10&x+  & 3&y=2@3&x+&13&y=4)⁆
+⁅∫0_a^b▒x⁆
+⁅∫₀²⁰ √x ⅆx⁆
+⁅+ α_(z x) β_1 z x + α_(z x) β_x z 1 + α_(z x) β_y x y z - α_(z x) β_z x z^2⁆
 ⁅⬍(a/b/c/d/e/f)+c⁆
+⁅(a) + (a] + (a} + (a⟩ + (a〗 + (a⌉ + (a⌋⁆
+⁅⏠(⏟(x+⋯+x)_(k " times and stuff"))^(test_2_2_2_2_2_2_2_2_2_2_2_2_2_2_2_2)⁆
+⁅π_(ￗ(from), ￗ(to)←ￗ(to2)) (σ_(ￗ(to)=ￗ(from2)) (G×π_(ￗ(from2)←ￗ(from), ￗ(to2)←ￗ(to)) (G)))⁆
+⁅= α_x^2 x^2 + α_y^2 y^2 + α_z^2 z^2 + α_y α_z y z - α_y α_z y z + α_x α_z z x - α_x α_z z x + α_x α_y x y - α_x α_y x y⁆
+⁅∀ a ∈ 𝒢_1, ∀ B ∈ 𝒢_m ⟹ a \⌋ B = 1/2 (a B - B^* a)⁆
+⁅→┴(𝑎 + 𝑏)⁆
+⁅v \⌋ B⁆
+⁅-1⁆
+⁅𝜌 = ∑_𝜓▒P_𝜓 |𝜓⟩⟨𝜓| ,⁆
+⁅a_b_b^c⁆
+⁅_4 F_1 + _42 F⁆
+⁅+ α_y β_1 y + α_y β_x y x + α_y β_y y y + α_y β_z y z +⁆
+⁅⟨ α_1 + α_x x + α_y y + α_z z + α_(y z) yz + α_(z x) z x + α_(x y) x y + α_(x y z) x y z ⟩_0 = α_1⁆
+⁅1.25⁆
+⁅(α)⁆
+⁅(α_x x + α_y y + α_z z)^2⁆
+⁅a/⁆
+⁅▭(4&✎(#e01f32&α))⁆
+⁅W_δ_1 ρ₁ σ₂^3β.⁆
+⁅α_(x y z) x y z β_(y z) y z + α_(x y z) x y z β_(z x) z x + α_(x y z) x y z β_(x y) x y + α_(x y z) x y z β_(x y z) x y z⁆
+⁅α⊘β⁆
+⁅ⅆy/ⅆx=[y-G(x)]/a(x,y). + \int_1\of a⁆
+⁅{x ∣ f(x) = 0}⁆
+⁅█(1&x+1&3&y=200@10000&x&3&y=2)⁆
+⁅∀ α ∈ 𝒢_0, ∀ B ∈ 𝒢 ⟹ α ∧ B = B ∧ α = α B = B α⁆
+⁅∑_1\of (\forall y\exists 1) ⫷if resolveCW == true⫸⁆
+⁅x_i\times y^n⁆
+⁅+ α_y β_1 y - α_y β_x x y + α_y β_y 1 + α_y β_z y z⁆
+⁅v_1 ∧ v_2⁆
+⁅+ α_1 β_(y z) y z + α_1 β_(z x) z x + α_1 β_(x y) x y + α_1 β_(x y z) x y z⁆
+⁅⬭(▭(⬭(42)))⁆
+⁅▭(32&✎(#e01f32&α))⁆
+⁅+ α_(z x) β_(y z) x z z y - α_(z x) β_(z x) x z^2x + α_(z x) β_(x y) z 1 y + α_(z x) β_(x y z) z 1 y z⁆
+⁅a _5^1 F_1⁆
+⁅α_(y z) yz + α_(z x) z x + α_(x y) x y + α_(x y z) x y z\)⁆
+⁅a⃗ⁿ⁆
+⁅∫_0^a▒〖xⅆx/(x^2+a^2)〗⁆
+⁅α̂̌̃́⁆
+⁅= α_1 β_1 + α_1 β_x x + α_1 β_y y + α_1 β_z z⁆
+⁅α/β∕γ⁆
+⁅α #β⁆
+⁅abc+a⁆
+⁅a⃢⁆
+⁅a^1_2_3_4⁆
+⁅├]1/2┤4[⁆
+⁅a'⁗‴⁆
+⁅a ∧ b = -b ∧ a⁆
+⁅|(a|b−c|d)|⁆
+⁅(a^n/b_c)/c⁆
+⁅( _a )a⁆
+⁅300-3.14^10000^2⁆
+⁅α'₂^β⁆
+⁅+ α_x β_(y z) x y z - α_x β_(z x) x x z + α_x β_(x y) x^2 y + α_x β_(x y z) x^2 y z⁆
+⁅∏_(k=0)^n▒n⒞k = H²(n) / (n!)^(n+1) = (∏_(h=0)^n▒h^h) / (n!)^(n+1)⁆
+⁅₁a₁⁆
+⁅a⃒⁆
+⁅a_b_c⁆
+⁅\int_0^a xⅆx/(x²+a²)⁆
+⁅+ α_(z x) β_(y z) x y - α_(z x) β_(z x) - α_(z x) β_(x y) y z - α_(z x) β_(x y z) y⁆
+⁅+ α_(z x) β_(y z) x y - α_(z x) β_(z x) - α_(z x) β_(x y) y z - α_(z x) β_(x y z) z z y⁆
+⁅|x| = {█(&x" if "x ≥ 0@−&x" if "x < 0)┤⁆
+⁅+ α_x β_1 x + α_x β_x 1 + α_x β_y x y - α_x β_z z x⁆
+⁅(∛a)/3.14159265+{a^b^c^d/2}⁆
+⁅x y⁆
+⁅= (α_x x + α_y y + α_x z) \⌋ (β_(y z) yz + β_(z x) zx + β_(x y) x y)⁆
+⁅▭(16&✎(#e01f32&α))⁆
+⁅✎(rgba(255,255,100,0.5)&1/☁(red&2/3/✎(black&345)))⁆
+⁅✎(rgba(255,255,100,0.5)&42)⁆
+⁅G(x)⁆
+⁅|x|={█(&x&"if "x≥0@-&x&"if "x<0)〗⁆
+⁅abcde┬→⁆
+⁅𝑊^𝛿₁𝜌ⁿ⁆
+⁅-x y z, 17/41 x y z, ...⁆
+⁅α_x β_(y z) x y z + α_x β_(z x) x z x + α_x β_(x y) x x y + α_x β_(x y z) x x y z⁆
+⁅2π⁆
+⁅α₄₂^+-β₁⁆
+⁅- α_(y z) β_(y z) - α_(y z) β_(z x) x y + α_(y z) β_(x y) z x - α_(y z) β_(x y z) x⁆
+⁅\rect(y=x+4)⁆
+⁅E = mc²⁆
+⁅_n C_k = n⒞k = n!/(k! ⋅ (n-k)!)⁆
+⁅α+β⁆
+⁅(A + B) C = A C + B C⁆
+⁅a^′′′⁆
+⁅e'⁆
+⁅+ α_y β_(y z) y^2z - α_y β_(z x) y x z - α_y β_(x y) x y y - α_y β_(x y z) x y y z⁆
+⁅⏞(x_1+⋯+x_k)^(k " times")⁆
+⁅x = 0,  y = 2⁆
+⁅= α_1 β_1 + α_x β_x + α_y β_y + α_x β_z - α_(y z) β_(y z) - α_(z x) β_(z x) - α_(x y) β_(x y) - α_(x y z) β_(x y z)⁆
+⁅\⌋ : 𝒢_n × 𝒢_m \to 𝒢_{m - n}⁆
+⁅¹₂3⁆
+⁅\playground 123⁆
+⁅☁(red&1/2/3/☁(green&tes☁(blue&t)))⁆
+⁅|a(x,y)/Δx|a≪1⁆
+⁅lim⁡_(a→∞) a + lim⁡²_(a→∞) a + sin²(a) = 42/⁆
+⁅ⅆy/ⅆx=[y-G(x)]/a(x,y)⁆
+⁅^+ A⁆
+⁅- α_(x y z) β_(y z) x y y z z + α_(x y z) β_(z x) x y z^2x - α_(x y z) β_(x y) x y x z y - α_(x y z) β_(x y z) y x z x y z⁆
+⁅⟨ α_1 + α_x x + α_y y + α_z z + α_(y z) yz + α_(z x) z x + α_(x y) x y + α_(x y z) x y z ⟩_-5 = 0⁆
+⁅sin α⁆
+⁅α_(y z) y z + α_(z x) z x + α_(x y) x y⁆
+⁅𝙲𝙰𝚁𝙳𝚂\_𝙱𝙰𝙳/⁆
+⁅▭(192&α)⁆
+⁅▭(64&✎(#e01f32&α))⁆
+⁅a⁗'‴⁆
+⁅〖▭(255&▭(255&▭(255&▭(255&▭(255&▭(255&▭(255&ℲB"🕷")))))))〗  〖ℲB🦟¦ ¦ 〗⁆
+⁅ⅆy/ⅆx=[y-G(x)]/a(x,y).⁆
+⁅+⁆
+⁅A ⟕_(A.a = B.b) B⁆
+⁅⟨ |⁆
+⁅⟨⟩_+ : 𝒢 → 𝒢_+⁆
+⁅{x_1, ..., x_n}⁆
+⁅N₀₊₍₂₋₅₎₌₋₃⁆
+⁅v_1 v_2⁆
+⁅m+a⁄t_h⁆
+⁅- α_(x y z) β_(y z) x + α_(x y z) β_(z x) x y x - α_(x y z) β_(x y) zy y - α_(x y z) β_(x y z) y z z y⁆
+⁅exp(x/a(x,G(x)))⁆
+⁅x y + z w⁆
+⁅▭(1&✎(#e01f32&α))⁆
+⁅∫4_a^b▒x⁆
+⁅- α_(y z) β_(y z) zy y z + α_(y z) β_(z x) y z^2x - α_(y z) β_(x y) zy x y - α_(y z) β_(x y z) y x z y z⁆
+⁅\(β_1 + β_x x + β_y y + β_z z +⁆
+⁅ℲBα⁆
+⁅1.25^n⁆
+⁅+ α_(y z) β_1 y z + α_(y z) β_x y z x + α_(y z) β_y y z y + α_(y z) β_z y z z +⁆
+⁅+ α_x β_1 z + α_x β_x z x - α_x β_y y z + α_x β_z z^2⁆
+⁅a₀₋₉⁴⁼ⁱ⁆
+⁅+ : 𝒢 × 𝒢 → 𝒢⁆
+⁅α⬌(β)γ⁆
+⁅⨌1_a\of ⨌62^a\of b\cdot c⁆
+⁅a  + b⁆
+⁅cos▒² α⁆
+⁅a b = (2 x) (4 x + 3 y) = 8 + 6 x y⁆
+⁅⏟def┬2⁆
+⁅(x + y + z) ∧ (x + 3y - 3z) = - 6y z + 4z x + 2x y⁆
+⁅α_x β_(y z) z y z + α_x β_(z x) z z x + α_x β_(x y) z x y + α_x β_(x y z) z x y z⁆
+⁅√a + √b⁆
+⁅a⊘b⊘c⊘d⊘e⊘f⊘g⊘h⊘i⊘j⊘k⊘l⊘m⊘n⊘o⊘p⊘q⊘r⊘s⊘t⊘u⊘v⊘w⊘x⊘y⊘z⁆
+⁅⬌(_✎(#e01f32&α)^✎(#18a199&β) ✎(#467bc4&γ))(_α^β)γ⁆
+⁅O(n⁴)⁆
+⁅α₂³/(β₂³+γ₂³)⁆
+⁅∫^α₂⁆
+⁅a′′′'''⁆
+⁅f'(t) = 8 ((1-cos〖\theta/2〗)/(1+cos〖\theta/2〗) sin〖\theta/2〗)^2 (t-1) t (2t - 1) (6t^2 - 6t + 1)⁆
+⁅+ (α_1 β_x + α_x β_1 + α_(x y) β_y - α_y β_(x y) + α_x β_(z x) - α_(z x) β_z - α_(y z) β_(x y z) - α_(x y z) β_(y z)) x⁆
+⁅α_(x y) β_(y z) x y y z + α_(x y) β_(z x) x y z x + α_(x y) β_(x y) x y x y + α_(x y) β_(x y z) x y x y z⁆
+⁅\sum┬k▒(-1)^k z_k f(t-k) ℲB\/ \sum┬k▒(-1)^k f(t-k)⁆
+⁅⏜α⁆
+⁅1/2π ∫_0^2π▒ⅆθ/(a+b sinθ) = 1/√(a^2-b^2),⁆
+⁅(a + b)^n = ∑_(k=0)^n▒(n¦k) a^k b^(n-k)⁆
+⁅aⁱ_b⁆
+⁅a′′′⁆
+⁅y"'s fifth derivative" = ẏ┴5 = y⃛̈ = ÿ̈̇ = ÿ̇̈⁆
+⁅▁(a)⁆
+⁅✎(#e01f32&α)/✎(#18a199&β)⁆
+⁅a²⋅b²=c²⁆
+⁅ab/cd/ef/√(10&gh)⁆
+⁅1∕2⁆
+⁅(/+)/2⁆
+⁅+ α_(x y) β_(y z) x y^2z - α_(x y) β_(z x) y x z x - α_(x y) β_(x y) y x x y - α_(x y) β_(x y z) y x x y z⁆
+⁅√✎(#e01f32&α)⁆
+⁅1⁴²√√√∛∜back_to_the_roots⁆
+⁅a_(a┬b)⁆
+⁅a_ℲDa + a_ℲCa + a_a + a_ℲAa + a_ℲBa⁆
+⁅+ α_(x y z) β_1 x y z + α_(x y z) β_x y z - α_(x y z) β_y x z + α_(x y z) β_z x y⁆
+⁅a⃝⁆
+⁅A⨝_(A.x=B.y) B⁆
+⁅M = α_1 + α_x x + α_y y + α_x z +⁆
+⁅(a∣b)⁆
+⁅⏝(a_1 + b_1) + ⏝(a_2 + b_2) + ⏝(a_3 + b_3)⁆
+⁅α'′⁆
+⁅▭(a⃗̂)⁆
+⁅├)a┤⁆
+⁅α_(x y) x y β_(y z) y z + α_(x y) x y β_(z x) z x + α_(x y) x y β_(x y) x y + α_(x y) x y β_(x y z) x y z⁆
+⁅a /~ b⁆
+⁅↔┬abcdefg⁆
+⁅a_(a) + a_├1(a) + a_├2(a) + a_├3(a) + a_├4(a)⁆
+⁅a+{(1]/4⟩⁆
+⁅α_1 β_(y z) y z + α_1 β_(z x) z x + α_1 β_(x y) x y + α_1 β_(x y z) x y z⁆
+⁅x = 0, y = 2⁆
+⁅a''⁆
+⁅4x y, -3y z + 2z x, π z x - √2 x y, ...⁆
+⁅ⅆ(tan x)/ⅆx = 1/cos▒^2 x⁆
+⁅+ (α_1 β_y + α_y β_1 + α_x β_(x y) - α_(x y) β_x + α_(y z) β_z - α_x β_(y z) - α_(z x) β_(x y z)  - α_(x y z) β_(z x)) y⁆
+⁅a +_+_+_+_+_+_+_+_+_+_+_+_+_+_+ b⁆
+⁅+ α_(x y) β_1 x y - α_(x y) β_x x^2y + α_(x y) β_y x 1 + α_(x y) β_z x y z⁆
+⁅a⁆
+⁅α_(z x) β_(y z) z x y z + α_(z x) β_(z x) z x z x + α_(z x) β_(x y) z x x y + α_(z x) β_(x y z) z x x y z⁆
+⁅○α⁆
+⁅𝑎⁆
+⁅∀ a ∈ 𝒢_1, ∀ B ∈ 𝒢 ⟹ a ∧ B = 1/2 (a B + B^* a)⁆
+⁅= (α_y β_z - α_x β_y) yz⁆
+⁅a^b₁⁆
+⁅+ α_x β_1 x + α_x β_x + α_x β_y x y - α_x β_z z x⁆
+⁅a_1 + a_2 + ⋯ + a_(i-1) + a_i + ⏞(a_(i+1) + ⋯ + a_(n-1) + a_n)^(n-i " times")⁆
+⁅w^h_c⁆
+⁅√(n&a + b)⁆
+⁅[■(α&β@γ&δ)]⁆
+⁅\playground⁆
+⁅a^b_c⁆
+⁅a -̸ b⁆
+⁅- α_(x y z) β_(y z) x y^2z^2 + α_(x y z) β_(z x) x y 1 x + α_(x y z) β_(x y) x x y zy + α_(x y z) β_(x y z) y z x x y z⁆
+⁅𝟙+𝟚⁆
+⁅+ α_y β_(y z) z + α_y β_(z x) x y z - α_y β_(x y) x + α_y β_(x y z) z x⁆
+⁅\⌊ : 𝒢_n × 𝒢_m \to 𝒢_{n - m}⁆
+⁅∫64_a▒(1/2/3/4)⁆
+⁅(a) + ├1(a) + ├2(a) + ├3(a) + ├4(a)⁆
+⁅⟨ α_1 + α_x x + α_y y + α_z z + α_(y z) yz + α_(z x) z x + α_(x y) x y + α_(x y z) x y z ⟩_2 = α_(y z) yz + α_(z x) z x + α_(x y) x y⁆
+⁅+ α_(x y) β_1 x y - α_(x y) β_x x x y + α_(x y) β_y x y^2 + α_(x y) β_z x y z⁆
+⁅⏟abc_1⁆
+⁅f̂(ξ)=∫_-∞^∞▒f(x)ⅇ^-2πⅈxξ ⅆx⁆
+⁅"hex"={■(0@1@2@3@4@5@6@7@8@9@A@B@C@D@E@F)┤ " with " |hex|=16⁆
+⁅𝒢_r⁆
+⁅(a + b)┴→⁆
+⁅α_(x y z) x y z⁆
+⁅α̈̇⁆
+⁅a⃫⁆
+⁅- 6y z + 4z x + 2x y⁆
+⁅(potter)͛⁆
+⁅a b⁆
+⁅f⁆
+⁅∫_0^a▒(xⅆx/(x^2+a^2))⁆
+⁅c'_2⁆
+⁅(a)⁆
+⁅+ α_x β_1 z + α_x β_x z x + α_x β_y z y + α_x β_z z z +⁆
+⁅b_1 +_1^2 c⁆
+⁅x, 3x, 17/41 x, 2x + y, 15y, -x + 2y + 5z, z, ...⁆
+⁅α_(x y z) β_(y z) x y z y z + α_(x y z) β_(z x) x y z z x + α_(x y z) β_(x y) x y z x y + α_(x y z) β_(x y z) x y z x y z⁆
+⁅a≠b⁆
+⁅y - 2z⁆
+⁅+ α_(x y z) β_1 x y z - α_(x y z) β_x x y x z - α_(x y z) β_y x y y z + α_(x y z) β_z x y z^2⁆
+⁅- α_(x y z) β_(y z) x - α_(x y z) β_(z x) y - α_(x y z) β_(x y) z - α_(x y z) β_(x y z)⁆
+⁅⁅"BS" = 1/N  ∑_(t=1)^N▒(f_t-o_t )^2 ⫷from https://github.com/adiabatic/predictions/ommit/5c08e653ac9035c8a0c127d673a82ef662cc2321⫸⁆
+⁅(1+2)̂̈⃛⁆
+⁅1 ¦ 2 ¦ 3 ¦ 4 ¦ 5⁆
+⁅+ α_x β_1 z + α_x β_x z x - α_x β_y y z + α_x β_z 1⁆
+⁅lim┬(n→b)⁆
+⁅⨌_a\of b\cdot c⁆
+⁅(_β^γ)α_δ^ε⁆
+⁅𝚊𝚛𝚛[i],  i \in ℤ₀⁺/⁆
+⁅= α_x^2 x^2 + α_x α_y x y - α_x α_z z x - α_x α_y x y + α_y^2 y^2 + α_y α_z y z + α_x α_z z x - α_y α_z y z + α_z^2 z^2⁆
+⁅a+⫷stuff⫸b⁆
+⁅y z, z x, x y⁆
+⁅√56⁆
+⁅1+\playground+2⁆
+⁅𝚊𝚛𝚛[i],  i \in ℤ₀⁺⁆
+⁅𝑊_𝛿₁𝜌ⁿ𝜎^2⁆
+⁅= α_1 - α_x x - α_y y - α_z z + α_(y z) yz + α_(z x) z x + α_(x y) x y - α_(x y z) x y z⁆
+⁅a  b⁆
+⁅a₁^b⁆
+⁅a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/t/u/v/w/x/y/z⁆
+⁅a^*⁆
+⁅lim⁡⁆
+⁅∑┬α▒β⁆
+⁅∑┬Ω▒Δα²⁆
+⁅\sum_1\of\alpha⁆
+⁅∧ : 𝒢_n × 𝒢_m → 𝒢_{n+m}⁆
+⁅- α_x β_(y z) z z y + α_x β_(z x) z^2x - α_x β_(x y) x z y - α_x β_(x y z) x z y z⁆
+⁅αⅆβ⁆
+⁅a+b⁆
+⁅▢(a+b).⁆
+⁅+ β_1 + α_(z x) z x β_x x + α_(z x) z x β_y y + α_(z x) z x β_z z +⁆
+⁅✎(#e01f32&α)∕✎(#18a199&β)⁆
+⁅A_n \⌋ B_m = ⟨ A_n B_m ⟩_{m-n}⁆
+⁅δ₁⋅ρ₁⁆
+⁅========== #[1]⁆
+⁅sin⁡θ = 1⁄2 𝑒^(ⅈ⁢θ) + "c.c."⁆
+⁅α_x x β_(y z) y z + α_x x β_(z x) z x + α_x x β_(x y) x y + α_x x β_(x y z) x y z⁆
+⁅a b⁆
+⁅∫2_a^b▒x⁆
+⁅↉½⅓⅔¼¾⅕⅖⅗⅘⅙⅚⅐⅛⅜⅝⅞⅑⁆
+⁅+ α_(y z) β_1 y z + α_(y z) β_x x y z - α_(y z) β_y zy^2 + α_(y z) β_z y 1⁆
+⁅a^+a_b⁆
+⁅▭(19&✎(#e01f32&α))⁆
+⁅b⁆
+⁅+ α_(x y) β_1 x y + α_(x y) β_x x y x + α_(x y) β_y x y y + α_(x y) β_z x y z +⁆
+⁅+ β_1 + α_y y β_x x + α_y y β_y y + α_y y β_z z +⁆
+⁅α_y β_(y z) y y z + α_y β_(z x) y z x + α_y β_(x y) y x y + α_y β_(x y z) y x y z⁆
+⁅(α_1 + α_x x + α_y y + α_z z + α_(y z) y z + α_(z x) z x + α_(x y) x y + α_(x y z) x y z)^*⁆
+⁅+ (α_1 β_(z x) + α_(z x) β_1 + α_x β_x - α_x β_z + α_y β_(x y z) + α_(x y z) β_y + α_(y z) β_(x y) - α_(x y) β_(y z)) z x⁆
+⁅a^b^c^d⁆
+⁅(a∣b∣c/d)⁆
+⁅⨄▒α⁆
+⁅W/e/i/h/n/a/c/h/t/s/b/a/u/m⁆
+⁅a_ℲA2⁆
+⁅sin 𝜃 = 1⁄2 𝑒^𝑖𝜃 + "c.c."⁆
+⁅3D⁆
+⁅A_n ∧ B_m = ⟨ A_n B_m ⟩_{n+m}⁆
+⁅₁ a⁆
+⁅a​b⁆
+⁅𝛼₂³/(𝛽₂³ + 𝛾₂³)⁆
+⁅{a⌋^⟨1/[2)/3].⁆
+⁅a⁗'⁆
+⁅a∶b:c ⇒ "RATIO U+2236 vs colon"⁆
+⁅(.*?)⁆
+⁅a⃚⁆
+⁅x_j_i_k_1 ...x_i_j_k_r⁆
+⁅✎(rebeccapurple&6)⁆
+⁅a" "b⁆
+⁅⨌1_a\of b\cdot c⁆
+⁅w^h^y+∑_aα^1Ω+sin(a)+"sin(a)"+c⁆
+⁅(a) + (a] + (a} + (a⟩ + (a〗 + (a⌉ + (a⌋/⁆
+⁅(1, 2.3)⁆
+⁅+ α_x β_(y z) x y z - α_x β_(z x) x^2z + α_x β_(x y) 1 y + α_x β_(x y z) 1 y z⁆
+⁅a^b^b^b^b_c_c_c_c⁆
+⁅a′⁆
+⁅< b + \int_a\of a/⁆
+⁅√2⁆
+⁅+ (α_x β_x - α_x β_z) z x⁆
+⁅+ α_(z x) β_(y z) x y - α_(z x) β_(z x) x x + α_(z x) β_(x y) zy + α_(z x) β_(x y z) zy z⁆
+⁅n⒞k = (n!)/(k!(n - k)!)⁆
+⁅ⅉ⁆
+⁅𝑊^𝜌ⁿ𝛿₁⁆
+⁅☁(red&1/2/3/345)⁆
+⁅a /¬ b⁆
+⁅z⁆
+⁅w^h^e^e^e^e+1a+"Testing this!"-(1/2/333/4+1+1)+abc₂⁹/W_c+ab+√(42&1g)+▭(255&▭(255&b))+∑_A▒a+1+∑┴a┬b▒b⁆
+⁅∀ A, B, C ∈ 𝒢 ⟹ A \⌋ (B + C) = A \⌋ B + A \⌋ C⁆
+⁅├1]α, β┤1)⁆
+⁅⟨ α_1 + α_x x + α_y y + α_z z + α_(y z) yz + α_(z x) z x + α_(x y) x y + α_(x y z) x y z ⟩_+⁆
+⁅○(sin(α))⁆
+⁅A (B + C) = A B + A C⁆
+⁅a͖⁆
+⁅⟨ α_1 + α_x x + α_y y + α_z z + α_(y z) yz + α_(z x) z x + α_(x y) x y + α_(x y z) x y z ⟩_-⁆
+⁅\playground/⁆
+⁅= (α_x x + α_y y + α_z z)(α_x x + α_y y + α_z z)⁆
+⁅x y = -y x, x z = -z x, y z = -z y⁆
+⁅≝   \approx   =┴"def"⁆
+⁅√(a+(b))⁆
+⁅π_(ￗ(X)←ￗ(A)+ￗ(C), ￗ(Y)←¬ￗ(B), ￗ(Z)←ￗ("LEGO")) (R)⁆
+⁅` ([___U+2045___]) starts a math zone and `⁆
+⁅+ α_(z x) β_1 z x + α_(z x) β_x z x x + α_(z x) β_y z x y + α_(z x) β_z z x z +⁆
+⁅+ β_1 + α_x x β_x x + α_x x β_y y + α_x x β_z z +⁆
+⁅α_y y β_(y z) y z + α_y y β_(z x) z x + α_y y β_(x y) x y + α_y y β_(x y z) x y z⁆
+⁅a b⁆
+⁅+┬✎(red&c)⁆
+⁅a^(1_2)_3_4⁆
+⁅⏟α_β⁆
+⁅⇳(a/b/b/b/b/b)+1⁆
+⁅1⁄2⁆
+⁅a"0"b⁆
+⁅(_3)F⁆
+⁅(β_x x + β_y y + β_z z)⁆
+⁅α_x x + α_y y + α_x z⁆
+⁅∰_1^n▒f(x)⁆
+⁅ℕ_+⁆
+⁅∮16_α▒β⁆
+⁅f̂(ξ)=∫_-∞^∞▒f(x)ⅇ^(-2πⅈxξ)ⅆx⁆
+⁅a^+̸/2⁆
+⁅f(ξ)=∫_a▒f(x)ⅇ^(2πⅈxξ) ⅆx#[1]⁆
+⁅+ α_x β_1 x + α_x β_x x x + α_x β_y x y + α_x β_z x z +⁆
+⁅∀ A, B, C ∈ 𝒢 ⟹ (A + B) \⌋ C = A \⌋ C + B \⌋ C⁆
+⁅∀ A, B, C ∈ 𝒢 ⟹ (A + B) ∧ C = A ∧ C + B ∧ C⁆
+⁅\notacontrolword⁆
+⁅f̂(ξ)=∫_-∞^∞▒f(x)ⅇ^-2πⅈxξ ⅆx#[42]⁆
+⁅α! + β‼⁆
+⁅+ α_y β_(y z) z + α_y β_(z x) x y z - α_y β_(x y) x - α_y β_(x y z) x z⁆
+⁅©(a@b)⁆
+⁅a⁗⁗'⁗‴⁆
+⁅Δx⁆
+⁅lim⁡²_(a→∞) sin²(a) = 42⁆
+⁅1+"tes\"t"#(this is an equation number)⁆
+⁅1/2𝜋 ∫_0^2𝜋▒ⅆ𝜃/(𝑎+𝑏 sin⁡𝜃)=1/√(𝑎^2−𝑏^2)⁆
+⁅+ α_y β_1 y - α_y β_x x y + α_y β_y y^2 + α_y β_z y z⁆
+⁅b_1+_1^2 c⁆
+⁅+ α_(x y z) β_1 x y z + α_(x y z) β_x x x y z - α_(x y z) β_y x y^2z + α_(x y z) β_z x y 1⁆
+⁅= α_1 β_1 + α_1 β_x x + α_1 β_y y + α_1 β_z z +⁆
+⁅α_(y z) yz + α_(z x) z x + α_(x y) x y + α_(x y z) x y z⁆
+⁅θ²⁆
+⁅a″⁆
+⁅1, 15, 17/41, 2√3, -π, ...⁆
+⁅= (α_x x + α_y y + α_x z) ∧ (β_x x + β_y y + β_z z)⁆
+⁅+ (α_x β_x - α_x β_z) zx⁆
+⁅= α_1 + α_(y z) yz + α_(z x) z x + α_(x y) x y + α_(x y z) x y z⁆
+⁅a b⁆
+⁅W_δ₁ρ₁σ₂^3β=U_δ₁ρ₁^3β+1/8π^2⁢∫_α₁^α₂▒dα'₂[(U_δ₁ρ₁^2β-α'₂U_ρ₁σ₂^1β)/U_ρ₁σ₂^0β]⁆
+⁅"α"⁆
+⁅y⁆
+⁅├a)⁆
+⁅y z = -z y, z x = -x z, x y = -y x⁆
+⁅w⁆
+⁅- α_x β_(y z) y + α_x β_(z x) x + α_x β_(x y) x y z + α_x β_(x y z) x y⁆
+⁅π⁆
+⁅+ α_y β_1 y - α_y β_x x y + α_y β_y + α_y β_z y z⁆
+⁅I(x,x') = g(x,x') [ε(x,x') + ∫_S▒ρ(x,x',x'')I(x',x'')ⅆx'']⁆
+⁅✎(yellow&42)⁆
+⁅^1_2 F_3^4⁆
+⁅a b⁆
+⁅⒨(a &  b& c&d @  c& d  )⁆
+⁅a b⁆
+⁅1a+"Testing this!"-(1/2/3/4+1+1)+abc₂⁹/W_c+ab+√(e&1g)+▭(255&b)+∑_A▒a+1+∑┬a▒b⁆
+⁅a_-a⁆
+⁅(■(a+1&y+2@c&d))⁆
+⁅lim⁡_(a→∞)⁆
+⁅⬌(⬆(a/b/c/d/e))+b⁆
+⁅W_δ₁ρ₁σ₂^3β=U_δ₁ρ₁^3β+1/8π^2⁢∫_α₁^α₂▒dα'₂[(U_δ₁ρ₁^2β-α'₂U_δ₁ρ₁^1β)/U_δ₁ρ₁^0β]⁆
+⁅"rate" = "distance" / "time".⁆
+⁅1/2⁆
+⁅∫_α₂⁆
+⁅A_2⁆
+⁅abc⃟⁆
+⁅1/2π ∫_0^(2⬌(π))▒ⅆθ/(a+b sinθ) = 1/√(a^2-b^2).⁆
+⁅(■(a&b@c&d))⁆
+⁅∫_-∞^▢(+∞)⁆
+⁅α_(y z) β_(y z) y z y z + α_(y z) β_(z x) y z z x + α_(y z) β_(x y) y z x y + α_(y z) β_(x y z) y z x y z⁆
+⁅​^* : 𝒢 → 𝒢⁆
+⁅ρ⁆
+⁅- α_(z x) β_(y z) x z y z - α_(z x) β_(z x) x z z x + α_(z x) β_(x y) z x^2y + α_(z x) β_(x y z) z x^2y z⁆
+⁅= α_x^2 x^2 + α_x α_y x y + α_x α_z x z + α_x α_y y x + α_y^2 y^2 + α_y α_z y z + α_x α_z z x + α_y α_z z y + α_z^2 z^2⁆
+⁅├1]1/2┤4[⁆
+⁅+ α_(x y z) β_1 x y z + α_(x y z) β_x y z + α_(x y z) β_y z x + α_(x y z) β_z x y⁆
+⁅√(δ&α)⁆
+⁅n⁆
+⁅ￗ(let ) x=1 ￗ( in )f(y) = y + x ⇒ f(y) = y + 1⁆
+⁅- α_(x y z) β_(y z) x - α_(x y z) β_(z x) x x y - α_(x y z) β_(x y) z - α_(x y z) β_(x y z) y y⁆
+⁅sin x⁆
+⁅∀ A, B, C ∈ 𝒢 ⟹ A ∧ (B + C) = A ∧ B + A ∧ C⁆
+⁅f'(x) = a⁆
+⁅^1_2 〖n^3_4〗 "   or   " 〖^1_2 n〗^3_4 "   instead of   " ^1_2 n^3_4.⁆
+⁅√(n&✎(#e01f32&α))⁆
+⁅+ β_1 + α_(y z) y z β_x x + α_(y z) y z β_y y + α_(y z) y z β_z z +⁆
+⁅= α_x x + α_y y + α_z z + α_(x y z) x y z⁆
+⁅a'^c⁆
+⁅sin⁡^2 x⁆
+⁅"𝓋𝓪𝔯𝖎𝚊𝕟t𝑠"⁆
+⁅a b⁆
+⁅α⟡(β)γ⁆
+⁅∫3_a^b▒x⁆
+⁅⎴(sin(a))^("test")⁆
+⁅+ α_(x y z) β_1 x y z + α_(x y z) β_x x y z x + α_(x y z) β_y x y z y + α_(x y z) β_z x y z z +⁆
+⁅∀ a ∈ 𝒢_1, ∀ B ∈ 𝒢 ⟹ B ∧ a = 1/2 (B a + a B^*)⁆
+⁅(a) + [a) + {a) + ⟨a) + 〖a) + ⌈a) + ⌊a)/⁆
+⁅\int\of a⁆
+⁅= α_x β_x + α_y β_y + α_x β_z⁆
+⁅+_+_+_+_+_+_+_+_+_+_+_+^+^+^+^+^+^+^+^+^+^+⁆
+⁅(a│b)⁆
+⁅1 + 4x + 4z x + √3 x y z, 0, 6y + 3z - 2y z, ...⁆
+⁅⟨⟩_- : 𝒢 → 𝒢_-⁆
+⁅- α_(x y) β_(y z) z x + α_(x y) β_(z x) y z - α_(x y) β_(x y) - α_(x y) β_(x y z) z⁆
+⁅+ α_x β_1 z + α_x β_x z x - α_x β_y y z + α_x β_z⁆
+⁅+ α_(z x) β_1 z x + α_(z x) β_x z x^2 - α_(z x) β_y x z y - α_(z x) β_z x z z⁆
+⁅(𝑎 + 𝑏)┴→┬→⁆
+⁅√α⁆
+⁅✎(#269&a+b)⁆
+⁅├)a)⁆
+⁅▭(255&▭(255&▭(255&▭(255&▭(255&▭(255&▭(255&▭(255&spider))))))))⁆
+⁅ⅈ⁆
+⁅_a a_a_a_a_a_a_a_u_g_h⁆
+⁅M_1 M_2⁆
+⁅〖a)⁆
+⁅⫷primes overhaul start⫸⁆
+⁅α⇳(β)γ⁆
 ⁅⬌(a/b)+c⁆
 ⁅a /= b⁆
-⁅a ≠ b⁆
-⁅⟡(a)+1⁆
-⁅⇳(a/b/b/b/b/b)+1⁆
-⁅n⒞k = (n!)/(k!(n - k)!)⁆
-⁅1 ¦ 2 ¦ 3 ¦ 4 ¦ 5⁆
-⁅⬭(▭(⬭(42)))⁆
-⁅∫_1^t▒〖ⅆx/x〗#(42)⁆
-⁅α̂̌̃́⁆
+⁅α┬β┴γ⁆
 ⁅(pizza^🍕)^🍕⁆
-⁅∫_0^a▒〖xⅆx/(x^2+a^2)〗⁆
-⁅f̂(ξ)=∫_-∞^∞▒f(x)ⅇ^(-2πⅈxξ)ⅆx⁆
-⁅========== #[1]⁆
-⁅b_1 +_1^2 c⁆
-⁅b_1+_1^2 c⁆
-⁅lim┬(n→b)⁆
-⁅a  + b⁆
-⁅⒨(a &  b& c&d @  c& d  )⁆
-⁅▭(a⃗̂)⁆
-⁅f(ξ)=∫_a▒f(x)ⅇ^(2πⅈxξ) ⅆx#[1]⁆
-⁅1+"tes\"t"#(this is an equation number)⁆
-⁅∫_0^a▒(xⅆx/(x^2+a^2))⁆
-⁅⒨(a&b&c&d@c&d)⁆
-⁅█(1&x+1&3&y=200@10000&x&3&y=2)⁆
-⁅○(sin(α))⁆
-⁅©(a@b)⁆
+⁅+ (α_x β_y - α_y β_x) xy⁆
+⁅⬇(a/((a/b)/(a/b)))+b⁆
+⁅sin θ=(e^iθ-e^-iθ)/2i⁆
+⁅𝙲𝙰𝚁𝙳𝚂\_𝙱𝙰𝙳⁆
+⁅+ (α_x β_y - α_y β_x) x y⁆
+⁅w^h^e^e^e^e⁆
+⁅d⁆
+⁅= (α_x β_(z x) - α_y β_(x y)) x + (α_x β_(x y) - α_x β_(y z)) y + (- α_x β_(z x) + α_y β_(y z)) z⁆
+⁅𝐏𝓁𝔞𝚢𝗴𝑟𝖔𝓊𝙣𝕕⁆
+⁅2¹⁶⁆
+⁅1+⟡(31&1/2/3/4/5)+1⁆
+⁅ā+ ̄(a)⁆
+⁅⌊a/b/c⌋⁆
+⁅∫_1^t▒〖ⅆx/x〗#(42)⁆
+⁅𝜌 = ∑_𝜓▒P_𝜓 |𝜓⟩⟨𝜓| + 1⁆
+⁅- α_(y z) β_(y z) - α_(y z) β_(z x) x y + α_(y z) β_(x y) z x - α_(y z) β_(x y z) x y y⁆
+⁅ℲDa + ℲCa + a + ℲAa + ℲBa⁆
+⁅α_β^γ⁆
+⁅{x_i_1, ..., x_i_m}⁆
+⁅y=G(x)⁆
+⁅0⁆
+⁅▭(8&✎(#e01f32&α))⁆
+⁅a^+_2⁆
+⁅(a|b|c)⁆
+⁅|a(x,y)/Δx|a≪1\⁆
+⁅(a + b)^n = ∑1_(k=0)^n▒(n¦k) a^k b^(n-k)⁆
+⁅a ≠ b⁆
+⁅a+b\+c⁆
+⁅_✎(#e01f32&α)^✎(#18a199&β) ✎(#467bc4&γ)⁆
+⁅+ α_(y z) β_1 y z + α_(y z) β_x x y z - α_(y z) β_y z + α_(y z) β_z y⁆
+⁅+ β_1 + α_(x y z) x y z β_x x + α_(x y z) x y z β_y y + α_(x y z) x y z β_z z +⁆
+⁅_1^b ​^a_2⁆
+⁅`delimited`⁆
+⁅a ⟕_(a.a=b.b) b⁆
+⁅∀ A, B, C ∈ 𝒢 ⟹ (A + B) \⌊ C = A \⌊ C + B \⌊ C⁆
+⁅+ α_(x y) β_1 x y - α_(x y) β_x y + α_(x y) β_y x + α_(x y) β_z x y z⁆
+⁅1, x, y, z, y z, z x, x y, x y z⁆
+⁅ⅆx⁆
+⁅├3(├1((a)┤1)┤3) /= (((a))).⁆
+⁅ℲBα ℲAβ γ ℲCδ ℲDε⁆
+⁅+ (α_y β_z - α_x β_y) y z⁆
+⁅ⅈ²=-1⁆
+⁅W_δ₁ρ₁σ₂^3β⁆
+⁅α_(y z) y z β_(y z) y z + α_(y z) y z β_(z x) z x + α_(y z) y z β_(x y) x y + α_(y z) y z β_(x y z) x y z⁆
 ⁅{■(a@b)〗§⁆
-⁅"hex"={■(0@1@2@3@4@5@6@7@8@9@A@B@C@D@E@F)┤ " with " |hex|=16⁆
+⁅w_(a^b)⁆
+⁅a b⁆
+⁅+ β_1 + α_x z β_x x + α_x z β_y y + α_x z β_z z +⁆
+⁅A_n \⌊ B_m = ⟨ A_n B_m ⟩_{n-m}⁆
+⁅(■(1&2&3@4&5&6@7&8&9@10)).⁆
+⁅(a) + [a) + {a) + ⟨a) + 〖a) + ⌈a) + ⌊a)⁆
+⁅"𝐯𝑎𝒓𝗂𝗼𝘶𝙨"⁆
+⁅𝑊^3𝛽_𝛿₁𝜌₂𝜎₃⁆
+⁅- α_(y z) β_(y z) zy^2z + α_(y z) β_(z x) y 1 x + α_(y z) β_(x y) zy y x + α_(y z) β_(x y z) y x z z y⁆
 ⁅a+{(1]/4⟩ 📌+1 Jⁱ⁼⁵ |_a⁆
-⁅🔭+🌌⁆
-⁅a+{(1]/4⟩⁆
-⁅|_〖|_a〗^b⁆
-⁅▭(255&▭(255&▭(255&▭(255&▭(255&▭(255&▭(255&▭(255&spider))))))))⁆
-⁅(■(a+1&y+2@c&d))⁆
-⁅√(a+(b))⁆
+⁅⫷scripts overhaul end⫸⁆
+⁅+ (α_1 β_(x y) + α_(x y) β_1 + α_x β_y - α_y β_x + α_x β_(x y z) + α_(x y z) β_z + α_(z x) β_(y z) - α_(y z) β_(z x)) x y⁆
+⁅[(𝑥₁, 𝑦₁), (𝑥₂, 𝑦₂), ⋯]⁆
+⁅✎(#e01f32&α)⁄✎(#18a199&β)⁆
+⁅(_3)F_3⁆
+⁅a!/b!⁆
+⁅+ α_x β_1 x + α_x β_x x^2 + α_x β_y x y - α_x β_z z x⁆
+⁅⏞(x+⋯+x)^(k " times")⁆
+⁅sinx⁆
+⁅8 + 6 x y⁆
+⁅α/β⁆
+⁅⟡(a)+1⁆
+⁅("a") ̂ ⫷correct way of entering a non-italicized but diacriticized character⫸⁆
+⁅+ α_x β_(y z) x y z - α_x β_(z x) z + α_x β_(x y) y + α_x β_(x y z) y z⁆
+⁅⒨(a&b&c&d@c&d)⁆
+⁅+ (α_1 β_z + α_x β_1 + α_(z x) β_x - α_x β_(z x) + α_y β_(y z) - α_(y z) β_y - α_(x y) β_(x y z) - α_(x y z) β_(x y)) z⁆
+⁅= α_x x α_x x + α_x x α_y y + α_x x α_z z + α_y y α_x x + α_y y α_y y + α_y y α_z z + α_z z α_x x + α_z z α_y y + α_z z α_z z⁆
 ⁅▭(E=mc^2)⁆
-⁅W/e/i/h/n/a/c/h/t/s/b/a/u/m⁆
-⁅N₀₊₍₂₋₅₎₌₋₃⁆
-⁅w^h^e^e^e^e+1a+"Testing this!"-(1/2/333/4+1+1)+abc₂⁹/W_c+ab+√(42&1g)+▭(255&▭(255&b))+∑_A▒a+1+∑┴a┬b▒b⁆
-⁅123a_11+1234ab/2/W_v_v_v_v_v_v/4/a⁆
-⁅300-3.14^10000^2⁆
-⁅1⁴²√√√∛∜back_to_the_roots⁆
-⁅1a+"Testing this!"-(1/2/3/4+1+1)+abc₂⁹/W_c+ab+√(e&1g)+▭(255&b)+∑_A▒a+1+∑┬a▒b⁆
-⁅α₂³/(β₂³+γ₂³)⁆
-⁅∰_1^n▒f(x)⁆
-⁅ab/cd/ef/√(10&gh)⁆
-⁅∑┬Ω▒Δα²⁆
-⁅(∛a)/3.14159265+{a^b^c^d/2}⁆
-⁅▭(255&"💩")⁆
-⁅w^h^y+∑_aα^1Ω+sin(a)+"sin(a)"+c⁆
-
-
+⁅⫷primes overhaul end⫸⁆
+⁅x y z⁆
+⁅"So long" ∧ "thanks"   ∀  "🐟🐠🐡".⁆
+⁅a'⁆
+⁅K_c (r) = 𝟏_[¼,¾] (r) + ½ × 𝟏_[0,¼] (r)⁆
+⁅⏟(a^c_b)_(⏟(a^c_b)_(⏟(a^c_b)_(⏟(a^c_b)_(⏟(a^c_b)_(d)))))⁆
 
 <script>
     var unicodemathmlOptions = {
-        resolveControlWords: true,
-        customControlWords: {
-            'playground': '𝐏𝓁𝔞𝚢𝗴𝑟𝖔𝓊𝙣𝕕'
-        }
+        resolveControlWords: true
     };
 </script>
 <script src="unicodemathml.js"></script>
