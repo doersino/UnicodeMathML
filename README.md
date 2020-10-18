@@ -2,7 +2,7 @@
 
 *This repository provides a JavaScript-based translation of [UnicodeMath](https://www.unicode.org/notes/tn28/) to [MathML](https://developer.mozilla.org/en-US/docs/Web/MathML) (hence "UnicodeMathML"). An interactive playground allows for experimentation with UnicodeMath's syntax and insight into the translation pipeline. UnicodeMathML can be easily integrated into arbitrary HTML or [Markdeep](https://casual-effects.com/markdeep/) documents.*
 
-#### 🎮 Get familar with the syntax via [the playground](https://doersino.github.io/UnicodeMathML/playground/playground.html)!
+#### 🎮 Get familiar with the syntax via [the playground](https://doersino.github.io/UnicodeMathML/playground/playground.html)!
 
 #### 📑 [Learn how to](#getting-started) integrate UnicodeMathML into your website or Markdeep document.
 
@@ -77,7 +77,7 @@ Replace the Markdeep loading code at the bottom of your document with this code 
 
 ### Node
 
-While I haven't tested server-side translation of UnicodeMath into MathML, there shouldn't be any problems integrating the core of UnicodeMathML into a Node project – it's all vanilla JavaScript. If you run into any trouble, don't hesistate to [file an issue](https://github.com/doersino/UnicodeMathML/issues)!
+While I haven't tested server-side translation of UnicodeMath into MathML, there shouldn't be any problems integrating the core of UnicodeMathML into a Node project – it's all vanilla JavaScript. If you run into any trouble, don't hesitate to [file an issue](https://github.com/doersino/UnicodeMathML/issues)!
 
 
 ### Configuration
@@ -169,7 +169,7 @@ More realistically, there's a bunch of **tooling and text editor plugins** that 
 * The emoji picker built into macOS (press <kbd>ctrl</kbd>+<kbd>⌘</kbd> to open it when in a text input context) supports insertion of many Unicode math symbols as long as you know part of their canonical name.
 * Other editors and operating systems probably have similar functionality – give the search engine of your choice a workout.
 
-Additially, you can configure UnicodeMathML to automatically translate keywords like `\infty` into their respective symbols before processing proper commences – see the "Configuration" section above.
+Additionally, you can configure UnicodeMathML to automatically translate keywords like `\infty` into their respective symbols before processing proper commences – see the "Configuration" section above.
 
 
 ### Alright, that's not as big of a problem as I feared. What's *MathML*, then?
@@ -227,7 +227,7 @@ UnicodeMathML is intentionally kept simple and doesn't have any dependencies bey
 
 ### Local development
 
-Depending on how your browser implementis its same-origin policy, you might not be able to serve the playground from the file system (i.e. with a URL like `file:///⋯/UnicodeMathML/playground/playground.html`) during development:
+Depending on how your browser implements its same-origin policy, you might not be able to serve the playground from the file system (i.e. with a URL like `file:///⋯/UnicodeMathML/playground/playground.html`) during development:
 
 * Safari seems to work fine.
 * Firefox does, too, after you set the `security.fileuri.strict_origin_policy` key on the `about:config` page to `false`.
