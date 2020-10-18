@@ -13,6 +13,11 @@ UnicodeMath is an **easy-to-read linear format** for mathematics initially devel
 *The initial development of UnicodeMathML was part of [my Master's thesis](docs/doersing-unicodemath-to-mathml.pdf).*
 
 
+### Status
+
+Generally consistent with Sargent's tech note, some edge-cases that aren't precisely specified might be iffy. Abstract boxes are largely unimplemented due to insufficient specification.
+
+
 ## Getting Started
 
 For a **first look**, check out...
@@ -55,7 +60,7 @@ You'll need to **include the same lines (modulo path changes) at the bottom of y
 
 ### Markdeep
 
-UnicodeMathML comes with a lightly modified variant of Markdeep that kicks off the translation at the correct point in the document rendering process. Open `dist/example.md.html` in a text editor of your choice and scroll to the bottom. There, you'll see the following lines:
+UnicodeMathML comes with a lightly modified variant of Morgan McGuire's [Markdeep](https://casual-effects.com/markdeep/) that kicks off the translation at the correct point in the document rendering process. Open `dist/example.md.html` in a text editor of your choice and scroll to the bottom. There, you'll see the following lines:
 
 ```html
 <script>

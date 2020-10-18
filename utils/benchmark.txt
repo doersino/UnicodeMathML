@@ -1,4 +1,4 @@
-"A COLLECTION OF 626 UNICODEMATH EXPRESSIONS FROM VARIOUS SOURCES"
+"A COLLECTION OF 628 UNICODEMATH EXPRESSIONS FROM VARIOUS SOURCES"
 x + 2y + 3z
 1+▭(⟡(1&1/2/3/4/5))
 = α_x^2 1 + α_y^2 1 + α_z^2 1 + (α_y α_z y z - α_y α_z y z) + (α_x α_z z x - α_x α_z z x) + (α_x α_y x y - α_x α_y x y)
@@ -624,3 +624,5 @@ sinx
 x y z
 "So long" ∧ "thanks"   ∀  "🐟🐠🐡".
 a'
+K_c (r) = 𝟏_[¼,¾] (r) + ½ × 𝟏_[0,¼] (r)
+⏟(a^c_b)_(⏟(a^c_b)_(⏟(a^c_b)_(⏟(a^c_b)_(⏟(a^c_b)_(d)))))
