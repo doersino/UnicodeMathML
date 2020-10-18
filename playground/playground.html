@@ -14,9 +14,9 @@
         }
     </script>
 
-    <link rel="stylesheet" href="playground-assets/lib/iosevka/2.0.1/webfont.css">
-    <link rel="stylesheet" href="playground-assets/lib/latinmodern/1.959/webfont.css">
-    <script>loadUncachedStylesheet("playground-assets/playground.css")</script>
+    <link rel="stylesheet" href="assets/lib/iosevka/2.0.1/webfont.css">
+    <link rel="stylesheet" href="assets/lib/latinmodern/1.959/webfont.css">
+    <script>loadUncachedStylesheet("assets/playground.css")</script>
 </head>
 <body>
     <h1>UnicodeMathML <em>𝐏𝓁𝔞𝚢𝗴𝑟𝖔𝓊𝙣𝕕<!--𝐏𝓁𝔞𝚢͛𝗴𝑟𝖔⃗𝓊𝙣͖𝕕--></em></h1>
@@ -282,13 +282,13 @@
     </script>
 
     <!-- unicodemathml stuff -->
-    <script src="lib/peg-0.10.0.min.js"></script>
+    <script src="../lib/peg-0.10.0.min.js"></script>
     <script>
         var ummlParser = undefined;
 
         // load grammar from file, then generate parser
         var client = new XMLHttpRequest();
-        client.open('GET', 'src/unicodemathml-parser.pegjs' + "?" + Math.random());
+        client.open('GET', '../src/unicodemathml-parser.pegjs' + "?" + Math.random());
         client.onreadystatechange = function() {
             if (client.readyState === 4) {
                 try {
@@ -301,10 +301,10 @@
         }
         client.send();
     </script>
-    <script>loadUncachedScript("src/unicodemathml.js")</script>
+    <script>loadUncachedScript("../src/unicodemathml.js")</script>
 
     <!-- playground stuff -->
-    <script src="playground-assets/lib/jquery.min.js"></script>
-    <script src="playground-assets/charinfo.js">/* no need to avoid caching here – it's massive and it's not gonna change */</script>
-    <script>loadUncachedScript("playground-assets/playground.js")</script>
+    <script src="assets/lib/jquery.min.js"></script>
+    <script src="assets/charinfo.js">/* no need to avoid caching here – it's massive and it's not gonna change */</script>
+    <script>loadUncachedScript("assets/playground.js")</script>
 </body>

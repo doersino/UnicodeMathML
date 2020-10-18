@@ -119,17 +119,27 @@ TODO test with katex
 
 UnicodeMathML is intentionally kept simple and doesn't have any dependencies beyond PEG.js – that way, it's easier to maintain and extend.
 
-TODO architecture overview
+* TODO simple architecture overview
 
-TODO note on bundling, generating parser and storing it in static file
 
-TODO note: when running playground on your local machine in chrome (TODO other browsers?), make sure to either
-* spin up a `python -m SimpleHTTPServer 8000` to circumvent pegjs grammar file loading being prevented due to same-origin policy stuff (TODO still current?)
-* open chrome (on macos anyway) with `open -a Google\ Chrome --args --disable-web-security --user-data-dir`
-* set the `security.fileuri.strict_origin_policy` key on `about:config` in Firefox to `false`
-TODO see https://gist.github.com/willurd/5720255
-TODO note that there's a reason playground is located at the root: were it in a subdirectory, it couldn't access ../ stuff when served directly from the file system due to same origin policy
-TODO is this all still necessary? nope? test by moving playground to subfolder?
+
+### Local development
+
+Depending on how your browser implementis its same-origin policy, you might not be able to serve the playground from the file system (i.e. with a URL like `file:///⋯/UnicodeMathML/playground/playground.html`) during development:
+
+* Safari seems to work fine.
+* Firefox does, too, after you set the `security.fileuri.strict_origin_policy` key on the `about:config` page to `false`.
+* Chrome is more restrictive and thus doesn't.
+
+You can work around this by running a static web server that's serving the root directory of you local clone of this repository. Many programming environments, one of which is surely installed on your system, provide one-liners for this purpose – see [here](https://gist.github.com/willurd/5720255). If you've got Python installed, simply run `python3 -m http.server 8000` and point your browser at `localhost:8000/playground/playground.html`.
+
+
+### Bundling
+
+The contents of `dist/` are generated as follows:
+
+1. Run the bash script `utils/bundle.sh` from the root directory of this repository.
+2. Open `utils/generate-parser.html` in any web browser (the caveats discussed in the "Local development" section above apply) and move the file that will be downloaded into `dist/`.
 
 
 ## Related Work
