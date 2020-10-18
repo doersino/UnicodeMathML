@@ -1,4 +1,5 @@
 // Integration of the UnicodeMathML translator into Markdeep or plain HTML.
+(function(root) {
 'use strict';
 
 // check if UnicodeMathML is loaded
@@ -301,3 +302,12 @@ function renderUnicodemath() {
     markUnicodemathInHtmlDom();
     renderMarkedUnicodemath();
 }
+
+root.umml = umml;
+root.ummlConfig = ummlConfig;
+root.markUnicodemathInHtmlCode = markUnicodemathInHtmlCode;
+root.markUnicodemathInHtmlDom = markUnicodemathInHtmlDom;
+root.renderMarkedUnicodemath = renderMarkedUnicodemath;
+root.renderUnicodemath = renderUnicodemath;
+
+})(this);

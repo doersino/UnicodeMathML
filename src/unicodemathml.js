@@ -1,3 +1,4 @@
+(function(root) {
 'use strict';
 
 // if in debug mode, opens (or closes if the argument is null) a console.group
@@ -2630,3 +2631,8 @@ function unicodemathtex(unicodemath, displaystyle = false) {
         };
     }
 }
+
+root.unicodemathml = unicodemathml;
+root.unicodemathtex = unicodemathtex;
+
+})(this);

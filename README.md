@@ -54,7 +54,7 @@ Open `dist/example.html` in a text editor of your choice and scroll to the botto
 
 You'll need to **include the same lines (modulo path changes) at the bottom of your own HTML document** or website (but *before* the closing `</body>` tag).
 
-* Of course, you can use [webpack](https://webpack.js.org) or similar tools to combine and minify the JavaScript files.
+* Of course, you can use [webpack](https://webpack.js.org) or similar tools to combine and minify the JavaScript files, which I definitely recommend if you're planning on using UnicodeMathML in even moderate-traffic production contexts: *This will shrink them from ~500 kB down to ~150 kB, and gzipping can reduce this further to ~50 kB.*
 * If you need to support [browsers that don't support MathML natively](https://caniuse.com/#search=mathml), you will also need to load a polyfill like [MathJax](https://www.mathjax.org) – UnicodeMathML will notify MathJax when the generated MathML is ready to render.
 * The `unicodemathmlOptions` variable allows you to tweak things a bit – see the "Configuration" section below for more details.
 
