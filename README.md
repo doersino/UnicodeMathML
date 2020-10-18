@@ -15,9 +15,9 @@ UnicodeMath is an **easy-to-read linear format** for mathematics initially devel
 
 For a first look, check out...
 
-* ...the [UnicodeMathML playground](), an interactive environment that allows you to play around with UnicodeMath's syntax and its translation into MathML.
-* ...an [example Markdeep document](https://doersino.github.io/UnicodeMathML/src/integration/markdeep.md.html) whose source can be found [here](https://github.com/doersino/UnicodeMathML/blob/master/src/integration/markdeep.md.html).
-* ...or an [example HTML document](https://doersino.github.io/UnicodeMathML/src/integration/html.html) whose source is located [here](https://github.com/doersino/UnicodeMathML/blob/master/src/integration/html.html).
+* ...the [UnicodeMathML playground](https://doersino.github.io/UnicodeMathML/playground/playground.html), an interactive environment that allows you to play around with UnicodeMath's syntax and its translation into MathML.
+* ...an [example Markdeep document](https://doersino.github.io/UnicodeMathML/src/integration/example.md.html) whose source can be found [here](https://github.com/doersino/UnicodeMathML/blob/master/src/integration/example.md.html).
+* ...or an [example HTML document](https://doersino.github.io/UnicodeMathML/src/integration/example.html) whose source is located [here](https://github.com/doersino/UnicodeMathML/blob/master/src/integration/example.html).
 
 Depending on whether you'd like to write UnicodeMath in a Markdeep document or use UnicodeMathML on your website, there are two paths. But first:
 
