@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <link rel="stylesheet" href="../playground/assets/lib/iosevka/2.0.1/webfont.css">
+    <link rel="stylesheet" href="../playground/assets/lib/latinmodern/1.959/webfont.css">
+    <style>
+        html {
+            font-size: 25px;
+        }
+        body {
+            margin: 1em;
+        }
+        section {
+            width: 1000px;
+            background-color: #eee;
+            padding: 1em;
+            margin-bottom: 2em;
+        }
+        table {
+            width: 30em;
+            margin: auto;
+            border-collapse: collapse;
+        }
+        table td {
+            padding: 0.4em 0;
+            border-top: 1px solid #ccc;
+        }
+        thead td {
+            font-family: "Iosevka Web";
+            text-transform: uppercase;
+            color: #888;
+            letter-spacing: 0.2em;
+            font-size: 0.8em;
+            border-top: none;
+        }
+        .stars td:first-child {
+            font-family: "Iosevka Web";
+        }
+        code {
+            font-family: "Iosevka Web";
+        }
+        math {
+            font-family: "LM Math";
+        }
+    </style>
+</head>
+<body>
+    <h2>take screenshots @2x, insert into readme at the the appropriate locations</h2>
+    <p>introductory example:</p>
+    <section>
+        <table>
+            <thead>
+                <tr>
+                    <td>𝑓</td>
+                    <td>UnicodeMath</td>
+                    <td>LaTeX</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>⁅∫₀²⁰ √x ⅆx⁆</td>
+                    <td><code>∫₀²⁰ √x ⅆx</code></td>
+                    <td width="45%"><code>\int_0^{20} \sqrt{x} \ dx</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <p>comparisons:</p>
+    <section>
+        <table style="width: 35em">
+            <thead>
+                <tr>
+                    <td width="15%">𝑓</td>
+                    <td>UnicodeMath</td>
+                    <td>AsciiMath</td>
+                    <td width="35%">LaTeX</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>⁅1/2⁆</td>
+                    <td><code>1/2</code></td>
+                    <td><code>1/2</code></td>
+                    <td><code>\frac{1}{2}</code></td>
+                </tr>
+                <tr>
+                    <td>⁅√2⁆</td>
+                    <td><code>√2</code></td>
+                    <td><code>sqrt 2</code></td>
+                    <td><code>\sqrt 2</code></td>
+                </tr>
+                <tr>
+                    <td>⁅δ₁⋅ρ₁⁆</td>
+                    <td><code>δ₁⋅ρ₁</code></td>
+                    <td><code>del_1*rho_1</code></td>
+                    <td><code>\delta_1 \cdot \rho_1</code></td>
+                </tr>
+                <tr>
+                    <td>⁅a≠b⁆</td>
+                    <td><code>a≠b</code></td>
+                    <td><code>a!=b</code></td>
+                    <td><code>a \ne b</code></td>
+                </tr>
+                <tr>
+                    <td>⁅(a+b)̂⁆</td>
+                    <td><code>(a+b)̂</code></td>
+                    <td><code>hat (a+b)</code></td>
+                    <td><code>\widehat{a+b}</code></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <p>stars:</p>
+    <section>
+        <table class="stars">
+            <thead>
+                <tr>
+                    <td>Notation</td>
+                    <td>Reading</td>
+                    <td>Writing</td>
+                    <td>Ecosystem</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>UnicodeMath</td>
+                    <td>★★★★★</td>
+                    <td>★★★★☆</td>
+                    <td>★★★☆☆</td>
+                </tr>
+                <tr>
+                    <td>AsciiMath</td>
+                    <td>★★★★☆</td>
+                    <td>★★★★★</td>
+                    <td>★★☆☆☆</td>
+                </tr>
+                <tr>
+                    <td>LaTeX</td>
+                    <td>★★★☆☆</td>
+                    <td>★★★★☆</td>
+                    <td>★★★★★</td>
+                </tr>
+                <tr>
+                    <td>MathML</td>
+                    <td>★★☆☆☆</td>
+                    <td>★★☆☆☆</td>
+                    <td>★★★★☆</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <p>non-standard constructs:</p>
+    <section>
+        <table>
+            <thead>
+                <tr>
+                    <td>Syntax</td>
+                    <td>Example</td>
+                    <td>Rendered</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>✎(</code><em>color</em><code>&</code><em>expression</em><code>)</code></td>
+                    <td><code>✎(green&a+b)</code></td>
+                    <td>⁅✎(green&a+b)⁆</td>
+                </tr>
+                <tr>
+                    <td><code>☁(</code><em>color</em><code>&</code><em>expression</em><code>)</code></td>
+                    <td><code>☁(yellow&a+b)</code></td>
+                    <td>⁅☁(yellow&a+b)⁆</td>
+                </tr>
+                <tr>
+                    <td><code>ￗ(</code><em>text</em><code>)</code></td>
+                    <td><code>ￗ(mono)</code></td>
+                    <td>⁅ￗ(mono)⁆</td>
+                </tr>
+                <tr>
+                    <td><code>⫷</code><em>text</em><code>⫸</code></td>
+                    <td><code>⫷invisible⫸</code></td>
+                    <td>⁅⫷invisible⫸⁆</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <script src="../src/unicodemathml.js"></script>
+    <script src="../dist/unicodemathml-parser.js"></script>
+    <script src="../src/integration/unicodemathml-integration.js"></script>
+    <script>
+        document.body.onload = renderUnicodemath();
+    </script>
+</body>
