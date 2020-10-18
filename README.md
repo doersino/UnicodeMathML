@@ -121,14 +121,15 @@ UnicodeMathML is intentionally kept simple and doesn't have any dependencies bey
 
 TODO architecture overview
 
-TODO note on generating parser and storing it in static file
+TODO note on bundling, generating parser and storing it in static file
 
 TODO note: when running playground on your local machine in chrome (TODO other browsers?), make sure to either
 * spin up a `python -m SimpleHTTPServer 8000` to circumvent pegjs grammar file loading being prevented due to same-origin policy stuff (TODO still current?)
 * open chrome (on macos anyway) with `open -a Google\ Chrome --args --disable-web-security --user-data-dir`
 * set the `security.fileuri.strict_origin_policy` key on `about:config` in Firefox to `false`
 TODO see https://gist.github.com/willurd/5720255
-TODO is this all still necessary? nope?
+TODO note that there's a reason playground is located at the root: were it in a subdirectory, it couldn't access ../ stuff when served directly from the file system due to same origin policy
+TODO is this all still necessary? nope? test by moving playground to subfolder?
 
 
 ## Related Work
@@ -142,10 +143,10 @@ TODO is this all still necessary? nope?
 
 You may use this repository's contents under the terms of the *MIT License*, see `LICENSE`.
 
-However, the subdirectories `lib/`, `markdeep-integration/` and `playground-assets/lib/` contain some **third-party software with its own licenses**:
+However, the subdirectories `lib/` and `playground-assets/lib/` contain some **third-party software with its own licenses**:
 
 * The parser generator [PEG.js](https://github.com/pegjs/pegjs), a copy of which is located at `lib/peg-0.10.0.min.js`, is licensed under the *MIT License*, see [here](https://github.com/pegjs/pegjs/blob/master/LICENSE).
-* Morgan McGuire's [Markdeep](https://casual-effects.com/markdeep/), which – along with two slightly modified variants – is located at `markdeep-integration/markdeep-*.js`, is licensed under the *BSD 2-Clause "Simplified" License*, see [here](https://casual-effects.com/markdeep/#license).
+* Morgan McGuire's [Markdeep](https://casual-effects.com/markdeep/), which – along with a slightly modified variant that integrates with UnicodeMathML – is located at `lib/markdeep-1.11-orig.js`, is licensed under the *BSD 2-Clause "Simplified" License*, see [here](https://casual-effects.com/markdeep/#license).
 * Markdeep includes Ivan Sagalaev's [highlight.js](https://highlightjs.org) with its *BSD 3-Clause License*, see [here](https://github.com/highlightjs/highlight.js/blob/master/LICENSE).
 * [JQuery](https://jquery.com), which powers some of the interactions in the UnicodeMathML playground and resides at `playground-assets/lib/jquery.min.js`, is licensed under the *MIT License*, see [here](https://jquery.org/license/).
 * A stripped-down variant of [MathJax](https://www.mathjax.org) is included at `playground-assets/lib/mathjax/`, it's licensed under the *Apache License 2.0*, see [here](https://github.com/mathjax/MathJax/blob/master/LICENSE).

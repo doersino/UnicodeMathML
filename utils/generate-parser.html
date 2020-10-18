@@ -23,7 +23,7 @@
 
         // load grammar from file, then generate parser
         var client = new XMLHttpRequest();
-        client.open('GET', '../src/unicodemathml.pegjs');
+        client.open('GET', '../src/unicodemathml-parser.pegjs');
         client.onreadystatechange = function() {
             if (client.readyState === 4) {
                 try {
