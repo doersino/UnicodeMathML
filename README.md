@@ -172,7 +172,7 @@ To remedy this, **UnicodeMathML supports a few non-standard constructs**:
 
 ![](docs/readme-images/5-additions.png)
 
-For your copy-and-pasting pleasure, that's `✎`, `☁`, `ￗ`, `⫷`, and `⫸`. You can use any color name of specification [supported](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) by CSS.
+For your copy-and-pasting pleasure, that's `✎`, `☁`, `ￗ`, `⫷`, and `⫸`. You can use any color name or specification [supported](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value) by CSS.
 
 
 ### Cool, but I can't find any of these fancy Unicode symbols on my keyboard!
