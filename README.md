@@ -240,15 +240,13 @@ Sure thing – I've originally built it as a parser development aid. Before lear
 * In the expanding-on-hover section below it, the contents of the text field are shown once more – but **annotated with the corresponding Unicode code points**. Hover over one of them to see a **tooltip with more details** *(demonstrated in the first GIF below)*.
 * You inputs are **rendered on the right**.
 * Below that, you'll see four tabs, each corresponding to one of the **syntax-highlighted intermediate data structures**. If you enable tracing in the settings, a fifth tab containing the parse trace appears, as well.
-* Below these two columns, a sort of **virtual keyboard** allows you to enter some of the Unicode characters you likely won't see on your physical keyboard: If you click on one of the button, the corresponding symbol will be inserted at the cursor position. Some of them are described in tooltips that pop up as you hover over them.
-* Below that, you can **enter arbitrary Unicode codepoints** or **control words**. You can also insert characters in one of many **math alphabets** *(see the second GIF below)* – alternatively, select some text in the main text field and click one of the alphabet buttons. The playground will then convert as many characters as are availiable in that math alphabet.
+* Below these two columns, a sort of **virtual keyboard** allows you to enter some of the Unicode characters you likely won't see on your physical keyboard: If you click on one of the buttons, the corresponding symbol will be inserted at the cursor position. Some of them are described in tooltips that pop up as you hover over them.
+* Below that, you can **enter arbitrary Unicode codepoints** or **control words**. You can also insert characters in one of many **math alphabets** – alternatively, select some text in the main text field and click one of the alphabet buttons. The playground will then convert as many characters as are availiable for that math alphabet.
 * A bunch of **examples** are available at the bottom of the page – click one to paste it into the main text field.
 
 The playground is designed to keep its state in [local storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage), so you shouldn't lose any data if you reload it.
 
 ![](docs/readme-images/7-tooltips.gif)
-
-![](docs/readme-images/8-alphabets.gif)
 
 
 ## Development
