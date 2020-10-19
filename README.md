@@ -225,9 +225,30 @@ All of this isn't really an issue: [MathJax](https://www.mathjax.org), which you
 
 ### But LaTeX seems much more established in various workflows than MathML, and [KaTeX](https://katex.org) is so much faster than MathJax!
 
-Can't argue with that – which is why I've been experimenting with extending UnicodeMathML to emit LaTeX code, too – most but not all UnicodeMath features are supported at a basic level. You can take a look at the current state of this feature in the playground by enabling the "Enable EXPERIMENTAL LaTeX output" setting.
+Can't argue with that! Which is why I've been experimenting with extending UnicodeMathML to emit LaTeX code, too – most but not all UnicodeMath features are supported at a basic level. You can take a look at the current state of this feature in the playground by enabling the "Enable EXPERIMENTAL LaTeX output" setting.
 
-*I'm not actively working on LaTeX code generation at the moment, but feel free to [file an issue](https://github.com/doersino/UnicodeMathML/issues) if this feature is important to you.*
+*I'm not actively working on completing LaTeX code generation at the moment, but feel free to [file an issue](https://github.com/doersino/UnicodeMathML/issues) if this feature is important to you.*
+
+### Tell me more about the playground.
+
+Sure thing – I've originally built it as a parser development aid. Before learning about it in detail, take a gander at this **screenshot of its interface**:
+
+![](docs/readme-images/6-playground.jpg)
+
+* In the top right corner, there's a gear icon. Hover over it to access the settings – you can **toggle various options on or off**, including a debug mode and experimental LaTeX code generation.
+* The text field on the left is where you'd **enter your UnicodeMath expressions**.
+* In the expanding-on-hover section below it, the contents of the text field are shown once more – but **annotated with the corresponding Unicode code points**. Hover over one of them to see a **tooltip with more details** *(demonstrated in the first GIF below)*.
+* You inputs are **rendered on the right**.
+* Below that, you'll see four tabs, each corresponding to one of the **syntax-highlighted intermediate data structures**. If you enable tracing in the settings, a fifth tab containing the parse trace appears, as well.
+* Below these two columns, a sort of **virtual keyboard** allows you to enter some of the Unicode characters you likely won't see on your physical keyboard: If you click on one of the button, the corresponding symbol will be inserted at the cursor position. Some of them are described in tooltips that pop up as you hover over them.
+* Below that, you can **enter arbitrary Unicode codepoints** or **control words**. You can also insert characters in one of many **math alphabets** *(see the second GIF below)* – alternatively, select some text in the main text field and click one of the alphabet buttons. The playground will then convert as many characters as are availiable in that math alphabet.
+* A bunch of **examples** are available at the bottom of the page – click one to paste it into the main text field.
+
+The playground is designed to keep its state in [local storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage), so you shouldn't lose any data if you reload it.
+
+![](docs/readme-images/7-tooltips.gif)
+
+![](docs/readme-images/8-alphabets.gif)
 
 
 ## Development
