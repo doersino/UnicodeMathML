@@ -15,7 +15,7 @@ UnicodeMath is an **easy-to-read linear format** for mathematics initially devel
 
 ### Status
 
-Generally consistent with Sargent's tech note, some edge-cases that aren't precisely specified might be iffy. Abstract boxes are largely unimplemented due to insufficient specification.
+Generally consistent with Sargent's tech note, some edge cases that aren't unambiguously specified might differ from the canonical implementation in Microsoft Office. Abstract boxes are largely unimplemented due to insufficient specification.
 
 
 ## Getting Started
@@ -30,8 +30,18 @@ Depending on whether you'd like to write UnicodeMath in a Markdeep document or u
 
 1. **Clone this repository** or [download a ZIP](https://github.com/doersino/UnicodeMathML/archive/master.zip).
 
-    ```
+    ```bash
     git clone https://github.com/doersino/UnicodeMathML.git
+    ```
+
+2. Before moving on, note that UnicodeMathML by default only transforms **math surrounded by the UnicodeMath delimiters `⁅` and `⁆`**. For example, a [typical sentence](https://en.m.wikipedia.org/wiki/Integral) might read like this:
+
+    ```markdown
+    Given a function ⁅f⁆ of a real variable ⁅x⁆ and an interval ⁅[a, b]⁆ of the real line, the **definite integral**
+
+    ⁅∫_a^b f(x) ⅆx⁆
+
+    can be interpreted informally as the signed area of the region in the ⁅xy⁆-plane that is bounded by the graph of ⁅f⁆, the ⁅x⁆-axis and the vertical lines ⁅x = a⁆ and ⁅x = b⁆.
     ```
 
 ### HTML
