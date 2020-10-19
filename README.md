@@ -237,7 +237,7 @@ Sure thing – I've originally built it as a parser development aid. Before lear
 
 * In the top right corner, there's a gear icon. Hover over it to access the settings – you can **toggle various options on or off**, including a debug mode and experimental LaTeX code generation.
 * The text field on the left is where you'd **enter your UnicodeMath expressions**.
-* In the expanding-on-hover section below it, the contents of the text field are shown once more – but **annotated with the corresponding Unicode code points**. Hover over one of them to see a **tooltip with more details** *(demonstrated in the first GIF below)*.
+* In the expanding-on-hover section below it, the contents of the text field are shown once more – but **annotated with the corresponding Unicode code points**. Hover over one of them to see a **tooltip with more details** *(demonstrated in the GIF below)*.
 * You inputs are **rendered on the right**.
 * Below that, you'll see four tabs, each corresponding to one of the **syntax-highlighted intermediate data structures**. If you enable tracing in the settings, a fifth tab containing the parse trace appears, as well.
 * Below these two columns, a sort of **virtual keyboard** allows you to enter some of the Unicode characters you likely won't see on your physical keyboard: If you click on one of the buttons, the corresponding symbol will be inserted at the cursor position. Some of them are described in tooltips that pop up as you hover over them.
