@@ -142,14 +142,16 @@ Got **further questions** that aren't answered below, or ideas for **potential i
 
 ### What's this *UnicodeMath* you're talking about?
 
-UnicodeMath is a **linear format for mathematics** initially developed as an input method and interchange representation for Microsoft Office. Its author, Murray Sargent III, has published a [*Unicode Technical Note*](https://www.unicode.org/notes/tn28/) (a copy of which is included at `docs/sargent-unicodemathml-tech-note.pdf`) describing its syntax and semantics. By using Unicode symbols in lieu of keywords wherever possible, it's significantly more readable than LaTeX in plain text:
+UnicodeMath is a **linear format for mathematics** initially developed as an [input method](https://www.youtube.com/watch?v=yyvJwNeUALY) and interchange representation for Microsoft Office. Its author, Murray Sargent III, has published a [*Unicode Technical Note*](https://www.unicode.org/notes/tn28/) (a copy of which is included at `docs/sargent-unicodemathml-tech-note.pdf`) describing its syntax and semantics.
+
+By using Unicode symbols in lieu of keywords wherever possible, it's significantly more readable than, say, LaTeX in plain text:
 
 ![](docs/readme-images/2-example.png)
 
-TODO more from thesis/presentation – maybe refer to it outright
+UnicodeMath, much like MathML, was [desiged with accessibility in mind](https://www.unicodeconference.org/presentations/S9T1-Sargent.pdf), taking cues from [Nemeth braille](https://www.nfb.org/images/nfb/documents/pdf/nemeth_1972.pdf) and other preceding math encodings.
 
 
-### How does its syntax compare to [AsciiMath](http://asciimath.org), LaTeX, and MathML?
+### How does its syntax compare to [AsciiMath](http://asciimath.org), (La)TeX, and MathML?
 
 Here's a table showing a few expressions as you'd formulate them in UnicodeMath, AsciiMath, and LaTeX:
 
