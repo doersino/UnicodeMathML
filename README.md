@@ -92,7 +92,7 @@ Replace the Markdeep loading code at the bottom of your document with this code 
 
 ### Node
 
-While I haven't tested server-side translation of UnicodeMath into MathML, there shouldn't be any problems integrating the core of UnicodeMathML into a Node project – it's all vanilla JavaScript. If you run into any trouble, don't hesitate to [file an issue](https://github.com/doersino/UnicodeMathML/issues)!
+While I haven't tested server-side translation of UnicodeMath into MathML, there shouldn't be any problems integrating the core of UnicodeMathML into a Node project – it's all vanilla JavaScript. If you run into any trouble, or if you would prefer an officially supported NPM package or something, don't hesitate to [file an issue](https://github.com/doersino/UnicodeMathML/issues)!
 
 
 ### Configuration
