@@ -293,3 +293,8 @@ However, the subdirectories `lib/` and `playground/assets/lib/` contain some **t
 * A stripped-down variant of [MathJax](https://www.mathjax.org) is included at `playground/assets/lib/mathjax/`, it's licensed under the *Apache License 2.0*, see [here](https://github.com/mathjax/MathJax/blob/master/LICENSE).
 * [LM Math](http://www.gust.org.pl/projects/e-foundry/lm-math/download/index_html), the typeface used for rendered UnicodeMath expressions in the playground in browsers with native MathML support, can be found at `playground/assets/lib/latinmodern/` and is licensed under the *GUST Font License*, see [here](http://www.gust.org.pl/projects/e-foundry/licenses/GUST-FONT-LICENSE.txt/view).
 * Belleve Invis' excellent typeface [Iosevka](https://github.com/be5invis/Iosevka) is located at `playground/assets/lib/iosevka/` and licensed under the *SIL OFL Version 1.1*, see [here](https://github.com/be5invis/Iosevka/blob/master/LICENSE.md).
+
+Lastly, the `docs/` subdirectory contains two PDF files:
+
+* Murray Sargent III's technical note "UnicodeMath, A Nearly Plain-Text Encoding of Mathematics" (located at `docs/sargent-unicodemathml-tech-note.pdf` is © 2006-2017 Murray Sargent III and Unicode, Inc. but used in accordance with the [Unicode Terms of Use](https://www.unicode.org/copyright.html).
+* My own Master's thesis is located at `docs/doersing-unicodemath-to-mathml.pdf`. I've primarily included it in this repository as a reference for some implementation details, it's not intended (or relevant) for general distribution.
