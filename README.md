@@ -15,7 +15,7 @@ UnicodeMath is an **easy-to-read linear format** for mathematics initially devel
 
 ### Status
 
-Generally consistent with Sargent's tech note, some edge cases that aren't unambiguously specified might differ from the canonical implementation in Microsoft Office. Abstract boxes are largely unimplemented due to insufficient specification.
+Generally consistent with version 3.1 of Sargent's tech note, some edge cases that aren't unambiguously specified (or, as UnicodeMath is not wholly context-free, impossible to parse with a PEG-based approach) might differ from the canonical implementation in Microsoft Office. Abstract boxes are largely unimplemented due to insufficient specification.
 
 
 ## Getting Started
