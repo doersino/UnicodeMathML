@@ -168,7 +168,7 @@ To summarize, here's a **totally-not-biased-and-super-scientific evaluation of t
 
 Not in its canonical form as described in Sargent's tech note – in Section 1, he mentions that such properties should be delegated to a "higher layer", which is perfectly reasonable in GUI-based environments like Microsoft Office – but there is not such layer in HTML/Markdeep.
 
-**Update: In late 2021, Murray Sargent [adopted part of the notation described below into mainline UnicodeMathML](https://devblogs.microsoft.com/math-in-office/unicodemath-color/).**
+***Update:* In late 2021, Murray Sargent [adopted part of the notation described below into mainline UnicodeMathML](https://devblogs.microsoft.com/math-in-office/unicodemath-color/).**
 
 To remedy this, **UnicodeMathML supports a few non-standard constructs**:
 
