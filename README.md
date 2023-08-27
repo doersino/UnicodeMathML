@@ -1,6 +1,6 @@
 # UnicodeMathML
 
-**Note: Murray Sargent III, the brain behind UnicodeMath and its implementation in Microsoft's products, has now retired from his role at Microsoft and spends some of his newly-free time working on extending and improving UnicodeMathML – please [check out his fork of this repository](https://github.com/MurrayIII/UnicodeMathML)!**
+#### 👉 Note: Murray Sargent III, the brain behind UnicodeMath and its implementation in Microsoft's products, has now retired from his role at Microsoft and spends some of his newly-free time working on extending and improving UnicodeMathML – please [check out his fork of this repository](https://github.com/MurrayIII/UnicodeMathML)!
 
 *This repository provides a JavaScript-based translation of [UnicodeMath](https://www.unicode.org/notes/tn28/) to [MathML](https://developer.mozilla.org/en-US/docs/Web/MathML) (hence "UnicodeMathML"). An interactive "playground" allows for experimentation with UnicodeMath's syntax and insight into the translation pipeline. UnicodeMathML can be easily integrated into arbitrary HTML or [Markdeep](https://casual-effects.com/markdeep/) documents.*
 
