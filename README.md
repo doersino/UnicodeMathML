@@ -168,9 +168,9 @@ To summarize, here's a **totally-not-biased-and-super-scientific evaluation of t
 
 Not in its canonical form as described in Sargent's tech note – in Section 1, he mentions that such properties should be delegated to a "higher layer", which is perfectly reasonable in GUI-based environments like Microsoft Office – but there is not such layer in HTML/Markdeep.
 
-***Update:* In late 2021, Murray Sargent [adopted part of the notation described below into mainline UnicodeMathML](https://devblogs.microsoft.com/math-in-office/unicodemath-color/).**
+***Update:* In late 2021, Murray Sargent [adopted part of the notation described below into mainline UnicodeMathML](https://devblogs.microsoft.com/math-in-office/unicodemath-color/); this fix was published as part of [UnicodeMath version 3.2](https://www.unicode.org/notes/tn28/UTN28-PlainTextMath-v3.2.pdf).**
 
-To remedy this, **UnicodeMathML supports a few non-standard constructs**:
+To remedy this, **UnicodeMathML introduces a few non-standard constructs**:
 
 ![](docs/readme-images/5-additions.png)
 
@@ -222,7 +222,7 @@ Sort of – according to [caniuse.com](https://caniuse.com/#search=mathml), **na
 
 However, Igalia [is working](https://mathml.igalia.com) on adding MathML rendering support to Chromium, which should push this number upwards quite significantly once merged. They've been making steady progress since early 2019, which is why I expect Chromium – and by extension Chrome – to gain MathML support sooner rather than later.
 
-***Update:* As of January 2023, MathML support [has arrived in Chrome 109](https://www.igalia.com/2023/01/10/Igalia-Brings-MathML-Back-to-Chromium.html).**
+***Update:* As of January 2023, MathML support [has arrived in Chrome 109](https://www.igalia.com/2023/01/10/Igalia-Brings-MathML-Back-to-Chromium.html), reaching a total of 90% of users.**
 
 All of this isn't really an issue: [MathJax](https://www.mathjax.org), which you'd probably use to render LaTeX math on the web anyway, provides a polyfill for MathML rendering.
 
