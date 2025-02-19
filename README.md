@@ -4,7 +4,7 @@
 
 *This repository provides a JavaScript-based translation of [UnicodeMath](https://www.unicode.org/notes/tn28/) to [MathML](https://developer.mozilla.org/en-US/docs/Web/MathML) (hence "UnicodeMathML"). An interactive "playground" allows for experimentation with UnicodeMath's syntax and insight into the translation pipeline. UnicodeMathML can be easily integrated into arbitrary HTML or [Markdeep](https://casual-effects.com/markdeep/) documents.*
 
-#### 🎮 Get familiar with the syntax via [the playground](https://doersino.github.io/UnicodeMathML/playground/)!
+#### 🎮 Get familiar with the syntax via [the playground](https://ghpages.noahdoersing.com/UnicodeMathML/playground/)!
 
 #### 📑 [Learn how to](#getting-started) integrate UnicodeMathML into your website or Markdeep document.
 
@@ -24,9 +24,9 @@ Generally consistent with version 3.1 of Sargent's tech note, some edge cases th
 
 For a **first look**, check out...
 
-* ...the [UnicodeMathML playground](https://doersino.github.io/UnicodeMathML/playground/), an interactive environment that allows you to play around with UnicodeMath's syntax and its translation into MathML.
-* ...an [example Markdeep document](https://doersino.github.io/UnicodeMathML/src/integration/example.md.html) whose source can be found [here](https://github.com/doersino/UnicodeMathML/blob/master/src/integration/example.md.html).
-* ...or an [example HTML document](https://doersino.github.io/UnicodeMathML/src/integration/example.html) whose source is located [here](https://github.com/doersino/UnicodeMathML/blob/master/src/integration/example.html).
+* ...the [UnicodeMathML playground](https://ghpages.noahdoersing.com/UnicodeMathML/playground/), an interactive environment that allows you to play around with UnicodeMath's syntax and its translation into MathML.
+* ...an [example Markdeep document](https://ghpages.noahdoersing.com/UnicodeMathML/src/integration/example.md.html) whose source can be found [here](https://github.com/doersino/UnicodeMathML/blob/master/src/integration/example.md.html).
+* ...or an [example HTML document](https://ghpages.noahdoersing.com/UnicodeMathML/src/integration/example.html) whose source is located [here](https://github.com/doersino/UnicodeMathML/blob/master/src/integration/example.html).
 
 Depending on whether you'd like to write UnicodeMath in a Markdeep document or use UnicodeMathML on your website, there are two paths. But first:
 
